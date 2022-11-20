@@ -1,0 +1,5 @@
+<div class="dso-progress-indicator dso-progress-indicator-looping" role="progressbar" [ngClass]="size" [title]="label">
+  <div class="dso-progress-indicator-spinner"></div>
+  <span class="sr-only">Een moment geduld alstublieft.</span>
+  <span *ngIf="label" class="dso-progress-indicator-label">{{ label }}</span>
+</div>

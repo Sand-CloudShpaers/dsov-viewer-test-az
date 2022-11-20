@@ -1,0 +1,16 @@
+<div class="map-panel-header">
+  <h2>Kaartdetails</h2>
+  <button
+    class="btn dso-tertiary map-panel-header__close"
+    title="Sluit paneel"
+    (click)="close()"
+    (keyup.enter)="close()"
+    (keyup.escape)="close()"
+    #closeButton
+  >
+    <dso-icon icon="times"></dso-icon>
+  </button>
+</div>
+<div class="data-content" #content>
+  <ng-content></ng-content>
+</div>

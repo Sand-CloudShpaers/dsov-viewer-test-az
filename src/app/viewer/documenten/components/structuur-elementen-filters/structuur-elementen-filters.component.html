@@ -1,0 +1,21 @@
+<ng-container *ngIf="status$ | async as status">
+  <ng-container *ngIf="status.isLoading">
+    <dsov-spinner [label]="'Filters aan het laden...'"></dsov-spinner>
+  </ng-container>
+  <ng-container *ngIf="status.isResolved">
+    <ng-container *ngIf="filter$ | async as filter">
+      <ul class="structuurelementfilter__filter-list" *ngIf="filter">
+        <li *ngFor="let structuurelementFilter of [filter]; trackBy: trackByStructuurElementFilter">
+          <dso-label status="info" compact="" removable="" (dsoRemoveClick)="removeChip(structuurelementFilter)">
+            <span>{{ structuurelementFilter.beschrijving }}</span></dso-label
+          >
+        </li>
+      </ul>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="status.isRejected">
+    <div class="alert alert-danger" role="alert" data-test-id="document-structuur-filter-alert">
+      Filters gebruiken niet gelukt. U ziet het hele document.
+    </div>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,176 @@
+[
+  {
+    "id": "aanwijzingsbesluit",
+    "name": "Aanwijzingsbesluit",
+    "group": "regels",
+    "applicableToSources": ["IHR"]
+  },
+  {
+    "id": "amvb",
+    "name": "AMvB",
+    "ozonValue": "/join/id/stop/regelingtype_001",
+    "group": "regels",
+    "applicableToSources": ["IHR", "OZON"]
+  },
+  {
+    "id": "beheersverordening",
+    "name": "Beheersverordening",
+    "group": "regels",
+    "applicableToSources": ["IHR"]
+  },
+  {
+    "id": "bestemmingsplan",
+    "name": "Bestemmingsplan",
+    "group": "regels",
+    "applicableToSources": ["IHR"]
+  },
+  {
+    "id": "exploitatieplan",
+    "name": "Exploitatieplan",
+    "group": "regels",
+    "applicableToSources": ["IHR"]
+  },
+  {
+    "id": "gerechtelijke uitspraak",
+    "name": "Gerechtelijke uitspraak",
+    "group": "regels",
+    "applicableToSources": ["IHR"]
+  },
+  {
+    "id": "inpassingsplan",
+    "name": "Inpassingsplan",
+    "group": "regels",
+    "applicableToSources": ["IHR"]
+  },
+  {
+    "id": "ministeriële regeling",
+    "name": "Ministeriële regeling",
+    "ozonValue": "/join/id/stop/regelingtype_002",
+    "group": "regels",
+    "applicableToSources": ["OZON"]
+  },
+  {
+    "id": "omgevingsplan",
+    "name": "Omgevingsplan (Omgevingswet)",
+    "ozonValue": "/join/id/stop/regelingtype_003",
+    "group": "regels",
+    "applicableToSources": ["OZON"]
+  },
+  {
+    "id": "omgevingsvergunning",
+    "name": "Omgevingsvergunning",
+    "group": "regels",
+    "applicableToSources": ["IHR", "OZON"]
+  },
+  {
+    "id": "omgevingsverordening",
+    "name": "Omgevingsverordening (Omgevingswet)",
+    "group": "regels",
+    "ozonValue": "/join/id/stop/regelingtype_004",
+    "applicableToSources": ["OZON"]
+  },
+  {
+    "id": "omgevingsvisie",
+    "name": "Omgevingsvisie (Omgevingswet)",
+    "ozonValue": "/join/id/stop/regelingtype_006",
+    "group": "beleid",
+    "applicableToSources": ["OZON"]
+  },
+  {
+    "id": "projectbesluit",
+    "name": "Projectbesluit",
+    "ozonValue": "/join/id/stop/regelingtype_007",
+    "group": "beleid",
+    "applicableToSources": ["IHR", "OZON"]
+  },
+  {
+    "id": "provinciale verordening",
+    "name": "Provinciale verordening",
+    "group": "regels",
+    "applicableToSources": ["IHR"]
+  },
+  {
+    "id": "reactieve aanwijzing",
+    "name": "Reactieve aanwijzing",
+    "group": "regels",
+    "applicableToSources": ["IHR"]
+  },
+  {
+    "id": "regeling",
+    "name": "Regeling",
+    "group": "regels",
+    "applicableToSources": ["IHR"]
+  },
+  {
+    "id": "structuurvisie",
+    "name": "Structuurvisie",
+    "group": "beleid",
+    "applicableToSources": ["IHR"]
+  },
+  {
+    "id": "tijdelijke ontheffing buitenplans",
+    "name": "Tijdelijke ontheffing buitenplans",
+    "group": "regels",
+    "applicableToSources": ["IHR"]
+  },
+  {
+    "id": "uitwerkingsplan",
+    "name": "Uitwerkingsplan",
+    "group": "regels",
+    "applicableToSources": ["IHR"]
+  },
+  {
+    "id": "voorbereidingsbesluit",
+    "name": "Voorbereidingsbesluit",
+    "group": "regels",
+    "applicableToSources": ["IHR", "OZON"]
+  },
+  {
+    "id": "waterschapsverordening",
+    "name": "Waterschapsverordening",
+    "ozonValue": "/join/id/stop/regelingtype_005",
+    "group": "regels",
+    "applicableToSources": ["OZON"]
+  },
+  {
+    "id": "wijzigingsplan",
+    "name": "Wijzigingsplan",
+    "group": "regels",
+    "applicableToSources": ["IHR"]
+  },
+  {
+    "id": "voorbeschermingsregels",
+    "name": "Voorbeschermingsregels",
+    "ozonValue": "/join/id/stop/regelingtype_009",
+    "group": "regels",
+    "applicableToSources": ["OZON"]
+  },
+  {
+    "id": "instructie",
+    "name": "Instructie",
+    "ozonValue": "/join/id/stop/regelingtype_008",
+    "group": "regels",
+    "applicableToSources": ["OZON"]
+  },
+  {
+    "id": "toegangsbeperkingsbesluit",
+    "name": "Toegangsbeperkingsbesluit",
+    "ozonValue": "/join/id/stop/regelingtype_013",
+    "group": "regels",
+    "applicableToSources": ["OZON"]
+  },
+  {
+    "id": "aanwijzingsbesluit N2000",
+    "name": "Aanwijzingsbesluit N2000",
+    "ozonValue": "/join/id/stop/regelingtype_012",
+    "group": "regels",
+    "applicableToSources": ["OZON"]
+  },
+  {
+    "id": "programma",
+    "name": "Programma",
+    "ozonValue": "/join/id/stop/regelingtype_010",
+    "group": "beleid",
+    "applicableToSources": ["OZON"]
+  }
+]

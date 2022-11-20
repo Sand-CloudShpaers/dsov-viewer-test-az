@@ -1,0 +1,33 @@
+<h2>Veelgestelde vragen</h2>
+<div [innerHtml]="(faqInfo?.leadIn$ | async)?.content"></div>
+<div class="dso-accordion dso-accordion-compact">
+  <ng-container *ngIf="faqInfo?.questions$ | async as questions">
+    <ng-container *ngFor="let question of questions; index as i; trackBy: trackByFn">
+      <div
+        class="dso-accordion-section"
+        [ngClass]="{ 'dso-open': question.open }"
+        [attr.data-test-id]="'home-faq-' + i"
+      >
+        <h3 class="dso-section-handle">
+          <button
+            type="button"
+            (click)="toggleQuestions(question, questions)"
+            (keyup.enter)="toggleQuestions(question, questions)"
+            [attr.aria-expanded]="question.open"
+            [attr.data-test-id]="'home-faq-' + i + '-button'"
+          >
+            {{ question.title }}
+          </button>
+        </h3>
+        <div class="dso-section-body" *ngIf="question.open">
+          <div
+            class="dso-rich-content"
+            [innerHTML]="question.content | safeHtmlUtil"
+            id="dso-faq-{{ i }}"
+            [attr.data-test-id]="'home-faq-' + i + '-content'"
+          ></div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

@@ -1,0 +1,15 @@
+@import 'variables';
+
+.dso_kaarten_imro {
+  display: flex;
+
+  &__label {
+    flex: 1;
+    font-weight: 400;
+    margin-left: 8px;
+  }
+  &__slider {
+    margin-left: auto;
+    width: 2.5rem;
+  }
+}

@@ -1,0 +1,35 @@
+@import 'variables';
+
+@mixin rotate-element($rotation: 90deg) {
+  transition-duration: 0.2s;
+  transition-property: transform;
+  text-align: center;
+  min-width: 10px;
+
+  &--rotated {
+    transform: rotate($rotation);
+  }
+}
+
+@mixin center-content() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin btn-with-dso-icon() {
+  margin: 0;
+  height: 2em;
+  width: 2em;
+  min-width: auto;
+
+  dso-icon {
+    margin-top: -0.5em;
+    margin-left: -0.75em;
+  }
+  color: $bosgroen;
+  &:hover {
+    background-color: $bosgroen;
+    color: white;
+  }
+}

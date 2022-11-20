@@ -1,0 +1,42 @@
+<div data-test-id="document-page" *ngIf="documentenStatus$ | async as status">
+  <ng-container *ngIf="status.isResolved">
+    <ng-container *ngIf="documentDto$ | async as document">
+      <div class="header dso-rich-content">
+        <button
+          (click)="back(previousPaths)"
+          class="btn dso-tertiary"
+          data-test-id="document-page__return"
+          *ngIf="previousPaths$ | async as previousPaths"
+        >
+          <dso-icon icon="chevron-left"></dso-icon>
+          <span>Terug</span><span class="sr-only"> naar resultaten</span>
+        </button>
+
+        <dsov-help-button class="header__help"></dsov-help-button>
+      </div>
+
+      <ng-container [ngSwitch]="isIhrDisabled(document.documentId)">
+        <ng-container *ngSwitchCase="true">
+          <dsov-ihr-disabled></dsov-ihr-disabled>
+        </ng-container>
+        <ng-container *ngSwitchCase="false">
+          <dsov-document-header-container [documentId]="document.documentId"></dsov-document-header-container>
+
+          <dsov-document-page-nav
+            *ngIf="documentVM$ | async as documentVM"
+            [documentVM]="documentVM"
+          ></dsov-document-page-nav>
+
+          <router-outlet></router-outlet>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+  <div *ngIf="status.isRejected" data-test-id="not-found__container">
+    <h1 class="not-found__header">Document niet gevonden</h1>
+    <p>Helaas is het document niet gevonden. U kunt (opnieuw) zoeken.</p>
+    <a [routerLink]="[VIEWER_LINK]" class="btn dso-primary not-found__button" data-test-id="not-found__button">
+      Zoek op de kaart
+    </a>
+  </div>
+</div>

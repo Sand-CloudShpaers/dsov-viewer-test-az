@@ -1,0 +1,10 @@
+<ng-container *ngIf="selectedMode$ | async as selectedMode">
+  <dsov-filter [readonly]="true"></dsov-filter>
+  <h1>{{ getTitle(selectedMode) }}</h1>
+  <dsov-search
+    [selectedMode]="selectedMode"
+    (changeLocation)="changeLocatieFilter($event)"
+    (changeCoordinates)="changeLocatieFilter($event)"
+    (changeContour)="changeLocatieFilter($event)"
+  ></dsov-search>
+</ng-container>

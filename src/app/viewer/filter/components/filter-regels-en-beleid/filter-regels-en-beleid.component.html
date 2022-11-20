@@ -1,0 +1,21 @@
+<div
+  class="filter-block"
+  data-test-id="filter-regels-en-beleid"
+  *ngFor="let block of form; trackBy: trackByFilterBlock"
+>
+  <label data-test-id="filter-regels-en-beleid__label">{{ block.name }} </label>
+  <dso-toggletip position="top">
+    <div class="dso-rich-content" [innerHTML]="getRichContent(block.id)"></div>
+  </dso-toggletip>
+  <dso-selectable
+    type="checkbox"
+    data-test-id="filter-regels-en-beleid__item"
+    [identifier]="filterItem.id"
+    [value]="filterItem.id"
+    [checked]="isSelected(filterItem)"
+    (dsoChange)="onChange(filterItem, $event)"
+    *ngFor="let filterItem of block.items; trackBy: trackByFilterItem"
+  >
+    {{ filterItem.name }}
+  </dso-selectable>
+</div>

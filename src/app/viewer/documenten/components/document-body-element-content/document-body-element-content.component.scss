@@ -1,0 +1,65 @@
+@import 'variables';
+
+:host {
+  display: block;
+
+  .document-element {
+    &__inhoud {
+      display: flex;
+      margin-bottom: $u1;
+    }
+
+    &__nummer {
+      margin-left: 1.25rem;
+    }
+
+    &__nummer-dimmed {
+      margin-left: 1.25rem;
+      color: $color-grijs;
+    }
+
+    &__inhoud-text {
+      flex: 1;
+      padding-left: 1em;
+      /* DSO-toolkit voegt zelf margin toe aan het eerste en laatste element. 
+        Dit willen wij niet, dus we halen het hier af */
+      margin: -8px 0px;
+
+      &-conditie {
+        padding-left: 1.5em;
+      }
+    }
+
+    &__inhoud-faded {
+      flex: 1;
+      padding-left: 1em;
+      height: 1.5em;
+      overflow: hidden;
+      color: $color-grijs;
+      mask-image: linear-gradient(to right, black, black, black, transparent);
+    }
+
+    &__inhoud-dimmed {
+      flex: 1;
+      padding-left: 1em;
+      color: $color-grijs;
+    }
+
+    &__inhoud-button-container {
+      display: flex;
+      height: 1.5em;
+      padding-left: 1em;
+    }
+
+    &__inhoud-button-hide {
+      margin-left: auto;
+      margin-bottom: 1rem;
+      margin-top: -0.5rem;
+      display: block;
+    }
+
+    &__options {
+      margin-left: 1.25rem;
+    }
+  }
+}

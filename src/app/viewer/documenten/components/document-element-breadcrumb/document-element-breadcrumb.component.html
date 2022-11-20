@@ -1,0 +1,34 @@
+<ng-container *ngIf="list.length">
+  <span class="breadcrumbs-label">Bovenliggend:</span>
+
+  <dso-dropdown-menu checkable dropdown-align="right">
+    <button
+      id="select-mode"
+      type="button"
+      slot="toggle"
+      class="dso-tertiary"
+      data-test-id="breadcrumbs-button__expand"
+      [attr.title]="'Bovenliggend: ' + getBreadcrumbText(list[list.length - 1])"
+    >
+      <span>{{ getBreadcrumbText(list[list.length - 1]) }}</span>
+    </button>
+    <div class="dso-dropdown-options">
+      <ul data-test-id="select-list">
+        <li
+          *ngFor="let item of list; trackBy: trackByFn"
+          [class.dso-checked]="item === selectedItem"
+          [attr.data-test-id]="'select-' + item.id"
+        >
+          <a
+            [attr.id]="item.id"
+            data-test-id="breadcrumbs-list__item"
+            [routerLink]="routerLink"
+            [queryParamsHandling]="'preserve'"
+            (click)="select(item)"
+            >{{ getBreadcrumbText(item) }}</a
+          >
+        </li>
+      </ul>
+    </div>
+  </dso-dropdown-menu>
+</ng-container>

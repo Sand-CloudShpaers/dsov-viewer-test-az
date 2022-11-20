@@ -1,0 +1,9 @@
+<dsov-collapsible-list
+  [identificatie]="'item.identificatie'"
+  [naam]="item.naam"
+  [lists]="getHoofdlijnen(item)"
+  *ngFor="let item of hoofdlijnen; trackBy: trackByFn"
+  [showCheckboxes]="false"
+  [showSliders]="false"
+  [boldTitle]="true"
+></dsov-collapsible-list>

@@ -1,0 +1,20 @@
+<div class="dso-search-bar" data-test-id="search-locatie" [class.dso-invalid]="showRequiredError">
+  <div class="dso-search-bar-input">
+    <label for="search-locatie__input" id="search-locatie__label" data-test-id="search-locatie__label">Locatie</label>
+    <span class="dso-search-icon" aria-hidden="true"></span>
+    <dso-autosuggest (dsoChange)="search($event)" (dsoSelect)="select($event)" [suggestions]="suggestions$ | async">
+      <input
+        type="text"
+        id="search-locatie__input"
+        placeholder="Adres of perceel"
+        data-test-id="search-locatie__input"
+        [value]="getActiveLocationValue()"
+      />
+    </dso-autosuggest>
+
+    <button type="button" data-test-id="search-locatie__clear" (click)="clear()">Zoekopdracht legen</button>
+  </div>
+</div>
+<div class="form-group dso-invalid" *ngIf="showRequiredError">
+  <p class="dso-message" data-test-id="required-error">Dit is een verplicht veld.</p>
+</div>

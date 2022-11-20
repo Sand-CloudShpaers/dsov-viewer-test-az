@@ -1,0 +1,51 @@
+<div class="dso-search-bar">
+  <div class="dso-search-bar-input form-group" [class.dso-invalid]="showRequiredError || showInvalidError">
+    <label for="coordinates-search-bar">Coördinaten</label>
+    <input
+      type="text"
+      [placeholder]="isRd ? 'Coördinaten volgens Rijksdriehoekmeting (RD)' : 'Coördinaten volgens ETRS89'"
+      (keyup.enter)="search()"
+      (change)="handleInput($event)"
+      (keyup)="handleInput($event)"
+      id="coordinates-search-bar"
+      [value]="searchValue"
+      #input
+    />
+    <p *ngIf="showRequiredError && !input.value" class="dso-message" data-test-id="required-error">
+      Dit is een verplicht veld.
+    </p>
+    <p *ngIf="showInvalidError && !showRequiredError && input.value" class="dso-message" data-test-id="required-error">
+      De coördinaten zijn niet valide.
+    </p>
+  </div>
+  <button
+    class="btn dso-secondary"
+    (click)="search()"
+    *ngIf="!autoSearch"
+    [disabled]="isLoading || (searchValue === null && !isTimeTravel)"
+    data-test-id="button-search"
+  >
+    Zoeken
+  </button>
+</div>
+
+<div class="dso-radios dso-inline">
+  <div class="dso-field-container">
+    <div class="dso-selectable">
+      <input type="radio" id="radio-rd" [checked]="isRd" (change)="handleRadio(true)" />
+      <label for="radio-rd"> Rijksdriehoekmeting (RD)</label>
+    </div>
+    <div class="dso-selectable">
+      <input type="radio" id="radio-etrs" [checked]="!isRd" (change)="handleRadio(false)" />
+      <label for="radio-etrs"> ETRS89 </label>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!isCorrectCoordinates()" class="alert alert-info" data-test-id="message-drawing">
+  {{
+    isRd
+      ? 'Een geldig RD-coördinaat bestaat uit twee groepen van vijf of zes cijfers, met een komma ertussen.'
+      : 'Een geldig ETRS89-coördinaat bestaat uit twee groepen van decimale cijfers met een punt of komma, met een komma of puntkomma ertussen. Bijvoorbeeld: 52.243333, 5.634167'
+  }}
+</div>

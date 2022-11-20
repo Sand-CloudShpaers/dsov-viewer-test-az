@@ -1,0 +1,21 @@
+@import 'variables';
+
+.dso-map-overlay {
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  left: 0;
+  right: 0;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.ol-popup {
+  background-color: white;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+  padding: 4px 15px 4px 15px;
+  border: 1px solid #cccccc;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}

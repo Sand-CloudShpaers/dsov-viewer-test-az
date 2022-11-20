@@ -1,0 +1,13 @@
+<ng-container *ngIf="(showPanel$ | async) !== null">
+  <div class="overlay__shadow" [ngClass]="{ 'is-faded': showPanel$ | async }"></div>
+  <div class="overlay__left" [ngClass]="{ 'is-open': showPanel$ | async }">
+    <h1>Uw keuzes</h1>
+    <dsov-filter-content
+      *ngIf="showPanel$ | async"
+      (closePanel)="close()"
+      (confirmPanel)="confirm($event)"
+    ></dsov-filter-content>
+  </div>
+</ng-container>
+
+<dsov-filter-confirmation (approved)="confirmed($event)" (canceled)="canceled($event)"></dsov-filter-confirmation>

@@ -1,0 +1,21 @@
+@import 'variables';
+
+:host {
+  overflow: hidden;
+  width: 100%;
+
+  .annotation-toggle {
+    position: relative;
+
+    &-button {
+      dso-icon {
+        margin-right: $u1;
+      }
+
+      &__close {
+        position: absolute;
+        right: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<dso-alert status="danger" data-test-id="search-alert">
+  <p>
+    Er gaat iets fout met het ophalen van gegevens voor deze locatie. Hierdoor kan deze toepassing niet gebruikt worden.
+  </p>
+  <p *ngIf="error" data-test-id="search-alert__message">{{ error.message }}</p>
+  <a href="../" class="btn" data-test-id="return-to-home"> Begin opnieuw </a>
+</dso-alert>

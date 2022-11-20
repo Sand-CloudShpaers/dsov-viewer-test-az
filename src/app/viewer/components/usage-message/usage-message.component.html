@@ -1,0 +1,72 @@
+<ng-container *ngIf="openUsageMessage">
+  <div
+    class="dso-modal"
+    role="dialog"
+    tabindex="-1"
+    aria-labelledby="dialog-title"
+    aria-describedby="dialog-description"
+  >
+    <div class="dso-dialog" role="document">
+      <div class="dso-header">
+        <h2 id="dialog-title">Let op!</h2>
+      </div>
+      <div class="dso-body" id="dialog-description">
+        <ng-container *ngIf="showBetaContent; then betaMessage; else defaultMessage"></ng-container>
+      </div>
+      <div class="dso-footer">
+        <button
+          (click)="close()"
+          (keyup.enter)="close()"
+          (keyup.escape)="close()"
+          class="btn dso-primary"
+          type="submit"
+          tabindex="1"
+          #closeButton
+        >
+          Akkoord
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #defaultMessage>
+  <p>
+    Regels op de kaart maakt deel uit van het Digitale Stelsel voor de Omgevingswet (DSO) en toont welke juridische
+    regels waar gelden. De applicatie is nog in ontwikkeling.
+  </p>
+
+  <p>De juridische regels komen uit de volgende informatiebronnen:</p>
+
+  <ul>
+    <li>
+      De Ruimtelijke plannen die volgens het Overgangsrecht een juridische geldigheid hebben binnen de Omgevingswet (op
+      termijn)
+    </li>
+    <li>De historie van de Ruimtelijke plannen</li>
+    <li>
+      Proef-omgevingsdocumenten die zijn gemaakt conform de standaarden die het DSO voorschrijft, zoals
+      Waterschapsverordeningen, Omgevingsplannen, Omgevingsverordeningen, Ministeriele regelingen
+    </li>
+  </ul>
+</ng-template>
+<ng-template #betaMessage>
+  <p>
+    Regels op de kaart maakt deel uit van het Digitale Stelsel voor de Omgevingswet (DSO) en toont welke juridische
+    regels waar gelden. De applicatie is nog in ontwikkeling en bevat proefdata die geen juridische status hebben.
+  </p>
+
+  <p>De juridische regels komen uit de volgende informatiebronnen:</p>
+
+  <ul>
+    <li>
+      De Ruimtelijke plannen die volgens het Overgangsrecht een juridische geldigheid hebben binnen de Omgevingswet (op
+      termijn)
+    </li>
+    <li>De historie van de Ruimtelijke plannen</li>
+    <li>
+      Proef-omgevingsdocumenten die zijn gemaakt conform de standaarden die het DSO voorschrijft, zoals
+      Waterschapsverordeningen, Omgevingsplannen, Omgevingsverordeningen, Ministeriele regelingen
+    </li>
+  </ul>
+</ng-template>

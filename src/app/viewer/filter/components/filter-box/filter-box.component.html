@@ -1,0 +1,31 @@
+<div class="highlight-box-container">
+  <dso-highlight-box drop-shadow="" white="" [attr.yellow]="isActive()" data-test-id="filter-box">
+    <div class="dso-rich-content">
+      <h4 data-test-id="filter-box__title">
+        {{ title }}
+        <dso-toggletip>
+          <div class="dso-rich-content" [innerHTML]="getRichContent(toggleTipKey)"></div>
+        </dso-toggletip>
+      </h4>
+      <div data-test-id="filter-box__description">{{ description }}</div>
+      <div class="footer">
+        <dsov-filter-label
+          [filterOptions]="filterOptions"
+          class="labels"
+          data-test-id="filter-box__labels"
+        ></dsov-filter-label>
+        <div class="buttons">
+          <button
+            type="button"
+            class="dso-tertiary btn-sm filter-box__button"
+            data-test-id="filter-box__button"
+            (click)="edit()"
+          >
+            <span>{{ isActive() === '' ? 'Wijzigen' : 'Bekijken' }}</span>
+            <dso-icon icon="chevron-right"></dso-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </dso-highlight-box>
+</div>

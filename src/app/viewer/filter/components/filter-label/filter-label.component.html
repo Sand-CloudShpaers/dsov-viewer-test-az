@@ -1,0 +1,27 @@
+<div class="dso-label-group" data-test-id="dso-label-group" *ngIf="activeSelections$ | async as activeSelections">
+  <ul>
+    <ng-container *ngFor="let name of getFilterNames(); trackBy: trackByName">
+      <li *ngFor="let filter of filterOptions[name]; trackBy: trackByFilter">
+        <dso-label
+          *ngIf="!filter.label?.hide"
+          [id]="filter.id"
+          [attr.data-test-id]="'filter-' + filter.id"
+          [attr.removable]="!filter.label?.removable && !removable"
+          (dsoRemoveClick)="removeFilter(name, filter)"
+          class="dso-label-group__label"
+          data-test-id="dso-label-group__label"
+          status="bright"
+        >
+          <span slot="symbol" *ngIf="getSymboolcode(filter.id, activeSelections) as symboolcode">
+            <span
+              class="symboolcode dso-label-group__label__symbol"
+              data-test-id="dso-label-group__label__symbol"
+              [attr.data-symboolcode]="symboolcode"
+            ></span>
+          </span>
+          {{ filter.name }} {{ filter.label?.name }}
+        </dso-label>
+      </li>
+    </ng-container>
+  </ul>
+</div>

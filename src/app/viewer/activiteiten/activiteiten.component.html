@@ -1,0 +1,8 @@
+<ng-container *ngIf="aanduidingenLocaties$ | async as aanduidingenLocaties">
+  <dsov-selectable-list
+    [list]="getActiviteitLocatieaanduidingen(activiteiten, aanduidingenLocaties)"
+    [showSliders]="showSliders"
+    [showCheckboxes]="showCheckboxes"
+  >
+  </dsov-selectable-list>
+</ng-container>

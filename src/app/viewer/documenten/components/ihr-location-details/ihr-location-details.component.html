@@ -1,0 +1,37 @@
+<p>Prik in de kaart binnen de plangrens om informatie over een specifiek object of vlak te zien.</p>
+
+<ng-container *ngIf="detailsOpLocatie$ | async as detailsOpLocatie; else noResults">
+  <ng-container *ngIf="detailsOpLocatie.length > 0; else noResults">
+    <ng-container *ngIf="mapDetailsStatus$ | async as mapDetailsStatus">
+      <ng-container *ngIf="mapDetailsStatus.isPending">
+        <dsov-spinner
+          data-test-id="dso-objectinformatie__loading"
+          label="Details op locatie aan het laden."
+        ></dsov-spinner>
+      </ng-container>
+
+      <ng-container *ngIf="mapDetailsStatus.isRejected">
+        <dso-alert status="danger" data-test-id="dso-objectinformatie__error">
+          <div class="dso-rich-content">
+            <p>Fout bij het ophalen van details op locatie.</p>
+          </div>
+        </dso-alert>
+      </ng-container>
+
+      <ng-container *ngIf="mapDetailsStatus.isResolved">
+        <dsov-kaarten-list [planId]="planId" [mapDetails]="detailsOpLocatie"></dsov-kaarten-list>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-container>
+
+<ng-template #noResults>
+  <div
+    class="alert alert-warning"
+    role="alert"
+    data-test-id="dso-objectinformatie__warning"
+    *ngIf="features && features.length === 0"
+  >
+    Geen details gevonden op deze locatie.
+  </div>
+</ng-template>

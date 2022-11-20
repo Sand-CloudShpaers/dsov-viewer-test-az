@@ -1,0 +1,32 @@
+<ul class="list-unstyled" data-test-id="hoofdlijnen-lijst">
+  <li *ngFor="let group of hoofdlijnen | keyvalue; trackBy: trackByKey" class="hoofdlijnen__group">
+    <button
+      (click)="groupClicked(group.key)"
+      (keyup.enter)="groupClicked(group.key)"
+      [title]="openHoofdlijnen.includes(group.key) ? group.key + ' verbergen' : group.key + ' weergeven'"
+      class="btn dso-tertiary hoofdlijnen__toggle"
+      data-test-id="hoofdlijnen__toggle"
+      [attr.aria-expanded]="openHoofdlijnen.includes(group.key)"
+    >
+      <dso-icon icon="{{ openHoofdlijnen.includes(group.key) ? 'chevron-down' : 'chevron-right' }}"></dso-icon>
+      <span>
+        {{ group.key }}
+      </span>
+    </button>
+    <ul class="list-unstyled hoofdlijnen__lijst" *ngIf="openHoofdlijnen.includes(group.key)">
+      <li *ngFor="let hoofdlijn of group.value; trackBy: trackById; let index = index">
+        <button
+          *ngIf="routerLink$ | async as routerLink"
+          (click)="onClickHoofdlijn(hoofdlijn)"
+          class="btn dso-tertiary"
+          type="button"
+          [routerLink]="routerLink"
+          [queryParamsHandling]="'preserve'"
+          [attr.data-test-id]="'hoofdlijn-' + group.key + '-' + index"
+        >
+          {{ hoofdlijn.naam }}
+        </button>
+      </li>
+    </ul>
+  </li>
+</ul>

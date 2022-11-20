@@ -1,0 +1,129 @@
+{
+  "releases": [
+    {
+      "version": "0.17.1053",
+      "date": "2021/3/9",
+      "richContent": "<p><strong>Functioneel/UX</strong></p><ul><li>Uitwisselen locatiegegevens en activiteiten met de andere gebruikerstoepassingen in het portaal</li><li>Verbetering highlight functie in de kaart bij mouse-over (bij objecten, lijst met documenten en annotaties in regelteksten)</li></ul><p><strong>Techniek</strong></p><ul><li>Efficiëntere bevragingen IHR documenten: per regelstatus</li></ul><p><strong>Bugfixing</strong></p><ul><li>Filtering op Activiteit gaf in tab Beleid een error op Ozon beleid/_zoek request</li><li>Applicatie loopt niet meer vast bij zoeken op leeg invoerveld Documentnummer</li><li>Verbeelding gebiedengroepen wordt weer weergegeven in de kaart</li><li>OW-documenten worden weer met de juiste kenmerken weergegeven</li></ul>"
+    },
+    {
+      "version": "0.17.1051",
+      "date": "2021/2/23",
+      "richContent": "<p><strong>Functioneel/UX</strong></p><ul><li>Annotatiescherm binnen de regels: Activiteiten tonen in de kaart alleen die Activiteitlocatie-aanduiding die hoort bij het bijbehorende artikel waarbinnen de activiteit is genoemd</li><li>De verschillende tekstelementen bevatten nu een consistente regelafstand</li><li>Pagina om regels te selecteren overzichtelijker gemaakt; uitleg bij zoeken op Activiteiten toegevoegd</li></ul><p><strong>Bugfixing</strong></p><ul><li>Bij een nieuwe zoekopdracht blijven de locaties en activiteiten uit een eerdere zoekopdracht niet meer staan</li><li>Annotatiescherm: lange teksten worden nu netjes onder elkaar uitgelijnd</li><li>Bij Filteren op Documenttype ontstond een error op het zoeken naar IHR plannen</li><li>Zoeken op document: een leeg invoerveld resulteerde in vastlopen van de applicatie</li></ul>"
+    },
+    {
+      "version": "0.17.1050",
+      "date": "2021/2/15",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Kaartlagenmenu: de verschillende opties worden overzichtelijker weergegeven</li></ul><p><strong>Bugfixing</strong></p><ul><li>Zoeken op getekend gebied: na zoekopdracht bleef mouse pointer een oranje bolletje</li></ul><p><strong>Technisch</strong></p><ul><li>Verbetering in het leveren van locatiegegevens en activiteiten naar het portaal</li></ul>"
+    },
+    {
+      "version": "0.17.1049",
+      "date": "2021/2/11",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Tab Gebiedsinfo: de Gebiedsaanwijzingen worden nu overzichtelijker weergegeven</li><li>Filterpaneel: breedte van het paneel en de inhoud zijn op elkaar afgestemd</li><li>Tonen opschrift document: als citeertitel ontbreekt wordt Type Omgevingsdocument & Bevoegd gezag getoond (voorheen ‘Geen titel’)</li><li>Releasenotes opvraagbaar via versienummer onder aan kaartbeeld </li></ul><p><strong>Bugfixing</strong></p><ul><li>Bij opnieuw zoeken blijven locaties en activiteit niet meer staan</li><li>De 400-melding bij filteren op Documenttype</li><li>Kunnen zoeken op coördinaten hersteld</li></ul><p><strong>Technisch</strong></p><ul><li>Leveren sessiegegevens naar het portaal (verbetering)</li><li>Update Angular</li></ul>"
+    },
+    {
+      "version": "0.17.1048 (10 februari op Preproductie)",
+      "date": "2021/2/4",
+      "richContent": "<p><strong>Technisch</strong></p><ul><li>Sessiemanagement: leveren sessiegegevens naar portaal</li><li>Nieuwe versie styles (SLD), waardoor vlakken op de kaart transparanter worden weergegeven</li></ul><p><strong>Bugfixing</strong></p><ul><li>Weergave afdeling</li></ul>"
+    },
+    {
+      "version": "0.17.1046",
+      "date": "2021/1/27",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Thema’s worden gesorteerd op alfabetische volgorde</li><li>Hoofdlijnen worden gegroepeerd en gesorteerd op alfabetische volgorde</li><li>Annotatiescherm: verbetering leesbaarheid Thema’s en Type Regelgeving</li><li>Vrije tekststructuren (divisies) tonen nu ook, in navolging van teksten in artikelstructuur de annotaties</li><li>Geselecteerde activiteiten bevatten (achter de activiteit) de activiteitregelkwalificatie</li><li>Verbeeldingen die afwijken van de standaardverbeelding worden getoond op de kaart</li></ul><p><strong>Bugfixes</strong></p><ul><li>Datumnotatie bij alle documenten zijn identiek aan elkaar</li><li>Zoekingang: bij wijzigen invoer wordt het veld niet meer leeg gemaakt</li><li>Verbeeldingen van locaties in annotaties worden weer getoond</li></ul>"
+    },
+    {
+      "version": "0.17.1045",
+      "date": "2021/1/21",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Tab beleid toont naast de Wro-plannen nu ook de OW-documenten</li></ul><p><strong>Technisch</strong></p><ul><li>Refactoring zoekresultaat tab ‘Regelgeving’ en ‘Beleid’ (‘plannenlijst’); logica van het initieel laden verbeterd: het resultaat wordt in delen binnengehaald waarbij gebruiker kan doorklikken indien meer (oudere) documenten aanwezig zijn</li></ul><p><strong>Bugfixes</strong></p><ul><li>Styling issues annotatiescherm</li><li>Wegklikken foutmeldingen weer mogelijk</li><li>HTML uit opschriften bijlagen gehaald, waardoor deze opschriften weer correct worden getoond</li><li>Invoerveld Activiteiten verbeterd voor nieuwe/gewijzigde invoer</li></ul>"
+    },
+    {
+      "version": "0.16.1044",
+      "date": "2021/1/4",
+      "richContent": "<p><strong>Bugfixing</strong></p><ul><li>Bij het opvragen van Omgevingsdocumenten werd ten onrechte de IHR-API bevraagd</li><li>Opeenvolgende elementen in teksten worden weer onder elkaar en uitgelijnd weergegeven</li><li>Statuscode 400 ‘Bad Request’ verholpen bij gebruik filter ‘Type Regelgeving’</li></ul><p><strong>Technisch</strong></p><ul><li>Omzetten activiteiten end-point van attributen naar activiteiten\\_zoek</li></ul>"
+    },
+    {
+      "version": "0.16.1043",
+      "date": "2020/12/21",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Locatiezoeken via de kaart: de positie van de keuze-popup is nu centraal bovenaan het scherm, waardoor de keuzes zichtbaarder zijn geworden. </li><li>De Wro-plannen met objectgerichte planteksten kennen een generieker tabstructuur.</li><li>Locaties binnen Omgevingsdocumenten worden met alle geometrietypen verbeeld. Dat betekent dat punten, lijnen en gebieden worden ondersteund. </li><li>Opschriften met opmaak in HTML worden verwerkt</li><li>Annotatiescherm uitgebreid met gebiedsaanwijzingen</li></ul><p><strong>Technisch</strong></p><ul><li>Achtergrondkaarten: aansluiten op de laatste versie van de luchtfoto</li><li>Refactoring IHR codebase: Documenten worden in de nieuwe structuur getoond</li><li>Realisatie vectortiling IHR-plannen (uitgezonderd de vormvrije plannen)</li><li>Accept-header 'application/hal+json' toegevoegd aan Ozon requests</li><li>DSO toolkitupdate van versie 11.2.0 naar 15.0.1</li><li>Implementatie CIMOW 1.04: Aansluiting op de gewijzigde /api/presenteren/v5 (versie 5.1.0)</li></ul>"
+    },
+    {
+      "version": "0.16.1042",
+      "date": "2020/12/3",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Vernieuwing zoekingang: de standaard is zoeken op adres, gemeente of perceel. Voor het zoeken op document ID of op Coördinaten is de optie ‘Meer zoekopties’ toegevoegd. Het tekenen van een zoekgebied op de kaart is hierin opgenomen. </li><li>Verbeteringen in de digitoegankelijkheid n.a.v. zelfonderzoek</li></ul><p><strong>Bugfixes</strong></p><ul><li>Inleidende divisieteksten in bijlagen worden weer getoond</li></ul><p><strong>Technisch</strong></p><ul><li>Refactoring van Regels, Toelichting, Bijlagen van Wro documenten. De opmaak van de teksten komen overeen met die van de Omgevingsdocumenten. </li></ul> "
+    },
+    {
+      "version": "0.16.1041",
+      "date": "2020/11/20",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Plankenmerken van ruimtelijke plannen zijn uitgebreid met het kenmerk plantype</li><li>De annotaties bij de regelteksten tonen nu ook de Locaties</li><li>Vrije teksten (divisies) tonen op alle niveaus schuifjes om de geometrie op de kaart te activeren</li><li>URL (deeplink) bij het tonen van documenten generieker opgezet. Hierdoor kunnen eerder gebruikte deeplinks mogelijk niet meer werken. </li><li>Opschriften van Bijlagen tonen alle mogelijke varianten</li></ul><p><strong>Technisch</strong></p><ul><li>Refactoring Code base voor de IHR-bevragingen</li></ul>"
+    },
+    {
+      "version": "0.16.1038",
+      "date": "2020/11/5",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Weergeven plankenmerken van ruimtelijke plannen</li><li>Tab Gebiedsinfo: bij de geselecteerde activiteiten worden nu ook de activiteitgroepen weergegeven; lay-out uniform gemaakt </li><li>Alleen Omgevingsvisie en Projectbesluit tonen nog hoofdlijnen</li><li>Het annotatiescherm is uitgebreid met Omgevingsnormen en Omgevingswaarden</li><li>Verbeelding Omgevingsnormen en Omgevingswaarden op de kaart (m.b.v. vectortiling)</li><li>Filteren van divisie divisieteksten weer mogelijk (bijv. i.c.m. thema)</li></ul><ul><p><strong>Bugfixes</strong></p><li>Filteren op documenttype</li><li>Geselecteerde documenten bevatten weer een deeplink/url</li><li>Update CSS op Ozon-response: meer witruimte tussen alinea’s en opsommingen, waardoor tekst nu leesbaarder is </li></ul><p><strong>Technisch</strong></p><ul><li>Sessiemanagement -> ophalen sessiegegevens andere gebruikerstoepassingen via het portaal</li></ul>"
+    },
+    {
+      "version": "0.16.1036",
+      "date": "2020/10/20",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Wro-plannen met status Verwijderd of ‘Historisch gelabeld’ tonen een waarschuwing</li><li>Regelteksten tonen annotaties</li><li>Gebiedsinfo toont (geselecteerde) Activiteit > Bekijk regels</li><li>Gebiedsinfo toont knop om Regels te bekijken</li><li>Object Kaart toont verbeelding</li><li>Tonen en kunnen filteren op Omgevingswaarderegels</li></ul><p><strong>Bugfixing</strong></p><ul><li>Werking sliders bij asynchrone requests</li><li>Het tonen van de juiste hoeveelheid artikelen bij filtering</li><li>Filtering divisieteksten</li></ul><p><strong>Techniek</strong></p><ul><li>Refactoring: ophalen regelteksten</li><li>Aansluiten op de verbeelden-API ten behoeve van het ontsluiten van Vector tiles</li></ul>"
+    },
+    {
+      "version": "0.15.1032",
+      "date": "2020/9/9",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Hoofdlijnen binnen een document kunnen gebruikt worden om binnen het document tekst op Hoofdlijn te filteren </li><li>Thema’s binnen een</li><li>kunnen gebruikt worden om tekst binnen het document op Thema te filteren</li><li>Het tonen van het opschrift van een Omgevingsdocument is verbeterd</li><li>Bijlagen: Divisies stijlen als divisietekst</li><li>Projectbesluit: tab naam aangepast</li></ul><p><strong>Gebruikerservaring</strong></p><ul><li>Kaartlagen: schoonheidsfoutjes eruit gehaald.</li></ul>"
+    },
+    {
+      "version": "0.15.1030",
+      "date": "2020/9/2",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Bijlagen tonen vrije tekststructuren</li></ul><p><strong>Techniek</strong></p><ul><li>Refactoring omgevingsdocumenten: AMvB en Omgevingsverordening in nieuwe structuur</li></ul><p><strong>Bugfixing</strong></p><ul><li>Als Wro-plannen die geen dossierstatus hebben worden weer getoond</li><li>Juiste plantitels worden weer getoond</li><li>Time-out en ‘loop’ IHR voorkomen</li></ul>"
+    },
+    {
+      "version": "0.14.1027",
+      "date": "2020/8/31",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Omgevingsdocumenten worden weergegeven met de citeertitel in plaats van de lange titel</li><li>Tab Gebiedsinfo toont Omgevingsnormen en Omgevingswaarden</li><li>Tab Gebiedsinfo – Gebiedsaanwijzingen tonen verbeeldingsinformatie</li><li>Omgevingsdocumenten tonen Datum in werking</li><li>Wro-plannen worden weergegeven met de dossierstatus</li><li>Instructieregels van de Wro-plannen worden meegenomen bij filteroptie Type Regelgeving > Instructieregels</li><li>De interne links bij Wro-plannen geven resultaat in slide-in paneel</li><li>Het filterpaneel is geactualiseerd met de laatst bekende Documenttypen en Typen regelgeving</li></ul><p><strong>Verbeteringen gebruikerservaring</strong></p><ul><li>Uitlijning teksten verbeterd</li><li>Styling van de kopjes verbeterd</li></ul><p><strong>Techniek</strong></p><ul><li>Achtergrondkaart BAG – aansluiting op de meest actuele versie</li><li>Aansluiten op CIMOW 1.0 - aansluiten op gewijzigd documenten endpoint</li><li>Aansluiten op CIMOW 1.0 – doorvoeren gewijzigde naamgeving Divies</li></ul><p><strong>Bugfixing</strong></p><ul><li>Artikelen Wro-plannen zijn weer gelijk bij verschillende zoekpaden</li><li>Bij zoeken op locatie worden weer regels opgehaald</li><li>De Tab Gebiedsinfo toont weer objecten na keuze ‘bekijk alles’</li></ul>"
+    },
+    {
+      "version": "0.14.1024",
+      "date": "2020/6/19",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Tonen van gebiedsaanwijzingen (beperking is dat gebiedsaanwijzingen alleen getoond worden, zonder kaartbeeld) </li><li>Volledige werking van de pons (op locaties met nieuwe regelgeving, wordt de ‘oude’ regelgeving niet meer getoond </li></ul><p><strong>Verbetering gebruikerservaring</strong></p><ul><li>Tab ‘Inhoud’ wordt nu getoond bij alle Wro-plannen</li><li>Tab ‘Regels’ en Tab ‘Visies’ hernoemd naar respectievelijk ‘Regelgeving’ en ‘Beleid’</li><li>Tekststructuur (styling kopjes) verbeterd</li><li>DSO-toolkit update (actuele versie)</li></ul>"
+    },
+    {
+      "version": "0.14.1022",
+      "date": "2020/5/19",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Bijlage stap 1: Ministeriële regeling in nieuwe tab structuur</li><li>Bijlage stap 2: tonen Tab bijlage plus HTML inhoud</li><li>Pons – deel 1 (OZON interactie)</li></ul><p><strong>Verbetering gebruikerservaring</strong></p><ul><li>Tab gebiedsinfo: Melding dat er geen gebiedsaanwijzingen zijn is weggevallen</li></ul><p><strong>Techniek</strong></p><ul><li>Omgevingsplan migreren naar nieuwe opzet (tonen hele document)</li><li>Toepassen CSS architectuur en DSO-toolkit integratie</li><li>Documentatie nieuwe opzet state management</li><li>Eerste gebruikersflow aan regressietest toegevoegd</li><li>Laad status op juiste niveau in Redux Store</li><li>Versie update van I-frame resizer (op verzoek portaal)</li></ul>"
+    },
+    {
+      "version": "0.14.1019",
+      "date": "2020/5/7",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Tonen van afbeeldingen in de tekst</li><li>Tonen van Projectbesluit (vrije tekstdeel)</li><li>Bij de achtergrond kaartlagen zijn de Waterschapsgrenzen toegevoegd</li></ul><p><strong>Verbetering gebruikerservaring</strong></p><ul><li>Voetnoten bij IMRO plannen worden nu direct getoond</li><li>Verschillende planbestanden bij IMRO plannen worden gestructureerd getoond in tab Inhoud</li><li>Aangesloten op laatste versie van de Toolkit</li></ul><p><strong>Techniek</strong></p><ul><li>Upgrade Angular 9.1</li></ul>"
+    },
+    {
+      "version": "0.13.1011",
+      "date": "2020/4/14",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Tonen Omgevingsvisie (vrije tekstdeel)</li><li>Zoeken op identificatienummers mogelijk gemaakt</li><li>Gebiedsinfo toont activiteiten (echter nog zonder de bijbehorende regels en geo-info)</li><li>Het overzicht met plandocumenten bij Wro-plannen (de zgn. IMRO-plannen) wordt nu eenduidig weergegeven</li></ul><p><strong>Verbetering Gebruikerservaring</strong></p><ul><li>Verbeelding werkingsgebieden aangepast voor een beter onderscheid</li><li>Verbetering zoekingang ‘Zoeken op locatie’ (autosuggest, digitoegankelijkheid)</li><li>Aangesloten op Toolkit versie 10</li><li>Indien de tekst een lid bevat wordt direct de tekst onder het lid getoond</li></ul><p><strong>Techniek</strong></p><ul><li>Upgrade naar Angular 8</li></ul><p><strong>Opgeloste bugs</strong></p><ul><li>Indien adres uit meerdere percelen bestaat wordt multipolygoon weer correct verbeeld</li><li>Indien een Gebiedengroep aanwezig is worden werkingsgebieden weer getoond</li></ul>"
+    },
+    {
+      "version": "0.12.182",
+      "date": "2020/1/16",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Naast geldende regelgeving en visies kan de gebruiker nu ook kiezen om regelgeving en visies die in voorbereiding zijn te bekijken, inclusief de interactie met de kaart </li><li>De achtergrondkaart ‘’Kadastrale kaart’ is vervangen door versie 4. Deze versie kent een actualiteit van dagelijks. </li></ul><p><strong>Verbetering Gebruikerservaring (UX)</strong></p><ul><li>Toolkit versie 9.4 is in gebruik</li><li>De digitoegankelijkheid is verbeterd als het gaat om het gebruik van screenreaders</li><li>Sortering van plannen is verbeterd</li><li>Het oplichtende gebied op de kaart bij mouse-over is verbeterd</li><li>De informatie bij het gebruik van de functie ‘Meten op de kaart’ is verbeterd</li><li>De weergave van de plannaam in de header is verbeterd</li><li>Als een zoekopdracht niet tot zoekresultaat leidt in de tab Gebiedsinfo, dan wordt daarvan een melding getoond </li></ul><p><strong>Techniek</strong></p><ul><li>Upgrade Open layers naar versie 5</li><li>Hele applicatie draait op Kubernetes</li></ul><p><strong>Opgeloste bugs</strong></p><ul><li>Werkingsgebieden bij activiteiten worden weer getoond</li><li>Zoeken op identificatienummer van het document is weer mogelijk</li><li>Zoeken op locatie: het invoeren van een adres dat een ‘, ‘ bevat genereert weer zoekresultaten</li><li>Onbeschikbaarheid van een endpoint mag niet leiden tot onbeschikbaarheid van een ander endpoint</li></ul>"
+    },
+    {
+      "version": "0.11.1192",
+      "date": "2019/9/19",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>Het tonen van een werkingsgebied van een regeling</li><li>Het tonen van functies en activiteiten</li><li>Het tonen van/zoeken op thema’s</li></ul><p><strong>Verbetering Gebruikerservaring (UX)</strong></p><ul><li>Lange filterwaarden worden nu netjes afgekapt na selectie</li><li>Selecteren van regels en het weergeven van bijbehorende gebieden vereenvoudigen</li><li>Progress bar loopt niet meer oneindig door</li><li>Weergave activiteiten en activiteitgroepen: meer uniformiteit in alle schermen</li><li>Update Toolkit naar laatste versie</li><li>Aanpassen term waarop niet gefilterd kan worden</li><li>Term Meta-data vervangen door Annotaties conform UX-flow</li><li>Detailinformatie foutmeldingen verbeterd; velden als Melding en tijdstip worden nu ook gevuld</li></ul><p><strong>Techniek (vaak ingegeven vanuit performance issues)</strong></p><ul><li>Aanroepen van een routine aangepast (bij plan met meerdere werkingsgebieden zakte de performance)</li><li>Requests IHR: er bleken dubbele parameters te zijn opgenomen bij het opvragen tweede en volgende pagina’s.</li><li>Requests OZON: bij bepaalde requests was sprake van dubbele aanroep, dit is verholpen</li><li>Opschoning oude code (technical debt)</li></ul><p><strong>Bugfixing</strong></p><ul><li>Artikelen worden weer in hiërarchie getoond</li><li>Maatvoering wordt weer onder elkaar getoond in plaats van over elkaar heen</li><li>Bij bepaald type geometrie werkten de schuifjes niet</li><li>Terug naar vorige pagina werkte niet altijd correct: de links om te navigeren naar vorige pagina is verbeterd en de geldige regels worden onthouden wanneer van regels naar “hele document” wordt genavigeerd, zodat de selectie van documenten en de geldige regels, weer kunnen worden getoond als er terug wordt genavigeerd. </li><li>Knop ‘Meten in de kaart’ blijft nu op zijn plek bij het aanroepen van een andere kaartlaag. Tevens styling aangepast. </li><li>Legenda volgt weer de objectinformatie</li><li>Tonen van het AKN identificatienummer is weer conform aanlevering (zoeken wordt nog opgepakt)</li><li>Documenten zonder geometrie wordt nu ook getoond</li><li>Plan zijn weer aanklikbaar in de zoekresultaten</li><li>Filtering op IHR documenttype werkt weer correct</li><li>Filtering werkt weer correct na ‘Terug naar zoekresultaten’</li></ul>"
+    },
+    {
+      "version": "0.10.1060",
+      "date": "2019/8/13",
+      "richContent": "<p><strong>Bugfix</strong></p><ul><li>Geometrieën bij het gebruik van schuifjes worden weer correct getoond</li></ul>"
+    },
+    {
+      "version": "0.10.1040",
+      "date": "2019/8/1",
+      "richContent": "<ul><li>Regels uit OW-documenten worden sneller opgehaald</li></ul>"
+    },
+    {
+      "version": "0.10.103x",
+      "date": "2019/7/12",
+      "richContent": "<p><strong>Functioneel</strong></p><ul><li>De overige Wro-plannen worden nu getoond. Het gaat hier om de plantypen Structuurvisies en Verordeningen. Van deze plannen worden echter alleen de contouren en de documenten getoond, nog niet de vulling (verbeelding)</li><li>Werkingsgebieden van Regelingen worden getoond (CIM-OW 0.97.2).</li><li>Als de viewer vanuit het portaal wordt geopend wordt nu heel Nederland getoond</li></ul><p><strong>Technisch</strong></p><ul><li>De backend die de OW-data levert aan de viewer is compleet vernieuwd een aangepast aan versie 0.97.2 van het CIM-OW. De viewer is up-to-date gemaakt om weer volledig aan te sluiten bij deze laatste versie van de standaard en de vernieuwde API.</li><li>Koppeling nieuwe IHR-API teksten endpoint (t.b.v. performanceverbeteringen)</li><li>Deeplink icoon links aanpassen aan loket omgeving</li></ul>"
+    }
+  ]
+}

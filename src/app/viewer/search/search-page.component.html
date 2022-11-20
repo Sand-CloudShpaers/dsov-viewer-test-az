@@ -1,0 +1,15 @@
+<div class="header dso-rich-content">
+  <button (click)="back()" class="btn dso-tertiary search__return" data-test-id="search__return">
+    <dso-icon icon="chevron-left"></dso-icon>
+    <span>Home</span>
+  </button>
+
+  <dsov-help-button class="header__help"></dsov-help-button>
+</div>
+
+<ng-container *ngIf="!timeTravel">
+  <dsov-search-container class="dso-search-container"></dsov-search-container>
+</ng-container>
+<ng-container *ngIf="timeTravel">
+  <dsov-search-with-date-container></dsov-search-with-date-container>
+</ng-container>

@@ -1,0 +1,36 @@
+<ng-container *ngIf="suggestionStatus$ | async as status">
+  <div class="document-suggest__number-of-results" data-test-id="document-suggest__number-of-results">
+    {{ getNumberOfResults(suggestions$ | async) }}
+  </div>
+  <div class="dso-search-bar" data-test-id="document-suggest">
+    <div class="dso-search-bar-input">
+      <label for="document-suggest__input" id="document-suggest__label" data-test-id="document-suggest__label"
+        >Titel of document identificatie</label
+      >
+      <span class="dso-search-icon" aria-hidden="true"></span>
+      <dso-autosuggest
+        (dsoChange)="search($event)"
+        (dsoSelect)="select($event)"
+        [suggestions]="suggestions$ | async"
+        [loading]="status.isPending"
+        [loadingLabel]="'Suggesties aan het laden...'"
+        [notFoundLabel]="getNotFoundLabel(document_suggest__input.value)"
+      >
+        <input
+          type="text"
+          id="document-suggest__input"
+          placeholder="Titel of document identificatie"
+          data-test-id="document-suggest__input"
+          #document_suggest__input
+        />
+      </dso-autosuggest>
+
+      <button type="button" data-test-id="document-suggest__clear" (click)="clear()">Zoekopdracht legen</button>
+    </div>
+  </div>
+  <dso-alert status="danger" data-test-id="document-suggest__error" *ngIf="status.isRejected">
+    <div class="dso-rich-content">
+      <p>Fout bij het ophalen van documentsuggesties.</p>
+    </div>
+  </dso-alert>
+</ng-container>

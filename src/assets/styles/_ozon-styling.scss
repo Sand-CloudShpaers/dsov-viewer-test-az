@@ -1,0 +1,76 @@
+@import 'variables';
+
+.od-Term,
+.od-Kop {
+  font-weight: bold;
+}
+
+.od-Tussenkop,
+.od-Definitie {
+  font-style: italic;
+}
+
+.od-Tussenkop,
+.od-Lidnr,
+.od-LiNr,
+.od-Inhoud,
+.od-Opschrift,
+.od-Inhoud > .od-Lijst,
+.od-IntIoRef {
+  display: inline;
+}
+
+.od-Al,
+.od-Lijstaanhef {
+  margin-bottom: 0.75em;
+}
+
+.od-IntIoRef {
+  border-bottom: 1px dotted;
+}
+
+.od-LiNummer {
+  float: left;
+  min-width: 0.7em;
+  padding-right: 0.3em;
+  text-align: right;
+}
+
+// Figuren uit Ozon response met width en
+// height in attributen passend maken
+// binnen container
+.od-Figuur {
+  img {
+    margin-left: 25px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .od-Bijschrift {
+    font-size: 0.75rem;
+    margin-left: 25px;
+    padding-bottom: 2.5rem;
+  }
+}
+
+.od-Tabel {
+  thead {
+    font-weight: 600;
+  }
+}
+
+.od-Kadertekst {
+  border: 1px solid $color-lichtgrijs;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+span[data-verwijst-naar-documentcomponent] {
+  text-decoration: underline;
+  color: $grasgroen;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-paars;
+  }
+}

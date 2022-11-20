@@ -1,0 +1,65 @@
+@import 'variables';
+
+$rules-width-min: 375px;
+$rules-width-default: 624px;
+$rules-width-max: 768px;
+
+.mapslot {
+  width: 100%;
+  height: 100%;
+}
+
+.mainpage {
+  &__main-container {
+    display: flex;
+    height: 100vh;
+
+    &--iframe {
+      height: auto;
+    }
+  }
+
+  &__doc-container {
+    width: $rules-width-default;
+    max-width: $rules-width-max;
+    box-shadow: 2px -5px 5px $color-grijs;
+    overflow: auto;
+    background: $background-primary;
+    position: relative;
+    z-index: 1;
+
+    &--wide {
+      width: $rules-width-max;
+    }
+
+    &--narrow {
+      width: $rules-width-min;
+    }
+  }
+
+  &__map-container {
+    width: calc(100% - #{$rules-width-default});
+    min-width: calc(100% - #{$rules-width-max});
+    position: relative;
+    overflow: hidden;
+
+    &--wide {
+      width: calc(100% - #{$rules-width-min});
+    }
+
+    &--narrow {
+      width: calc(100% - #{$rules-width-max});
+    }
+  }
+
+  &__overlay-slot {
+    margin-top: -40px;
+  }
+
+  &__iframe-resize-reference {
+    position: fixed;
+    top: 0;
+    width: 0;
+    height: 820px;
+  }
+}

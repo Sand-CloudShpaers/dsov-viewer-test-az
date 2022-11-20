@@ -1,0 +1,20 @@
+@import 'variables';
+
+:host {
+  display: flex;
+  .index-element {
+    line-height: 2rem;
+    a {
+      &:hover,
+      &:visited {
+        color: $grasgroen;
+      }
+    }
+    &--first > a {
+      font-weight: bold;
+    }
+    &--indent {
+      margin-left: $u2;
+    }
+  }
+}

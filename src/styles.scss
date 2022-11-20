@@ -1,0 +1,71 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@import 'assets/styles/appglobalstyle';
+@import 'assets/styles/overrides';
+@import 'assets/styles/variables';
+@import 'assets/styles/dropdown-headers';
+@import 'assets/styles/material-theme';
+@import 'assets/styles/custom-ol-styling';
+@import 'assets/styles/custom-ihr-regels-styling';
+@import 'assets/styles/ozon-styling';
+@import 'src/assets/symbolen/imro-symbolen';
+@import 'src/assets/symbolen/dso-symbolen';
+@import 'src/assets/symbolen/dso-symbolen-lijnen';
+@import 'src/assets/symbolen/dso-symbolen-punten';
+@import 'src/assets/symbolen/dso-symbolen-vlakken';
+@import 'src/assets/symbolen/dso-symbolen-normwaarden';
+@import 'src/assets/symbolen/imro-symbolen_vvp_polygonen';
+@import 'src/assets/symbolen/imro-symbolen_vvp_lijnen';
+@import 'src/assets/symbolen/imro-symbolen_vvp_punten';
+
+.clickable,
+.interneVerwijzing {
+  cursor: pointer;
+}
+
+.interneVerwijzing {
+  &:hover {
+    border-bottom: 3px solid $grasgroen;
+  }
+
+  color: $grasgroen;
+}
+
+.errorline {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 100px auto;
+  grid-template-columns: 100px auto;
+}
+
+.errorlabel {
+  font-weight: bold;
+  grid-column: 1;
+  -ms-grid-column: 1;
+}
+
+.errordetail {
+  // overflow-wrap: break-all;
+  overflow: hidden;
+  word-break: break-all;
+  grid-column: 2;
+  -ms-grid-column: 2;
+}
+
+.begrip {
+  border-bottom: 2px dotted #6ca4d9;
+  color: inherit;
+  cursor: pointer;
+}
+
+.begrip:hover {
+  border-bottom: 2px dotted #6ca4d9;
+  text-decoration: none;
+  color: inherit;
+  cursor: help;
+}
+
+.alert {
+  line-height: 1.5 !important;
+}

@@ -1,0 +1,8 @@
+@import 'variables';
+:host {
+  display: flex;
+
+  .ontwerp-label {
+    margin-right: $u1;
+  }
+}

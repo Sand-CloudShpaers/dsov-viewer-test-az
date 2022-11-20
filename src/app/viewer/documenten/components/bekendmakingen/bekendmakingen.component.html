@@ -1,0 +1,20 @@
+<ng-container *ngIf="bekendmakingen.length > 0">
+  <h4 class="bekendmakingen__titel">
+    <div
+      class="bekendmakingen__titel-header-item"
+      data-test-id="bekendmakingen-titel__text"
+      [innerHTML]="'Bekendmakingen'"
+    ></div>
+  </h4>
+</ng-container>
+<div class="bekendmakingen__list__embedded" data-test-id="bekendmakingen-list">
+  <ul class="list-unstyled">
+    <li *ngFor="let bekendmaking of bekendmakingen; trackBy: trackBy" class="bekendmakingen__list__item">
+      <a [href]="bekendmaking.href" class="d-block" rel="noopener noreferrer" target="_blank">
+        <span>{{ bekendmaking.documentType }} </span>
+        <dso-icon icon="external-link" title="externe link"></dso-icon>
+      </a>
+      <div>{{ bekendmaking.titel }}</div>
+    </li>
+  </ul>
+</div>

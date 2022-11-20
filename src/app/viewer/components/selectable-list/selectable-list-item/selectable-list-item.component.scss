@@ -1,0 +1,46 @@
+@import 'variables';
+
+:host {
+  min-height: 34px;
+  display: block;
+}
+
+.selectable-list-item {
+  display: flex;
+
+  &.with-checkbox {
+    line-height: 28px;
+  }
+
+  &__selection {
+    flex: 1;
+    margin: 0;
+  }
+
+  &__selection-text {
+    font-weight: 400;
+
+    &__kwalificatie {
+      display: block;
+      padding-left: 1rem;
+      color: $color-mauve;
+    }
+  }
+
+  &__slider {
+    width: 2.5rem;
+    margin-left: 0.5rem;
+  }
+
+  &__symbool-container {
+    min-width: 1.875rem;
+    margin-left: 0.4rem;
+    &.noSlider-noCheckbox {
+      margin-right: 3rem;
+    }
+  }
+
+  input {
+    margin: 4px 0;
+  }
+}

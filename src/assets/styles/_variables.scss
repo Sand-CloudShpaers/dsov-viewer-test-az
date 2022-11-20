@@ -1,0 +1,41 @@
+/* Begin DSO toolkit variabelen
+   Per dso-toolkit 45.2.0 zijn dit de enige 4 scss variabelen die nog op meerdere plaatsen binnen de viewer gebruikt worden
+   Voorheen werden deze via @import '~dso-toolkit/libs/@dso-toolkit/sources/src/styling/variables' ingelezen
+   Door het Overstappen naar Sass modules (@use ipv @import) https://github.com/dso-toolkit/dso-toolkit/issues/1805 is dat niet langer mogelijk
+ */
+$grasgroen: #39870c;
+$bosgroen: #275937;
+
+$dso-unit: 8px;
+
+$u1: $dso-unit;
+$u2: $dso-unit * 2;
+$u3: $dso-unit * 3;
+$u4: $dso-unit * 4;
+$u5: $dso-unit * 5;
+$u6: $dso-unit * 6;
+$u7: $dso-unit * 7;
+$u8: $dso-unit * 8;
+$u9: $dso-unit * 9;
+$u10: $dso-unit * 10;
+
+$dso-vertical-spacing-small: $u1;
+$dso-vertical-spacing-medium: $u2;
+$dso-vertical-spacing-large: $u3;
+$dso-vertical-spacing-xlarge: $u4;
+/* Einde DSO toolkit variabelen */
+
+$color-mauve: #8b4a6a;
+$color-paars: #676cb0;
+$color-tekst-zwart: #191919;
+$color-grijs: #666;
+$color-lichtgrijs: #e5e5e5;
+$color-lichtergrijs: #f2f2f2;
+$error-color: #ce3f51;
+$bg-color-error: #f5d8dc;
+$border-color-warning: #f3c599;
+$border-color-error: #e78c32;
+$background-primary: #fff;
+
+$map-footer-height: 20px;
+$map-panel-width-small: 425px;

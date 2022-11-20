@@ -1,0 +1,23 @@
+<div class="header dso-rich-content">
+  <button (click)="previousPage()" class="btn dso-tertiary" data-test-id="themas__return">
+    <dso-icon icon="chevron-left"></dso-icon>
+    <span>Overzicht op locatie</span>
+  </button>
+  <dsov-help-button class="header__help"></dsov-help-button>
+</div>
+<dsov-filter [page]="'Thema\'s'"></dsov-filter>
+
+<div class="dso-rich-content">
+  <h3 data-test-id="themas__title">Thema's</h3>
+
+  <p data-test-id="themas__description">Regels en beleid voor algemene onderwerpen zoals:</p>
+
+  <dso-responsive-element class="dso-tile-grid">
+    <dsov-thema-tile
+      *ngFor="let thema of themas$ | async; trackBy: trackByFn"
+      [name]="thema.name"
+      [icon]="thema.icon"
+      (handleClick)="onSelectThema(thema)"
+    ></dsov-thema-tile>
+  </dso-responsive-element>
+</div>

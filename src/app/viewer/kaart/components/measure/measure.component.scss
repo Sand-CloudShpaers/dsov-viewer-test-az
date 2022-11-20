@@ -1,0 +1,25 @@
+@import 'abstracts';
+@import 'variables';
+
+.btn-with-dso-icon {
+  @include btn-with-dso-icon();
+}
+
+.measure-inactive {
+  background-color: white;
+  &:hover {
+    background-color: $bosgroen;
+    color: white;
+  }
+}
+
+.measure-active {
+  background-color: $bosgroen;
+  color: white;
+
+  &:focus,
+  &:active {
+    background-color: $bosgroen;
+    color: white;
+  }
+}

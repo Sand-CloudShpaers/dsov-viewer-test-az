@@ -1,0 +1,47 @@
+<ng-container *ngIf="{ documentListItems: documentListItems$ | async, loadMoreUrls: loadMoreUrls$ | async } as data">
+  <h2 class="dso-section-handle">
+    <button
+      type="button"
+      (click)="toggleSection(open)"
+      (keyup.enter)="toggleSection(open)"
+      [attr.aria-expanded]="open"
+      [attr.data-test-id]="'documentlist-section-' + bestuurslaag + '-button'"
+    >
+      <ng-container *ngIf="canLoadMore(data.loadMoreUrls); else elseBlock">
+        {{ listTitle }} ({{ getListLength(data.documentListItems) }}+)
+      </ng-container>
+      <ng-template #elseBlock> {{ listTitle }} ({{ getListLength(data.documentListItems) }})</ng-template>
+    </button>
+  </h2>
+  <div class="dso-section-body" [ngClass]="{ 'with-documents': getListHasLength(data.documentListItems) }">
+    <div *ngIf="!getListHasLength(data.documentListItems)">
+      {{ getNotFoundTekst(bestuurslaag) }}
+    </div>
+    <ul *ngIf="getListHasLength(data.documentListItems)" class="dso-card-list">
+      <li
+        *ngFor="
+          let document of getSortedDocuments(data.documentListItems);
+          let i = index;
+          trackBy: trackByDocumentListItem
+        "
+      >
+        <dsov-document-list-item
+          [index]="i"
+          [listItem]="document"
+          [attr.data-test-id]="'document-list-item__id-' + document.id"
+        ></dsov-document-list-item>
+      </li>
+      <li class="load-more" *ngIf="canLoadMore(data.loadMoreUrls)">
+        <button
+          type="button"
+          class="btn dso-secondary load-more__button"
+          data-test-id="load-more__button"
+          (click)="loadMoreForAllBestuurslagen(data.loadMoreUrls)"
+          (keyup.enter)="loadMoreForAllBestuurslagen(data.loadMoreUrls)"
+        >
+          Meer documenten bekijken
+        </button>
+      </li>
+    </ul>
+  </div>
+</ng-container>

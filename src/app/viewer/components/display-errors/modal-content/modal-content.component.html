@@ -1,0 +1,45 @@
+<div class="dso-modal" tabindex="-1">
+  <div class="dso-dialog" role="document">
+    <div class="dso-header">
+      <button
+        (click)="closeModal()"
+        (keyup.enter)="closeModal()"
+        title="Sluiten"
+        class="close"
+        data-dismiss="modal"
+        type="button"
+      >
+        <dso-icon icon="times"></dso-icon>
+      </button>
+      <dso-icon icon="status-danger"></dso-icon>
+      <h4 class="modal-title">Fouten</h4>
+    </div>
+    <div class="dso-body">
+      <div class="list-group">
+        <div *ngFor="let error of errorMessages; trackBy: trackByMessage" class="list-group-item">
+          <p>
+            {{ error.message }}
+          </p>
+          <div>
+            <button
+              (click)="toggleDetails(error)"
+              (keyup.enter)="toggleDetails(error)"
+              class="btn dso-tertiary collapsible-list__button"
+              data-test-id="collapsible-list__button"
+              [attr.aria-expanded]="error.showinfo"
+            >
+              <dso-icon icon="{{ error.showinfo ? 'chevron-down' : 'chevron-right' }}"></dso-icon>
+              <span> Toon details </span>
+            </button>
+            <div *ngIf="error.showinfo">
+              <div class="errorline" *ngFor="let item of error.info | keyvalue; trackBy: trackByIndex">
+                <div class="errorlabel">{{ item.key }}</div>
+                <div class="errordetail">{{ item.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

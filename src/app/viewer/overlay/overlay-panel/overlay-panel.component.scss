@@ -1,0 +1,33 @@
+@import 'variables';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  margin-left: -16px;
+  margin-right: -16px;
+
+  .overlay-header {
+    display: flex;
+    align-items: center;
+    background-color: $color-lichtergrijs;
+
+    &__white {
+      background-color: $background-primary;
+      border-bottom: 1px solid $color-lichtgrijs;
+    }
+
+    &__card {
+      padding: 0 1rem;
+    }
+
+    &__close {
+      margin-left: auto;
+      margin-right: 1rem;
+      color: $bosgroen;
+    }
+  }
+
+  .overlay__content {
+    padding: 16px;
+  }
+}

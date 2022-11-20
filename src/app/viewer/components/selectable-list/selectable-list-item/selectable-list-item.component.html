@@ -1,0 +1,60 @@
+<div
+  class="selectable-list-item"
+  [ngClass]="{ 'with-checkbox': showCheckbox }"
+  [attr.data-test-id]="item.name"
+  [id]="item.id"
+>
+  <div class="selectable-list-item__selection" [ngClass]="{ 'dso-selectable': showCheckbox }">
+    <input
+      data-test-id="selectable-list-item__selection_input"
+      (change)="onToggleCheckbox(item, $event)"
+      (mouseenter)="addHighlight()"
+      (mouseleave)="removeHighlight()"
+      [checked]="active"
+      class="item-check"
+      *ngIf="showCheckbox"
+      type="checkbox"
+      [id]="'item-' + item.id"
+    />
+    <label
+      [for]="'item-' + item.id"
+      data-test-id="selectable-list__item-text"
+      class="selectable-list-item__selection-text"
+    >
+      <span *ngIf="item.labelPrefix" data-test-id="selectable-list__item-text__label-prefix">
+        {{ item.labelPrefix }}
+      </span>
+      <span data-test-id="selectable-list__item-text__naam" [innerHTML]="item.name"></span>
+      <span
+        *ngIf="item.kwalificatie"
+        class="selectable-list-item__selection-text__kwalificatie"
+        data-test-id="selectable-list__item-text__kwalificatie"
+      >
+        {{ item.kwalificatie }}
+      </span>
+    </label>
+  </div>
+  <div *ngIf="item.isOntwerp" class="ontwerp-label">
+    <span class="dso-label dso-label-warning dso-compact" data-test-id="selectable-list__item__badge-ontwerp">
+      Ontwerp
+    </span>
+  </div>
+  <div
+    class="selectable-list-item__symbool-container"
+    [ngClass]="{ 'noSlider-noCheckbox': !showSlider && !showCheckbox }"
+  >
+    <dsov-symbool [symboolcode]="item.symboolcode" *ngIf="item.isSelected"> </dsov-symbool>
+  </div>
+  <dsov-slider
+    *ngIf="showSlider"
+    class="selectable-list-item__slider"
+    (sliderChange)="onToggleSlider(item, $event.checked)"
+    (mouseenter)="addHighlight()"
+    (mouseleave)="removeHighlight()"
+    [checked]="active"
+    [tooltips]="{ active: 'Gebied verbergen', inactive: 'Gebied weergeven' }"
+    [identifier]="item.id"
+    data-test-id="selectable-list-item__slider"
+  >
+  </dsov-slider>
+</div>

@@ -1,0 +1,31 @@
+/*
+* tijdelijke css,
+* TODO: te verwijderen als IHR de html heeft aangepast aan de toolbox footnotes styling
+*/
+
+.voetnoten {
+  padding-left: 0;
+  list-style: none;
+  border-top: 1px solid #999;
+  padding-top: 12px;
+}
+
+.voetnoten .voetnootterug::after {
+  content: '^';
+  display: inline-block;
+  font-weight: 700;
+}
+
+/**
+* .lijstnummer is om lijsten in IHR html juist te tonen
+* Benummering van lijsten komt met deze css class
+* mee uit backend maar wordt ook standaard gegenereerd
+*/
+.lijstnummer {
+  display: none;
+}
+
+/* Als vervanging voor <u> */
+.underline {
+  text-decoration: underline;
+}

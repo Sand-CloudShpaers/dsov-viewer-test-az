@@ -1,0 +1,40 @@
+<dsov-message></dsov-message>
+<dsov-usage-message></dsov-usage-message>
+
+<dso-viewer-grid
+  #viewerGridElement
+  (dsoMainSizeChange)="mainSizeChange()"
+  (dsoCloseOverlay)="closeOverlay()"
+  class="mainpage__main-container"
+  initial-main-size="medium"
+  data-iframe-height
+  [attr.overlay-open]="(showOverlay$ | async) === true ? true : null"
+  [attr.filterpanel-open]="(showPanel$ | async) === true ? true : null"
+>
+  <div slot="filterpanel">
+    <dsov-filter-panel></dsov-filter-panel>
+  </div>
+
+  <div slot="main" aria-label="Dit deel van de pagina bevat tekstuele informatie.">
+    <router-outlet></router-outlet>
+  </div>
+
+  <div slot="map" class="mapslot">
+    <dsov-map-area
+      data-test="map-area"
+      role="region"
+      aria-label="Kaartgedeelte: dit deel van de pagina bevat visuele informatie."
+    >
+    </dsov-map-area>
+  </div>
+
+  <div slot="overlay" class="mainpage__overlay-slot">
+    <ng-container *ngIf="overlayVM$ | async as overlayVM">
+      <dsov-overlay-panel
+        class="overlay__right"
+        [ngClass]="{ 'overlay__right-small': overlayVM.isSmall }"
+        [overlayVM]="overlayVM"
+      ></dsov-overlay-panel>
+    </ng-container>
+  </div>
+</dso-viewer-grid>

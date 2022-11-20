@@ -1,0 +1,22 @@
+<ng-container *ngIf="documenttypes$ | async as documenttypes">
+  <div
+    class="filter-block"
+    data-test-id="filter-documenttype"
+    *ngFor="let block of getForm(documenttypes); trackBy: trackByFilterBlock"
+  >
+    <label data-test-id="filter-documenttype__label">{{ block.name }}</label>
+    <div class="list">
+      <dso-selectable
+        type="checkbox"
+        data-test-id="filter-documenttype__item"
+        [identifier]="filterItem.id"
+        [value]="filterItem.id"
+        [checked]="isSelected(filterItem)"
+        (dsoChange)="onChange(filterItem, $event)"
+        *ngFor="let filterItem of block.items; trackBy: trackByFilterItem"
+      >
+        {{ filterItem.name }}
+      </dso-selectable>
+    </div>
+  </div>
+</ng-container>

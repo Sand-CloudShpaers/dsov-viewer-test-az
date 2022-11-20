@@ -1,0 +1,19 @@
+<dsov-collapsible-list
+  *ngFor="let item of omgevingsnormen; trackBy: trackByOmgevingsnormenVM"
+  [identificatie]="item.identificatie"
+  [lists]="getNormen(item)"
+  [naam]="item.naam"
+  [expanded]="true"
+  [showCheckboxes]="showCheckboxes"
+  [showSliders]="showSliders"
+  [boldTitle]="true"
+>
+</dsov-collapsible-list>
+
+<span
+  *ngIf="omgevingsnormen && omgevingsnormen.length === 0"
+  class="caption"
+  [attr.data-test-id]="normType + '__no-result'"
+>
+  Geen {{ normType }} gevonden op deze locatie.
+</span>

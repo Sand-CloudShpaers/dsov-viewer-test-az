@@ -1,0 +1,8 @@
+<ng-container *ngIf="documentDto$ | async as documentDto">
+  <dsov-document-structuur-container
+    [documentId]="documentDto.documentId"
+    [documentViewContext]="DOCUMENT_VIEW_CONTEXT.VOLLEDIG_DOCUMENT"
+    [documentSubPagePath]="SUBPAGE_PATH.TOELICHTING"
+  >
+  </dsov-document-structuur-container>
+</ng-container>

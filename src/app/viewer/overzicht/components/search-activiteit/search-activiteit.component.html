@@ -1,0 +1,16 @@
+<div class="dso-search-bar" data-test-id="search-activiteit">
+  <div class="dso-search-bar-input">
+    <label for="search-bar--with-value" data-test-id="search-activiteit__label">Wat wilt u doen?</label>
+    <span class="dso-search-icon" aria-hidden="true"></span>
+    <dso-autosuggest (dsoChange)="search($event)" (dsoSelect)="select($event)" [suggestions]="suggestions">
+      <input
+        type="text"
+        id="search-bar--with-value"
+        placeholder="Juridische activiteit"
+        data-test-id="search-activiteit__input"
+      />
+    </dso-autosuggest>
+
+    <button type="button" data-test-id="search-activiteit__clear" (click)="clear()">Zoekopdracht legen</button>
+  </div>
+</div>

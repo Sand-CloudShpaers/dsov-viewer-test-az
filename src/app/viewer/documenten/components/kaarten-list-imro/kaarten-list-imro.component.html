@@ -1,0 +1,46 @@
+<ng-container *ngIf="mapDetails">
+  <div class="dso-accordion dso-accordion-compact">
+    <div
+      *ngFor="let group of mapDetails; index as i; trackBy: trackByGroup"
+      class="dso-accordion-section"
+      [ngClass]="{ 'dso-open': group.nummer === openGroupKey }"
+    >
+      <h4 class="dso-section-handle">
+        <button
+          type="button"
+          (click)="toggleGroup(group.nummer)"
+          (keyup.enter)="toggleGroup(group.nummer)"
+          [attr.aria-expanded]="group.nummer === openGroupKey"
+          [attr.data-test-id]="'kaarten-list-imro-map-' + i + '-button'"
+        >
+          {{ isPlanKaart(group) ? group.naam : 'Kaart ' + group.nummer + ': ' + group.naam }}
+        </button>
+      </h4>
+      <div class="dso-section-body">
+        <ng-container *ngIf="!isPlanKaart(group); else planKaartList">
+          <dsov-kaarten-list-item-imro
+            (sliderToggled)="toggleLayer($event)"
+            *ngFor="let item of group.details; trackBy: trackByObjectInfo"
+            [item]="item"
+            [groupKey]="group.nummer"
+            [planId]="planId"
+          ></dsov-kaarten-list-item-imro>
+        </ng-container>
+
+        <!-- The plankaart has a different template with the type as a subgroup -->
+        <ng-template #planKaartList>
+          <ng-container *ngFor="let type of getUniqueTypes(group); trackBy: trackByType">
+            <h4 class="cartografie-type-title">{{ type }}</h4>
+            <dsov-kaarten-list-item-imro
+              (sliderToggled)="toggleLayer($event)"
+              *ngFor="let item of getItemsByType(group, type); trackBy: trackByObjectInfo"
+              [item]="item"
+              [groupKey]="group.nummer"
+              [planId]="planId"
+            ></dsov-kaarten-list-item-imro>
+          </ng-container>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</ng-container>

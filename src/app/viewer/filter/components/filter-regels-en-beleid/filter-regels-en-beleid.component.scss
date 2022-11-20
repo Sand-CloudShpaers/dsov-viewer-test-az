@@ -1,0 +1,18 @@
+@import 'variables';
+
+:host {
+  display: flex;
+  .filter-block {
+    width: 50%;
+    .filter-list {
+      list-style: none;
+      line-height: 5px;
+      padding-left: 0;
+      margin: 0 0 $u1 0;
+    }
+
+    .filter-list-item {
+      text-align: left;
+    }
+  }
+}

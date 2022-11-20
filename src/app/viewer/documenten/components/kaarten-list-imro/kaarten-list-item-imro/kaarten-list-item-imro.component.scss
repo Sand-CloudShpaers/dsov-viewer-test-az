@@ -1,0 +1,31 @@
+@import 'src/assets/styles/variables';
+
+:host {
+  display: block;
+  margin-bottom: 0.25rem;
+
+  .ihr-map-details {
+    &__item {
+      display: flex;
+
+      &-text {
+        flex: 1;
+
+        &__naam--no-list {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        &__verwijzingen {
+          list-style: none;
+        }
+      }
+
+      &-slider {
+        width: 2.5rem;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}

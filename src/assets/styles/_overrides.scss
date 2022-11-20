@@ -1,0 +1,105 @@
+// DSO-Toolkit
+
+.toolkit-overrule {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+/* DSO icon overwrite */
+.theme-tile {
+  height: 3em;
+  width: 3em;
+}
+
+svg.toggle.di {
+  height: 1em;
+}
+
+.dso-secondary svg.icon-only.di {
+  margin: -4px 3px;
+}
+
+/* DSO document overrides */
+
+.document-element-title {
+  h4 {
+    font-size: 1.38rem;
+    font-weight: 100;
+  }
+
+  h5 {
+    font-size: 1.15rem;
+    font-style: italic;
+    font-weight: 100;
+  }
+
+  h6 {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+dl.dso-emphasize-description dt {
+  color: $color-grijs;
+  font-weight: normal;
+}
+
+// Material
+.mat-progress-bar-fill:after {
+  background-color: $grasgroen !important;
+}
+
+.mat-tooltip {
+  border: 1px solid $grasgroen !important;
+  border-radius: 4px !important;
+  color: $grasgroen !important;
+  display: inline-block !important;
+  font-size: 14px !important;
+  line-height: 1.2em !important;
+  max-width: 240px !important;
+  padding: 4px 8px !important;
+  position: relative !important;
+  background-color: #fff !important;
+  overflow: unset !important;
+}
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  line-height: 0 !important;
+  padding: 0 0 !important;
+}
+
+.js-focus-visible .dso-tertiary:focus:not(.focus-visible) {
+  outline: none;
+}
+
+.document-element__inhoud-faded {
+  .od-Kadertekst {
+    padding-top: 0;
+    border: none;
+  }
+}
+
+.dso-tertiary[disabled] {
+  .document-element__titel {
+    color: $color-lichtgrijs;
+  }
+}
+
+.overlay__content {
+  .document-element__titel-collapse {
+    &.dso-tertiary[disabled] {
+      color: $bosgroen;
+
+      .document-element__titel {
+        color: $bosgroen;
+      }
+    }
+  }
+}
+
+.dso-accordion .dso-section-handle.enable-toggletip {
+  overflow: visible;
+}

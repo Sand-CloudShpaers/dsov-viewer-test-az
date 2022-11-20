@@ -1,0 +1,11 @@
+<button
+  (click)="zoomToGebiedExtent()"
+  (keyup.enter)="zoomToGebiedExtent()"
+  class="dso-document-header-map-action"
+  title="Toon gebied op de kaart"
+  [attr.id]="'zoom-to-plan__' + documentId"
+  data-test-id="zoom-to-plan"
+>
+  <span class="sr-only">Inzoomen naar regelingsgebied</span>
+  <dso-icon icon="map-location"></dso-icon>
+</button>

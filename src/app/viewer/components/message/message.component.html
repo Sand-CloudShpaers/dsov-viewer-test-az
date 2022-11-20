@@ -1,0 +1,39 @@
+<div
+  *ngFor="let message of messages; let i = index; trackBy: trackByFn"
+  class="alert alert-danger dso-message"
+  role="alert"
+>
+  <div class="message__header">
+    <div class="message__header-title">{{ message.message }}</div>
+    <button
+      type="button"
+      class="btn dso-tertiary message__close-button"
+      (click)="close(i)"
+      (keyup.enter)="close(i)"
+      data-test-id="message__close-button"
+    >
+      <span class="sr-only">Sluiten</span>
+      <dso-icon icon="times"></dso-icon>
+    </button>
+  </div>
+
+  <div *ngIf="message.info > ''">
+    <button
+      (click)="toggleDetails(i)"
+      (keyup.enter)="toggleDetails(i)"
+      class="btn dso-tertiary message__info-toggle"
+      role="button"
+      data-test-id="message__info-toggle"
+      [attr.aria-expanded]="message.showinfo"
+    >
+      <dso-icon icon="{{ message.showinfo ? 'chevron-down' : 'chevron-right' }}"></dso-icon>
+      <span> Toon details</span>
+    </button>
+    <div *ngIf="message.showinfo" class="message" data-test-id="message__info">
+      <div class="errorline" *ngFor="let item of message.info | keyvalue; trackBy: trackByIndex">
+        <div class="errorlabel">{{ item.key }}</div>
+        <div class="errordetail">{{ item.value }}</div>
+      </div>
+    </div>
+  </div>
+</div>

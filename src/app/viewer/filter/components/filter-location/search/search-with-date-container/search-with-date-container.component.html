@@ -1,0 +1,49 @@
+<dsov-filter [readonly]="true"></dsov-filter>
+
+<h1>Regels die in het verleden geldig waren</h1>
+
+<p>
+  Bij het tijdreizen kiest u een datum in het verleden. U ziet dan de omgevingsdocumenten in de versie die op die datum
+  in de viewer te zien was.
+  <br />
+  U kunt regels uit het verleden inzien, maar geen regels van vóór {{ dateIwt | date: 'd-M-yyyy' }}. Dit is het moment
+  waarop de Omgevingswet is ingegaan.
+</p>
+
+<dsov-date-picker-container
+  (focusin)="showRequiredErrorDate = false"
+  [showRequiredError]="showRequiredErrorDate"
+  [label]="'Datum in het verleden'"
+  [identifier]="'datum_verleden'"
+  [min]="dateIwt"
+  [max]="getYesterday()"
+  (dateChanged)="handleDateChanged($event)"
+></dsov-date-picker-container>
+
+<ng-container *ngIf="selectedMode$ | async as selectedMode">
+  <dsov-search
+    [selectedMode]="selectedMode"
+    [autoSearch]="false"
+    [searchModes]="[SearchMode.LOCATIE, SearchMode.COORDINATEN, SearchMode.GEBIEDOPDEKAART]"
+    (focusin)="showRequiredErrorSearch = false"
+    [showRequiredError]="showRequiredErrorSearch"
+    [isTimeTravel]="true"
+    (changeLocation)="changeLocation($event)"
+    (changeCoordinates)="changeCoordinates($event)"
+    (changeContour)="changeContour($event)"
+  ></dsov-search>
+
+  <button
+    *ngIf="selectedMode === SearchMode.LOCATIE"
+    (click)="openSuggestion()"
+    class="dso-primary btn-sm"
+    data-test-id="button-search-in-time"
+  >
+    Regels zoeken
+  </button>
+</ng-container>
+
+<dso-alert status="info"
+  >Bij het tijdreizen wordt er via Ex tunc gereisd. Hiermee wordt de situatie zichtbaar zoals die in het verleden
+  zichtbaar was.
+</dso-alert>

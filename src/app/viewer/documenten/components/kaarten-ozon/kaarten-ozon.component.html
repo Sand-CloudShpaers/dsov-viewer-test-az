@@ -1,0 +1,18 @@
+<ng-container *ngIf="kaartenStatus$ | async as status">
+  <ng-container *ngIf="status.isPending">
+    <dsov-spinner [label]="'Kaarten aan het laden...'"></dsov-spinner>
+  </ng-container>
+  <div
+    data-test-id="dso-kaarten-lijst"
+    *ngIf="status.isResolved && kaarten$ | async as kaarten"
+    class="dso-kaarten-lijst"
+  >
+    <div *ngIf="kaarten.length === 0" class="alert alert-info" role="alert" data-test-id="alert-no-maps">
+      Dit document bevat geen interactieve kaarten.
+    </div>
+    <dsov-kaarten [documentId]="documentId" [kaarten]="kaarten"></dsov-kaarten>
+  </div>
+  <ng-container *ngIf="status.isRejected">
+    <div class="alert alert-danger" role="alert">Kaarten ophalen niet gelukt.</div>
+  </ng-container>
+</ng-container>

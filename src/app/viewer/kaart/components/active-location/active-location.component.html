@@ -1,0 +1,10 @@
+<button
+  class="btn dso-secondary btn-with-dso-icon"
+  title="Terug naar de zoeklocatie"
+  (click)="zoomToLocation(activeLocation)"
+  (keyup.enter)="zoomToLocation(activeLocation)"
+  *ngIf="activeLocation$ | async as activeLocation"
+  type="button"
+>
+  <dso-icon icon="location-search"></dso-icon>
+</button>

@@ -1,0 +1,12 @@
+:host {
+  .structuurelementfilter {
+    &__filter-list {
+      padding-inline-start: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+      padding-top: 0.5rem;
+    }
+  }
+}

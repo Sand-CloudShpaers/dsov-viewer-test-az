@@ -1,0 +1,22 @@
+<ng-container *ngIf="regelsOpMaatStatus$ | async as regelsOpMaatStatus">
+  <ng-container *ngIf="regelsOpMaatStatus.isLoading">
+    <dsov-spinner [label]="'Regels aan het zoeken...'"></dsov-spinner>
+  </ng-container>
+  <ng-container *ngIf="regelsOpMaatStatus.isResolved">
+    <dso-responsive-element *ngIf="documentIds$ | async as documentIds">
+      <ul class="dso-document-list" *ngIf="!!documentIds.length">
+        <li *ngFor="let documentId of documentIds; trackBy: trackByFn">
+          <dsov-regels-op-maat [documentId]="documentId"></dsov-regels-op-maat>
+        </li>
+      </ul>
+      <dso-alert status="warning" data-test-id="regels-op-maat-filter-warning" *ngIf="documentIds.length === 0">
+        Geen artikelen gevonden die passen bij de filtercriteria.
+      </dso-alert>
+    </dso-responsive-element>
+  </ng-container>
+  <ng-container *ngIf="regelsOpMaatStatus.isRejected">
+    <dso-alert status="danger" data-test-id="regels-op-maat-filter-alert">
+      Ophalen van de regels niet gelukt.
+    </dso-alert>
+  </ng-container>
+</ng-container>

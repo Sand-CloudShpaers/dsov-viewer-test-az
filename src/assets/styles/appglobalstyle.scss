@@ -1,0 +1,65 @@
+@import 'variables';
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Text headers */
+
+dsov-viewer-root {
+  h1 {
+    font-size: 32px;
+  }
+
+  h3 {
+    margin-top: 16px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    margin-bottom: 4px;
+  }
+
+  div {
+    overflow-wrap: break-word;
+  }
+}
+
+dsov-contactinfo dso-cms-content h4 {
+  color: $color-tekst-zwart;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+// reset of DSO-toolkit margins to override global
+.toolkit-overrule {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+// nodig om lijsten in IHR html juist te tonen
+.lijstnummer {
+  display: none;
+}
+
+.dso-document-list {
+  dsov-spinner {
+    display: block;
+  }
+
+  dsov-spinner,
+  dso-alert {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+}

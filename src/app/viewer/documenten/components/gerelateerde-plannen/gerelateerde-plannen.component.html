@@ -1,0 +1,53 @@
+<ul *ngIf="show && documenten?.length" class="dso-card-list">
+  <li *ngFor="let document of documenten; trackBy: trackByGerelateerdPlan">
+    <div class="dso-card card">
+      <div class="dso-card-heading">
+        <a
+          class="dso-rich-content"
+          data-test-id="gerelateerdplan"
+          role="button"
+          (click)="openDocument(document.documentId)"
+          (keyup.enter)="openDocument(document.documentId)"
+          [attr.title]="'Bekijk ' + document.title"
+          [attr.data-test-id]="'gerelateerd-' + document.documentId"
+        >
+          <h2 data-test-id="gerelateerdplan__title">
+            {{ document.title }}
+          </h2>
+        </a>
+      </div>
+      <div class="dso-card-content">
+        <div class="dso-rich-content">
+          <div data-test-id="gerelateerdplan__type">
+            {{ document.type | capitalize }}
+          </div>
+
+          <div data-test-id="gerelateerdplan__status-date">
+            {{ document.statusDateLine }}
+            <dso-badge
+              *ngIf="document.isVerwijderdOp; else historisch"
+              status="warning"
+              data-test-id="summary__badge-isVerwijderdOp"
+            >
+              Verwijderd
+            </dso-badge>
+          </div>
+
+          <ng-template #historisch>
+            <dso-badge *ngIf="document.isHistorisch" status="warning" data-test-id="summary__badge-ishistorisch">
+              Historisch
+            </dso-badge>
+          </ng-template>
+
+          <dso-badge
+            *ngIf="document.eindeRechtsgeldigheid"
+            status="warning"
+            data-test-id="summary__badge-eindeRechtsgeldigheid"
+          >
+            {{ 'Plan is niet meer rechtsgeldig per ' + (document.eindeRechtsgeldigheid | date: 'dd-MM-yyyy') }}
+          </dso-badge>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

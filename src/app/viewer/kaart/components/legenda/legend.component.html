@@ -1,0 +1,30 @@
+<h3 class="legend-title">Legenda</h3>
+
+<dsov-legend-item
+  *ngIf="locatieFilter$ | async as locatieFilter"
+  [naam]="'Gekozen locatie'"
+  [symboolcode]="getLocatieSymboolcode(locatieFilter)"
+  data-test-id="legend-item--locatie"
+  class="legend-item"
+></dsov-legend-item>
+
+<ng-container *ngIf="legend$ | async as legend">
+  <dsov-legend-group
+    *ngFor="let group of getLegendGroups(legend); trackBy: trackByFn"
+    [group]="group"
+    class="legend-group"
+  ></dsov-legend-group>
+
+  <button
+    type="button"
+    *ngIf="legend.length > 6"
+    class="btn dso-tertiary"
+    (click)="toggle()"
+    data-test-id="legend-expand-button"
+  >
+    <dso-icon [attr.icon]="expand ? 'chevron-up' : 'chevron-down'"></dso-icon>
+    <span>Toon {{ expand ? 'minder' : 'meer' }}</span>
+  </button>
+</ng-container>
+
+<hr />

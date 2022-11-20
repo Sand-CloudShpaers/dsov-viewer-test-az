@@ -1,0 +1,27 @@
+@import 'variables';
+
+:host {
+  .btn {
+    font-size: inherit;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  .center-button {
+    margin-left: 20px;
+  }
+
+  .saved-message {
+    color: $color-grijs;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    &.visible {
+      opacity: 1;
+    }
+  }
+
+  .sm-padding {
+    padding-top: $u1;
+    padding-bottom: $u1;
+  }
+}

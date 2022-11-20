@@ -1,0 +1,23 @@
+<div
+  class="index-element"
+  [ngClass]="[niveau > 0 ? 'index-element--indent' : 'index-element--first']"
+  data-test-id="document-index__element"
+>
+  <a
+    [routerLink]="routerLink"
+    [queryParamsHandling]="'preserve'"
+    (click)="clickElement(element)"
+    data-test-id="document-index__element__link"
+  >
+    {{ element.titel.prefix }} {{ element.nummer }}
+    {{ getContent(element.titel.content) }}
+    {{ element.titel.suffix }}
+  </a>
+  <dsov-index-element
+    [documentId]="documentId"
+    [element]="child"
+    [niveau]="niveau + 1"
+    [routerLink]="routerLink"
+    *ngFor="let child of filterChildElements(element); trackBy: trackBy"
+  ></dsov-index-element>
+</div>

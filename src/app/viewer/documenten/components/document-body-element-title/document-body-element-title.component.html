@@ -1,0 +1,44 @@
+<ng-container *ngIf="!documentBodyElement.layout.isEmptyParagraph">
+  <dsov-document-element-breadcrumb
+    *ngIf="documentBodyElement.layout.showBreadcrumbs"
+    [breadcrumbs]="documentBodyElement.breadcrumbs"
+    [documentId]="documentBodyElement.documentId"
+    [elementId]="documentBodyElement.id"
+    data-test-id="document-element-breadcrumb"
+  ></dsov-document-element-breadcrumb>
+  <div [ngClass]="{ disabled: !documentBodyElement.layout.isActive }" class="document-element__titel-container">
+    <dsov-document-element-title
+      (clickedToggle)="toggle()"
+      [documentBodyElement]="documentBodyElement"
+      [isOpen]="documentBodyElement.layout.isOpen"
+      [showToggle]="documentBodyElement.layout.showToggle"
+      class="document-element-title"
+      data-test-id="document-element-title"
+    ></dsov-document-element-title>
+
+    <dsov-document-element-options
+      *ngIf="documentBodyElement.layout.isActive && documentBodyElement.layout.hasAnnotation"
+      [structuurelement]="documentBodyElement"
+      class="document-element__options"
+      data-test-id="document-element-title-options"
+    >
+    </dsov-document-element-options>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="documentBodyElement.layout.isEmptyParagraph">
+  <dsov-document-element-title
+    [documentBodyElement]="documentBodyElement"
+    [isOpen]="documentBodyElement.layout.isOpen"
+    class="document-element-title"
+    data-test-id="document-element-title-empty-paragraph"
+  ></dsov-document-element-title>
+</ng-container>
+
+<dsov-annotaties-container
+  *ngIf="documentBodyElement.layout.isOpen && documentBodyElement.layout.hasAnnotation"
+  [documentId]="documentBodyElement.documentId"
+  [element]="documentBodyElement"
+  [regelgevingtypes]="regelgevingtypes"
+  [showAnnotation]="documentBodyElement.layout.showAnnotation"
+></dsov-annotaties-container>

@@ -1,0 +1,70 @@
+<ng-container *ngIf="{ inhoud: inhoud$ | async, bekendmakingen: bekendmakingen$ | async } as data">
+  <p
+    *ngIf="
+      !data.inhoud?.onderdelen?.length &&
+      !data.inhoud?.verwijzingNaarVaststellingsbesluit &&
+      !data.bekendmakingen?.length &&
+      !data.inhoud?.verwijzingNaarGml &&
+      !data.inhoud?.illustraties.length
+    "
+    data-test-id="document-inhoud__empty"
+  >
+    Dit document heeft geen overige inhoud.
+  </p>
+  <ul class="list-unstyled" data-test-id="document-inhoud-lijst">
+    <li *ngFor="let item of data.inhoud?.onderdelen; trackBy: trackBy">
+      <a
+        [href]="item.href"
+        class="d-block"
+        rel="noopener noreferrer"
+        target="_blank"
+        data-test-id="document-inhoud__onderdeel"
+      >
+        <span>{{ item.type }} </span>
+        <dso-icon icon="external-link" title="externe link"></dso-icon>
+      </a>
+    </li>
+    <li *ngIf="data.inhoud?.verwijzingNaarVaststellingsbesluit">
+      <a
+        [href]="data.inhoud.verwijzingNaarVaststellingsbesluit"
+        class="d-block"
+        rel="noopener noreferrer"
+        target="_blank"
+        data-test-id="document-inhoud__verwijzingNaarVaststellingsbesluit"
+      >
+        <span>Vaststellingsbesluit </span>
+        <dso-icon icon="external-link" title="externe link"></dso-icon>
+      </a>
+    </li>
+  </ul>
+  <dsov-bekendmakingen [bekendmakingen]="data.bekendmakingen"></dsov-bekendmakingen>
+  <ng-container *ngIf="data.inhoud?.verwijzingNaarGml || data.inhoud?.illustraties?.length">
+    <h4>Bestanden</h4>
+    <ul class="list-unstyled">
+      <li *ngIf="data.inhoud.verwijzingNaarGml">
+        <a
+          [href]="data.inhoud.verwijzingNaarGml"
+          class="d-block"
+          rel="noopener noreferrer"
+          target="_blank"
+          data-test-id="document-bestanden__gml"
+        >
+          <span>GML bestand</span>
+          <dso-icon icon="external-link" title="externe link"></dso-icon>
+        </a>
+      </li>
+      <li *ngFor="let item of data.inhoud.illustraties; trackBy: trackBy">
+        <a
+          [href]="item.href"
+          class="d-block"
+          rel="noopener noreferrer"
+          target="_blank"
+          data-test-id="document-bestanden__illustatie"
+        >
+          <span>Illustratie: {{ item.type }} </span>
+          <dso-icon icon="external-link" title="externe link"></dso-icon>
+        </a>
+      </li>
+    </ul>
+  </ng-container>
+</ng-container>

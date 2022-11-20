@@ -1,0 +1,9 @@
+<div class="dso-accordion dso-accordion-compact" *ngIf="releaseNotes$ | async as releaseNotesVM">
+  <dso-accordion variant="compact" allow-multiple-open="">
+    <ng-container *ngFor="let release of releaseNotesVM.releases; trackBy: trackByFn">
+      <dso-accordion-section *ngIf="filterByVersionDate(release)" [attr.handle-title]="getHandleTitle(release)">
+        <div class="dso-rich-content" [innerHTML]="release.richContent"></div>
+      </dso-accordion-section>
+    </ng-container>
+  </dso-accordion>
+</div>

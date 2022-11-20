@@ -1,0 +1,36 @@
+@import 'variables';
+
+.filter-block {
+  .dso-field-container,
+  .dso-selectable {
+    margin-left: 2rem;
+  }
+  .dso-field-container {
+    margin-bottom: 2rem;
+  }
+
+  &__button {
+    display: block;
+    color: inherit;
+    margin-bottom: 1rem;
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+}
+
+.filter-list {
+  list-style: none;
+  line-height: 5px;
+  padding-left: 0;
+}
+
+.filter-list-item {
+  text-align: left;
+}
+
+.toggle-options {
+  margin-left: 32px;
+  margin-bottom: 32px;
+}

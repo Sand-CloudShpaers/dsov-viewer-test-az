@@ -1,0 +1,48 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noFallthroughCasesInSwitch": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "alwaysStrict": true,
+    "importHelpers": true,
+    "noImplicitAny": true,
+    "target": "es2020",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom", "es2019", "ES2021.String"],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "paths": {
+      "~general/*": ["src/app/general/*"],
+      "~home/*": ["src/app/home/*"],
+      "~search-documents/*": ["src/app/search-documents/*"],
+      "~http/*": ["src/app/http/*"],
+      "~ihr-model/*": ["src/app/model/swagger/ihr_v4/model/*"],
+      "~ozon-model/*": ["src/app/model/swagger/ozon_presenteren_v7/model/*"],
+      "~ozon-model-verbeelden/*": ["src/app/model/swagger/ozon_verbeelden_v3/model/*"],
+      "~model/*": ["src/app/model/*"],
+      "~portaal/*": ["src/app/portaal/*"],
+      "~providers/*": ["src/app/providers/*"],
+      "~services/*": ["src/app/services/*"],
+      "~viewer/*": ["src/app/viewer/*"],
+      "~store/*": ["src/app/store/*"],
+      "~config/*": ["src/config/*"],
+      "~mocks/*": ["src/mocks/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "strictTemplates": true,
+    "strictInjectionParameters": true
+  }
+}

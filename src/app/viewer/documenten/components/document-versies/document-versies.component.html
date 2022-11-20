@@ -1,0 +1,74 @@
+<h2 data-test-id="document-versies__title">Versies</h2>
+<ng-container *ngIf="vastgesteldStatus$ | async as vastgesteldStatus">
+  <dsov-spinner
+    *ngIf="vastgesteldStatus.isLoading"
+    class="spinner"
+    [label]="'Vastgesteld aan het laden...'"
+  ></dsov-spinner>
+  <ng-container *ngIf="vastgesteldStatus.isResolved">
+    <ng-container *ngIf="vastgesteld$ | async as vastgesteld">
+      <h3 data-test-id="document-versies-vastgesteld__title">Vastgesteld</h3>
+
+      <ul class="dso-link-list document-versies-list" data-test-id="document-versies-vastgesteld__list">
+        <li *ngFor="let item of vastgesteld; trackBy: trackBy" data-test-id="document-versies-vastgesteld__list-item">
+          <a
+            (click)="openDocument()"
+            *ngIf="item.inWerkingOp?.date.getTime() !== document.inwerkingVanaf?.getTime(); else current"
+            [routerLink]="['../', item.identificatie]"
+            [queryParamsHandling]="'merge'"
+            [queryParams]="getQueryParams(item)"
+          >
+            <dsov-document-versies-item [documentVersie]="item" [isCurrent]="false"></dsov-document-versies-item>
+          </a>
+          <ng-template #current>
+            <dsov-document-versies-item [documentVersie]="item" [isCurrent]="true"></dsov-document-versies-item>
+          </ng-template>
+        </li>
+      </ul>
+
+      <p *ngIf="!vastgesteld.length">Geen andere versies</p>
+    </ng-container>
+    <dso-alert *ngIf="vastgesteldStatus.isRejected" status="danger" data-test-id="document-versies-vastgesteld__alert">
+      <div class="dso-rich-content">
+        <p>Geen vastgelde versies gevonden</p>
+      </div>
+    </dso-alert>
+  </ng-container>
+</ng-container>
+<ng-container *ngIf="ontwerpStatus$ | async as ontwerpStatus">
+  <dsov-spinner *ngIf="ontwerpStatus.isLoading" class="spinner" [label]="'Ontwerp aan het laden...'"></dsov-spinner>
+  <ng-container *ngIf="ontwerpStatus.isResolved">
+    <ng-container *ngIf="ontwerp$ | async as ontwerp">
+      <h3 data-test-id="document-versies-ontwerp__title">Ontwerpen</h3>
+      <ul class="dso-link-list document-versies-list" data-test-id="document-versies-ontwerp__list">
+        <li *ngFor="let item of ontwerp; trackBy: trackBy" data-test-id="document-versies-ontwerp__list-item">
+          <a
+            *ngIf="item.identificatie !== document.documentId; else current"
+            (click)="openDocument()"
+            [routerLink]="['../', item.identificatie]"
+            [queryParamsHandling]="'merge'"
+            [queryParams]="{ isOntwerp: true }"
+          >
+            <dsov-document-versies-item
+              [documentVersie]="item"
+              [isCurrent]="false"
+              [isOntwerp]="true"
+            ></dsov-document-versies-item>
+          </a>
+          <ng-template #current>
+            <dsov-document-versies-item
+              [documentVersie]="item"
+              [isCurrent]="true"
+              [isOntwerp]="true"
+            ></dsov-document-versies-item>
+          </ng-template>
+        </li>
+      </ul>
+    </ng-container>
+  </ng-container>
+  <dso-alert *ngIf="ontwerpStatus.isRejected" status="danger" data-test-id="document-versies-ontwerp__alert">
+    <div class="dso-rich-content">
+      <p>Geen ontwerp versies gevonden</p>
+    </div>
+  </dso-alert>
+</ng-container>

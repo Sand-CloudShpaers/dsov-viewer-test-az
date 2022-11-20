@@ -1,0 +1,44 @@
+<div class="dso-search-bar">
+  <div class="dso-search-bar-input">
+    <h4>Teken gebied</h4>
+  </div>
+</div>
+
+<div
+  *ngIf="currentDrawState === DrawState.INVALID_ZOOM && !drawnGeometry"
+  class="alert alert-warning"
+  data-test-id="message-invalid-zoom"
+>
+  Zoom in op de kaart om te kunnen tekenen.
+</div>
+
+<div *ngIf="currentDrawState === DrawState.DRAWING" class="alert alert-info" data-test-id="message-drawing">
+  Klik op de kaart om te beginnen met tekenen. Dubbelklik als u klaar bent met tekenen.
+</div>
+
+<div *ngIf="currentDrawState === DrawState.INVALID" class="alert alert-warning" data-test-id="message-invalid">
+  <div class="dso-rich-content">
+    <p>Dit is geen geldig gebied.</p>
+    <p>
+      <button type="button" class="btn" (click)="handleRestart()" data-test-id="button-invalid-restart">
+        Teken opnieuw
+      </button>
+    </p>
+  </div>
+</div>
+
+<div *ngIf="drawnGeometry">
+  <div class="alert alert-success" data-test-id="message-success">U heeft een geldig gebied getekend.</div>
+  <button class="btn dso-primary" (click)="handleOpen()" data-test-id="button-open-search">
+    Zoek op getekende locatie
+  </button>
+
+  <button
+    *ngIf="currentDrawState === DrawState.FINISHED"
+    class="btn dso-secondary"
+    (click)="handleRestart()"
+    data-test-id="button-success-restart"
+  >
+    Teken opnieuw
+  </button>
+</div>

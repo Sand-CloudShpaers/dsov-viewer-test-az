@@ -1,0 +1,40 @@
+@import 'variables';
+
+:host {
+  .header {
+    display: flex;
+    &__help {
+      margin-left: auto;
+    }
+  }
+
+  .info-icon {
+    color: $grasgroen;
+    cursor: pointer;
+    padding-left: $u1;
+
+    .info-icon__icon-show-on-hover {
+      display: none;
+    }
+
+    &:hover {
+      .info-icon__icon-hide-on-hover {
+        display: none;
+      }
+
+      .info-icon__icon-show-on-hover {
+        display: initial;
+      }
+    }
+  }
+
+  .dso-equal-heights {
+    margin-top: -48px;
+    margin-bottom: 16px;
+  }
+}
+
+.button-align {
+  position: relative;
+  float: right;
+}

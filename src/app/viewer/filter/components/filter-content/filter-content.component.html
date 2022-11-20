@@ -1,0 +1,114 @@
+<ng-container *ngIf="filterOptions$ | async as filterOptions">
+  <div class="filter-content-panel">
+    <div class="dso-form-buttons dso-app-heading">
+      <div class="btn btn-tertiary btn-sm saved-message" disabled [ngClass]="{ visible: saved }">
+        Wijzigingen opgeslagen
+      </div>
+      <button (click)="close()" (keyup.enter)="close()" class="btn dso-secondary btn-sm">Annuleren</button>
+      <button (click)="filterAcknowledged()" (keyup.enter)="filterAcknowledged()" class="btn dso-primary btn-sm">
+        Toepassen
+      </button>
+    </div>
+
+    <dsov-search
+      [searchModes]="[SearchMode.LOCATIE, SearchMode.COORDINATEN]"
+      [locationFilter]="locatieFilter"
+      [selectedMode]="locationSearchMode$ | async"
+      [autoSearch]="true"
+      (changeCoordinates)="changeLocatieFilter($event, filterOptions)"
+      (changeLocation)="changeLocatieFilter($event, filterOptions)"
+      *ngIf="locatieFilter$ | async as locatieFilter"
+    ></dsov-search>
+
+    <h2>Regels en beleid</h2>
+    <div class="regels-en-beleid">
+      <dsov-filter-regels-en-beleid
+        [isTimeTravel]="isTimeTravel(filterOptions.datum)"
+        [filterItems]="filterOptions.regelsbeleid"
+        [filterName]="FilterName.REGELSBELEID"
+        (filterSelected)="onFilterSelected($event)"
+      ></dsov-filter-regels-en-beleid>
+    </div>
+
+    <ng-container *ngIf="!isTimeTravel(filterOptions.datum)">
+      <h2>Op uw locatie</h2>
+      <dsov-filter-box
+        [id]="'activiteiten'"
+        [title]="'Activiteiten'"
+        [description]="'Regels voor een aanpassing in de leefomgeving zoals verbouwen of slopen.'"
+        [toggleTipKey]="contentKeys.ACTIVITEITEN"
+        [filterOptions]="getFilterOptionsForName(filterOptions, FilterName.ACTIVITEIT)"
+        (leave)="confirm({ filters: filterOptions, name: FilterName.ACTIVITEIT, page: ViewerPage.ACTIVITEITEN })"
+      ></dsov-filter-box>
+      <dsov-filter-box
+        [id]="'gebieden'"
+        [title]="'Gebieden op de kaart'"
+        [description]="'Gebieden op uw locatie waar aparte regels voor gelden.'"
+        [toggleTipKey]="contentKeys.GEBIEDEN"
+        [filterOptions]="getFilterOptionsForName(filterOptions, FilterName.GEBIEDEN)"
+        (leave)="confirm({ filters: filterOptions, name: FilterName.GEBIEDEN, page: ViewerPage.GEBIEDEN })"
+      ></dsov-filter-box>
+      <dsov-filter-box
+        [id]="'themas'"
+        [title]="'Thema\'s'"
+        [description]="'Regels en beleid voor algemene onderwerpen.'"
+        [toggleTipKey]="contentKeys.THEMAS"
+        [filterOptions]="getFilterOptionsForName(filterOptions, FilterName.THEMA)"
+        (leave)="confirm({ filters: filterOptions, name: FilterName.THEMA, page: ViewerPage.THEMAS })"
+      ></dsov-filter-box>
+      <dsov-filter-box
+        [id]="'documenten'"
+        [title]="'Alle documenten op uw locatie'"
+        [description]="'Overzicht van documenten van alle overheden bij elkaar.'"
+        [toggleTipKey]="contentKeys.DOCUMENTENLOCATIE"
+        (leave)="confirm({ filters: filterOptions, name: FilterName.DOCUMENTEN, page: ViewerPage.DOCUMENTEN })"
+      ></dsov-filter-box>
+    </ng-container>
+
+    <h2 class="sm-padding">Geavanceerde filters</h2>
+
+    <div class="dso-accordion dso-accordion-compact">
+      <div class="dso-accordion-section" [ngClass]="{ 'dso-open': documenttype }">
+        <h3 class="dso-section-handle">
+          <button type="button" [attr.aria-expanded]="documenttype" (click)="documenttype = !documenttype">
+            Type documenten
+          </button>
+        </h3>
+        <div class="dso-section-body" *ngIf="documenttype">
+          <dsov-filter-documenttype
+            [filterItems]="filterOptions[FilterName.DOCUMENT_TYPE]"
+            [filterName]="FilterName.DOCUMENT_TYPE"
+            (filterSelected)="onFilterSelected($event)"
+          ></dsov-filter-documenttype>
+        </div>
+      </div>
+      <div class="dso-accordion-section" [ngClass]="{ 'dso-open': regelgevingtype }">
+        <h3 class="dso-section-handle enable-toggletip">
+          <button type="button" [attr.aria-expanded]="regelgevingtype" (click)="regelgevingtype = !regelgevingtype">
+            Type regels
+            <dso-toggletip (click)="handleClick($event)">
+              <div class="dso-rich-content" [innerHTML]="getRichContent(contentKeys.REGELTEKSTTYPE)"></div>
+            </dso-toggletip>
+          </button>
+        </h3>
+        <div class="dso-section-body" *ngIf="regelgevingtype">
+          <dsov-filter-regelgevingtype
+            [filterItems]="filterOptions[FilterName.REGELGEVING_TYPE]"
+            [filterName]="FilterName.REGELGEVING_TYPE"
+            (filterSelected)="onFilterSelected($event)"
+          ></dsov-filter-regelgevingtype>
+        </div>
+      </div>
+    </div>
+
+    <div class="dso-form-buttons">
+      <div class="btn btn-tertiary btn-sm saved-message" disabled [ngClass]="{ visible: saved }">
+        Wijzigingen opgeslagen
+      </div>
+      <button (click)="close()" (keyup.enter)="close()" class="btn dso-secondary btn-sm">Annuleren</button>
+      <button (click)="filterAcknowledged()" (keyup.enter)="filterAcknowledged()" class="btn dso-primary btn-sm">
+        Toepassen
+      </button>
+    </div>
+  </div>
+</ng-container>

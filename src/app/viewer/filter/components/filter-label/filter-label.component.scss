@@ -1,0 +1,12 @@
+@import 'variables';
+
+:host {
+  .dso-label-group {
+    margin-bottom: 0;
+    &__label {
+      &__symbol {
+        background-size: 1.75rem;
+      }
+    }
+  }
+}

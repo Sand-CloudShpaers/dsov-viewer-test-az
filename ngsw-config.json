@@ -1,0 +1,32 @@
+{
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": ["/favicon.ico", "/index.html", "/*.css", "/*.js"]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": ["/assets/**", "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)", "/config/**"]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "ihr",
+      "urls": ["https://data.informatiehuisruimte.nl/api/ruimtelijke-plannen/v1/**"],
+      "version": 1,
+      "cacheConfig": {
+        "maxSize": 999,
+        "maxAge": "1d",
+        "strategy": "performance"
+      }
+    }
+  ]
+}

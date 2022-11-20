@@ -1,0 +1,164 @@
+[
+  {
+    "id": "burgerbindend",
+    "name": "Direct werkende regels",
+    "ozonValue": "RegelVoorIedereen",
+    "applicableToSources": ["IHR", "OZON"]
+  },
+  {
+    "id": "Omgevingswaarderegel",
+    "name": "Omgevingswaarderegels",
+    "ozonValue": "Omgevingswaarderegel",
+    "applicableToSources": ["OZON"]
+  },
+  {
+    "id": "instructieregelInstrument",
+    "name": "Instructieregels over het nemen van een type besluit",
+    "ozonValue": "Instructieregel",
+    "items": [
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/BesluitGeldelijkeRegelingen",
+        "name": "besluit geldelijke regelingen"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/BesluitOverGeluidwerendeMaatregelen",
+        "name": "besluit over geluidwerende maatregelen"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/BesluitTotAanwijzingVanNationaalPark",
+        "name": "besluit tot aanwijzing van nationaal park"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/BesluitTotAanwijzingVanNatuurgebied",
+        "name": "besluit tot aanwijzing van natuurgebied"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/BesluitTotAanwijzingVanZwemlocatie",
+        "name": "besluit tot aanwijzing van zwemlocatie"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/BesluitTotBeperkenOfVerbiedenVanToegangTotNatura2000Gebied",
+        "name": "besluit tot beperken of verbieden van toegang tot natura 2000-gebied"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/BesluitTotBuitenToepassingLatenVanRegels",
+        "name": "besluit tot buiten toepassing laten van regels"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/BesluitTotErkenningVanExamen",
+        "name": "besluit tot erkenning van examen"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/BesluitTotInstellenVanZwemverbodOfGevenNegatiefZwemadvies",
+        "name": "besluit tot instellen van zwemverbod of geven negatief zwemadvies"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/BesluitTotTreffenVanTijdelijkeBodembeschermingsmaatregelen",
+        "name": "besluit tot treffen van tijdelijke bodembeschermingsmaatregelen"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/BesluitTotVaststellingVanBeginEnEindeBadseizoen",
+        "name": "besluit tot vaststelling van begin en einde badseizoen"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/BesluitTotVaststellingVanGeluidproductieplafondsAlsOmgevingswaarden",
+        "name": "besluit tot vaststelling van geluidproductieplafonds als omgevingswaarden"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/Calamiteitenplan",
+        "name": "calamiteitenplan"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/Legger",
+        "name": "legger"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/Maatwerkvoorschrift",
+        "name": "maatwerkvoorschrift"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/Monitoringsprogramma",
+        "name": "monitoringsprogramma"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/Omgevingsplan",
+        "name": "omgevingsplan"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/Omgevingsverordening",
+        "name": "omgevingsverordening"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/Peilbesluit",
+        "name": "peilbesluit"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/PlanWaarvoorPassendeBeoordelingGemaaktMoetWorden",
+        "name": "plan waarvoor passende beoordeling gemaakt moet worden"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/Programma",
+        "name": "programma"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/Projectbesluit",
+        "name": "projectbesluit"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/Ruilbesluit",
+        "name": "ruilbesluit"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/instrument/id/concept/Waterschapsverordening",
+        "name": "waterschapsverordening"
+      }
+    ],
+    "applicableToSources": ["IHR", "OZON"],
+    "labelAllItems": "Alle instrumenten"
+  },
+  {
+    "id": "instructieregelTaakuitoefening",
+    "name": "Instructieregels voor het uitoefenen van een taak door een bevoegd gezag",
+    "ozonValue": "Instructieregel",
+    "items": [
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/adressaat/id/concept/BeheerderSpoor",
+        "name": "beheerder spoor"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/adressaat/id/concept/Faunabeheereenheid",
+        "name": "faunabeheereenheid"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/adressaat/id/concept/Gemeentebestuur",
+        "name": "gemeentebestuur"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/adressaat/id/concept/Korpschef",
+        "name": "korpschef"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/adressaat/id/concept/Provinciebestuur",
+        "name": "provinciebestuur"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/adressaat/id/concept/Rijk",
+        "name": "rijk"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/adressaat/id/concept/Waterschapsbestuur",
+        "name": "waterschapsbestuur"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/adressaat/id/concept/Wildbeheereenheid",
+        "name": "wildbeheereenheid"
+      },
+      {
+        "id": "http://standaarden.omgevingswet.overheid.nl/adressaat/id/concept/Zonebeheerder",
+        "name": "zonebeheerder"
+      }
+    ],
+    "applicableToSources": ["IHR", "OZON"],
+    "labelAllItems": "Alle adressaten"
+  }
+]

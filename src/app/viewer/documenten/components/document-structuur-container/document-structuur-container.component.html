@@ -1,0 +1,67 @@
+<ng-container *ngIf="documentStructuurStatus$ | async as documentStructuurStatus">
+  <ng-container *ngIf="documentStructuurStatus.isLoading">
+    <dsov-spinner class="spinner" [label]="'Document inhoud aan het laden...'"></dsov-spinner>
+  </ng-container>
+  <ng-container *ngIf="documentStructuurStatus.isResolved">
+    <ng-container
+      *ngIf="
+        documentViewContext === DocumentViewContext.VOLLEDIG_DOCUMENT ||
+        documentViewContext === DocumentViewContext.TIJDELIJK_DEEL
+      "
+    >
+      <ng-container *ngIf="documentStructuurVM$ | async as documentStructuurVM; else noContent">
+        <div
+          *ngIf="ApiUtils.isOzonDocument(documentId)"
+          class="expanded-view-container"
+          [attr.data-test-id]="'expanded-view-selection'"
+        >
+          <span>Toon tekst: </span>
+          <div class="dso-selectable">
+            <input
+              type="radio"
+              id="radio-collapsible-view"
+              [checked]="!expandedView"
+              (change)="toggleExpandedView(false)"
+            />
+            <label for="radio-collapsible-view"> inklapbaar</label>
+          </div>
+          <div class="dso-selectable">
+            <input type="radio" id="radio-expanded-view" [checked]="expandedView" (change)="toggleExpandedView(true)" />
+            <label for="radio-expanded-view"> volledig</label>
+          </div>
+        </div>
+        <dsov-document-body
+          class="document-body"
+          data-test-id="document-body"
+          [documentId]="documentId"
+          [documentViewContext]="documentViewContext"
+          [documentStructuurVM]="documentStructuurVM"
+          [selectedElementId]="selectedElementId$ | async"
+        ></dsov-document-body>
+      </ng-container>
+      <ng-template #noContent>
+        <div class="alert alert-info" role="alert" data-test-id="message-no-content">
+          Geen {{ documentSubPagePath?.toLowerCase() || 'regels of teksten' }} gevonden voor dit document.
+        </div>
+      </ng-template>
+    </ng-container>
+    <ng-container *ngIf="inhoud$ | async as inhoud">
+      <div class="panel panel-default reference" [attr.data-test-id]="'reference-' + inhoud.externeReferenties[0]">
+        <div class="panel-body">
+          <p>
+            In originele document:
+            <a [href]="inhoud.externeReferenties[0]" class="d-block" rel="noopener noreferrer" target="_blank">
+              <span>{{ getTitleForInhoud(inhoud) }}</span>
+              <dso-icon icon="external-link" title="externe link"></dso-icon>
+            </a>
+          </p>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="documentStructuurStatus.isRejected">
+    <div class="alert alert-danger" role="alert" data-test-id="document-structuur-alert">
+      Inhoud document niet gevonden.
+    </div>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,18 @@
+<div class="confirmation__shadow" *ngIf="show"></div>
+<div class="dso-modal confirmation__modal" tabindex="-1" role="dialog" aria-labelledby="modal-dialog" *ngIf="show">
+  <div class="dso-dialog" role="document">
+    <div class="dso-header">
+      <h2 id="modal-dialog">{{ options.title }}</h2>
+      <button type="button" class="dso-close" aria-label="Sluiten"></button>
+    </div>
+    <div class="dso-body">
+      <p>
+        {{ options.message }}
+      </p>
+    </div>
+    <div class="dso-footer">
+      <button type="button" class="dso-tertiary" (click)="cancel()"><span>Annuleren</span></button>
+      <button type="submit" class="dso-primary" (click)="approve()"><span>Doorgaan</span></button>
+    </div>
+  </div>
+</div>

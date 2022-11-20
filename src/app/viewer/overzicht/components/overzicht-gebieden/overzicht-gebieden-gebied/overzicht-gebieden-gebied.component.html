@@ -1,0 +1,20 @@
+<dsov-symbool
+  [symboolcode]="gebied.symboolcode"
+  class="overview__subgebieden__symbol"
+  data-test-id="overview__subgebieden__symbol"
+></dsov-symbool>
+<div>
+  <label data-test-id="overview__subgebieden__name" class="overview__subgebieden__name">{{ gebied.naam }}</label>
+  <span data-test-id="overview__subgebieden__type" class="overview__subgebieden__type">{{
+    '(' + gebied.type + ')'
+  }}</span>
+
+  <button
+    type="button"
+    class="btn dso-tertiary btn-sm overview__subgebieden__button"
+    data-test-id="overview__subgebieden__button"
+    (click)="clickElement.emit(gebied)"
+  >
+    bekijk regels
+  </button>
+</div>

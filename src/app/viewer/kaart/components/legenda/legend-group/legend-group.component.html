@@ -1,0 +1,9 @@
+<label data-test-id="legend-group-name" *ngIf="group.selections.length > 1"> {{ group.name }}</label>
+<dsov-legend-item
+  *ngFor="let selection of group.selections; trackBy: trackByFn"
+  [naam]="selection.name"
+  [symboolcode]="selection.symboolcode"
+  [attr.id]="selection.id"
+  class="legend-item"
+  data-test-id="legend-item--selection"
+></dsov-legend-item>

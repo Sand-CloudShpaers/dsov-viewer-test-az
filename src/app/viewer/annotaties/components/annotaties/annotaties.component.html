@@ -1,0 +1,142 @@
+<div *ngIf="annotatiesStatus$ | async as annotatiesStatus" data-test-id="annotaties-selecties">
+  <dsov-annotaties-selecties
+    *ngIf="annotatiesStatus.isResolved && showAnnotation"
+    [activiteitLocatieaanduidingen]="activiteitLocatieaanduidingen$ | async"
+    [bestemmingsplanFeatures]="bestemmingsplanFeatures$ | async"
+    [gebiedenInFilter]="filterOptions.gebieden"
+    [gebiedsaanwijzingen]="gebiedsaanwijzingen$ | async"
+    [locaties]="locaties$ | async"
+    [omgevingsnormen]="omgevingsnormen$ | async"
+    [omgevingswaarden]="omgevingswaarden$ | async"
+    [documentId]="documentId"
+    [annotationId]="annotation.annotationId"
+  >
+  </dsov-annotaties-selecties>
+</div>
+
+<div *ngIf="showAnnotation" data-test-id="annotaties-content">
+  <h4>Annotaties</h4>
+  <div *ngIf="annotatiesStatus$ | async as annotatiesStatus" data-test-id="annotaties-status">
+    <h3 *ngIf="annotation.themas?.length > 0 || annotation.typeRegelgeving">Algemene kenmerken</h3>
+    <ng-container *ngIf="annotation.typeRegelgeving">
+      <dl data-test-id="annotaties-type-juridische-regels">
+        <dt data-test-id="annotaties-type-juridische-label">Type regelgeving</dt>
+        <dd data-test-id="annotaties-type-juridische-regels__waarde">
+          {{ annotation.typeRegelgeving }}
+        </dd>
+      </dl>
+    </ng-container>
+    <ng-container *ngIf="this.annotation.themas?.length > 0">
+      <dl data-test-id="annotaties-themas">
+        <dt data-test-id="annotaties-themas__label">Thema's</dt>
+        <dd data-test-id="annotaties-themas__waarde">{{ getThemas() }}</dd>
+      </dl>
+    </ng-container>
+    <ng-container *ngIf="idealisatie$ | async">
+      <dl data-test-id="annotaties-idealisatie">
+        <dt data-test-id="annotaties-idealisatie__label">Hardheid begrenzing</dt>
+        <dd data-test-id="annotaties-idealisatie__waarde">indicatief</dd>
+      </dl>
+    </ng-container>
+    <ng-container *ngIf="annotatiesStatus.isLoading">
+      <dsov-spinner data-test-id="annotaties__loading" label="Annotaties worden opgehaald."></dsov-spinner>
+    </ng-container>
+    <ng-container *ngIf="annotatiesStatus.isResolved">
+      <div data-test-id="annotaties-locaties">
+        <ng-container *ngIf="locaties$ | async as locaties">
+          <ng-container *ngIf="locaties.length">
+            <h3 class="annotation-subtitle">
+              {{ getSubtitle(element) }}
+            </h3>
+            <dsov-locaties [annotationId]="annotation.annotationId" [locaties]="locaties"></dsov-locaties>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div data-test-id="annotaties-hoofdlijnen">
+        <ng-container *ngIf="hoofdlijnen$ | async as hoofdlijnen">
+          <ng-container *ngIf="hoofdlijnen.length">
+            <h3 class="annotation-subtitle">Hoofdlijnen</h3>
+            <dsov-hoofdlijnen [hoofdlijnen]="hoofdlijnen"></dsov-hoofdlijnen>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div data-test-id="annotaties-kaarten">
+        <ng-container *ngIf="kaarten$ | async as kaarten">
+          <ng-container *ngIf="kaarten.length">
+            <h3 class="annotation-subtitle">Kaarten</h3>
+            <span>{{ getKaartenText(element.type, kaarten) }}</span>
+            <ul>
+              <li *ngFor="let kaart of kaarten; trackBy: trackByKaart">
+                <a [routerLink]="['../kaarten']" [queryParamsHandling]="'preserve'">{{ kaart.naam }}</a>
+              </li>
+            </ul>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div data-test-id="activiteiten">
+        <ng-container *ngIf="activiteitLocatieaanduidingen$ | async as activiteiten">
+          <ng-container *ngIf="activiteiten.length">
+            <h3 class="annotation-subtitle">Activiteiten</h3>
+            <dsov-activiteiten
+              [activiteiten]="activiteiten"
+              [annotationId]="annotation.annotationId"
+              [showSliders]="true"
+            ></dsov-activiteiten>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div data-test-id="gebiedsaanwijzingen">
+        <ng-container *ngIf="gebiedsaanwijzingen$ | async as gebiedsaanwijzingen">
+          <ng-container *ngIf="gebiedsaanwijzingen.length">
+            <h3 class="annotation-subtitle">Gebiedsaanwijzingen</h3>
+            <dsov-gebiedsaanwijzingen
+              [gebiedenInFilter]="filterOptions.gebieden"
+              [gebiedsaanwijzingen]="gebiedsaanwijzingen"
+              [annotationId]="annotation.annotationId"
+              [showSliders]="true"
+            >
+            </dsov-gebiedsaanwijzingen>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div data-test-id="omgevingsnormen">
+        <ng-container *ngIf="omgevingsnormen$ | async as omgevingsnormen">
+          <ng-container *ngIf="omgevingsnormen.length">
+            <h3 class="annotation-subtitle">Omgevingsnormen</h3>
+            <dsov-normen
+              [normType]="NormTypeEnum.OMGEVINGSNORMEN"
+              [omgevingsnormen]="omgevingsnormen"
+              [showSliders]="true"
+              [documentViewContext]="documentViewContext"
+            ></dsov-normen>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div data-test-id="omgevingswaarden">
+        <ng-container *ngIf="omgevingswaarden$ | async as omgevingswaarden">
+          <ng-container *ngIf="omgevingswaarden.length">
+            <h4 class="annotation-subtitle">Omgevingswaarden</h4>
+            <dsov-normen
+              [normType]="NormTypeEnum.OMGEVINGSWAARDEN"
+              [omgevingsnormen]="omgevingswaarden"
+              [showSliders]="true"
+              [documentViewContext]="documentViewContext"
+            ></dsov-normen>
+          </ng-container>
+        </ng-container>
+      </div>
+
+      <dsov-bestemmingsplan-features
+        *ngFor="let bestemmingsplanFeature of bestemmingsplanFeatures$ | async; trackBy: trackByBestemmingsplanFeature"
+        [featureGroup]="bestemmingsplanFeature"
+        [documentId]="this.documentId"
+        [elementId]="annotation.annotationId.elementId"
+      ></dsov-bestemmingsplan-features>
+    </ng-container>
+    <ng-container *ngIf="annotatiesStatus.isRejected">
+      <div class="alert alert-danger" data-test-id="locaties__alert" role="alert">
+        Niet alle Annotaties konden worden opgehaald
+      </div>
+    </ng-container>
+  </div>
+</div>

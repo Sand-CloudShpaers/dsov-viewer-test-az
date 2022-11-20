@@ -1,0 +1,33 @@
+@import 'variables';
+@import 'abstracts';
+
+:host {
+  display: block;
+}
+
+.modal-header {
+  background-color: $bg-color-error;
+}
+
+.modal-header h4 {
+  color: #000;
+}
+
+.modal-title {
+  display: inline;
+  margin-left: 15px;
+  color: $color-tekst-zwart;
+}
+
+.dso-header {
+  background-color: $bg-color-error;
+}
+
+.error-icon {
+  color: $error-color;
+  vertical-align: sub;
+}
+
+.dso-modal__chevron {
+  @include rotate-element();
+}

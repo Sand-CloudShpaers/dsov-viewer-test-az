@@ -1,0 +1,16 @@
+@import 'variables';
+@import 'abstracts';
+
+.version-number-container {
+  @include center-content();
+  font-size: 10px;
+  color: $color-tekst-zwart;
+  height: 20px;
+
+  .version-number {
+    color: $bosgroen;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

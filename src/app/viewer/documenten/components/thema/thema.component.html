@@ -1,0 +1,15 @@
+<ul class="list-unstyled" data-test-id="themas-lijst">
+  <li *ngFor="let thema of themas; trackBy: trackByFn; let index = index">
+    <button
+      *ngIf="routerLink$ | async as routerLink"
+      (click)="onClickThema(thema)"
+      class="btn dso-tertiary"
+      type="button"
+      [routerLink]="routerLink"
+      [queryParamsHandling]="'preserve'"
+      [attr.data-test-id]="'thema-' + index"
+    >
+      {{ thema.waarde }}
+    </button>
+  </li>
+</ul>

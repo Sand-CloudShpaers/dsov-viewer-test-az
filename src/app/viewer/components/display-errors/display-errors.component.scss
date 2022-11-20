@@ -1,0 +1,9 @@
+@import 'variables';
+
+:host {
+  margin-left: 8px;
+
+  .error-icon {
+    color: $error-color;
+  }
+}

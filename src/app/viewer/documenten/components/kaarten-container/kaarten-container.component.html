@@ -1,0 +1,6 @@
+<ng-container *ngIf="(apiSource$ | async) === ApiSource.IHR">
+  <dsov-kaarten-imro [documentId]="documentId"></dsov-kaarten-imro>
+</ng-container>
+<ng-container *ngIf="(apiSource$ | async) === ApiSource.OZON">
+  <dsov-kaarten-ozon [documentId]="documentId"></dsov-kaarten-ozon>
+</ng-container>

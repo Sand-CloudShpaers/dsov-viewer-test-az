@@ -1,0 +1,50 @@
+<div class="view-selection">
+  <h4>{{ getDescription() }}</h4>
+  <button
+    (click)="viewSelection()"
+    (keyup.enter)="viewSelection()"
+    class="btn dso-primary btn-sm view-selection__button"
+    *ngIf="getSelectedItems(activeSelections) > 0"
+    id="activiteiten-bekijkSelectie__button"
+    data-test-id="activiteiten-bekijkSelectie__button"
+  >
+    <span>Regels voor activiteiten bekijken</span>
+  </button>
+</div>
+<div class="dso-accordion dso-accordion-compact">
+  <div
+    class="dso-accordion-section"
+    [ngClass]="{ 'dso-open': getGroupIsOpen(activiteitenGroep) }"
+    *ngFor="let activiteitenGroep of activiteitenGroepen; trackBy: trackByGroep"
+  >
+    <h3 class="dso-section-handle">
+      <button
+        type="button"
+        [attr.aria-expanded]="getGroupIsOpen(activiteitenGroep)"
+        (click)="onToggleGroep(activiteitenGroep.code)"
+      >
+        {{ getTitle(activiteitenGroep) }} ({{ activiteitenGroep.activiteiten.length }})
+      </button>
+    </h3>
+    <div class="dso-section-body" *ngIf="getGroupIsOpen(activiteitenGroep)">
+      <div class="dso-rich-content">
+        <div
+          class="dso-selectable"
+          *ngFor="let activiteit of activiteitenGroep.activiteiten; trackBy: trackByActiviteit"
+        >
+          <input
+            [attr.data-test-id]="'input-' + activiteit.identificatie"
+            (change)="onToggleCheckbox(activiteit, $event)"
+            [checked]="getChecked(activiteit)"
+            class="item-check"
+            type="checkbox"
+            [id]="'input-' + activiteit.identificatie"
+          />
+          <label [for]="'input-' + activiteit.identificatie">
+            {{ activiteit.naam }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

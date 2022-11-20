@@ -1,0 +1,28 @@
+@import 'variables';
+:host {
+  .header {
+    display: flex;
+    &__help {
+      margin-left: auto;
+    }
+  }
+
+  .dso-navbar {
+    margin-bottom: 8px;
+  }
+
+  .alert {
+    margin-top: 10px;
+  }
+
+  .alert__button {
+    text-decoration: underline;
+    border: none;
+    background-color: inherit;
+    padding: 0;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+<ng-container *ngIf="list.group">
+  <dsov-selectable-list-item
+    (selectionChange)="onSelectionChange(list.items, $event.checked)"
+    (toggleHighlight)="onHighlight(list.items, $event)"
+    [item]="getGroupedItem()"
+    [showCheckbox]="showCheckboxes"
+    [showSlider]="showSliders"
+    [active]="getGroupedItem().isSelected"
+    data-test-id="selectable-list-item-grouped"
+  ></dsov-selectable-list-item>
+
+  <div *ngIf="list.group.subLabel" class="indent">
+    {{ list.group.subLabel }}
+  </div>
+</ng-container>
+
+<ng-container *ngFor="let item of list.items; trackBy: trackByListItem">
+  <dsov-selectable-list-item
+    *ngIf="!item.isHidden"
+    [ngClass]="{ indent: list.group }"
+    (selectionChange)="onSelectionChange([item], $event.checked)"
+    (toggleHighlight)="onHighlight([item], $event)"
+    [item]="item"
+    [showCheckbox]="list.group ? false : showCheckboxes"
+    [showSlider]="showSlider(item.id)"
+    [active]="item.isSelected"
+  ></dsov-selectable-list-item>
+</ng-container>

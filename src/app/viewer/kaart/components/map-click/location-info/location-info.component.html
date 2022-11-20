@@ -1,0 +1,65 @@
+<ng-container *ngIf="locationInfo$ | async as locationInfo; else loading">
+  <ng-container *ngIf="locationInfo.coordinaten; else notInTheNetherLands">
+    <ng-container *ngIf="previousPaths$ | async as previousPaths">
+      <dl class="dso-emphasize-description dso-columns">
+        <ng-container *ngIf="locationInfo.adres">
+          <dt>Adres</dt>
+          <dd>
+            <a
+              (click)="searchLocation(locationInfo, PDOKTTYPE.Adres, previousPaths, pathname)"
+              (keyup.enter)="searchLocation(locationInfo, PDOKTTYPE.Adres, previousPaths, pathname)"
+              class="clickable"
+              matTooltip="Hier opnieuw zoeken"
+              role="button"
+              data-test-id="locatie-info-link__adres"
+              >{{ locationInfo.adres.weergavenaam }}
+            </a>
+          </dd>
+        </ng-container>
+
+        <dt>Coördinaten</dt>
+        <dd>
+          <a
+            (click)="searchLocation(locationInfo, PDOKTTYPE.CoordinatenRD, previousPaths, pathname)"
+            (keyup.enter)="searchLocation(locationInfo, PDOKTTYPE.CoordinatenRD, previousPaths, pathname)"
+            class="clickable"
+            matTooltip="Hier opnieuw zoeken"
+            role="button"
+            data-test-id="locatie-info-link__coordinaten"
+            >{{ locationInfo.coordinaten[ZoekLocatieSystem.RD][0] }},
+            {{ locationInfo.coordinaten[ZoekLocatieSystem.RD][1] }}</a
+          >
+        </dd>
+
+        <ng-container *ngIf="locationInfo.perceel">
+          <dt>Perceel</dt>
+          <dd>
+            <a
+              (click)="searchLocation(locationInfo, PDOKTTYPE.Perceel, previousPaths, pathname)"
+              (keyup.enter)="searchLocation(locationInfo, PDOKTTYPE.Perceel, previousPaths, pathname)"
+              class="clickable"
+              matTooltip="Hier opnieuw zoeken"
+              role="button"
+              data-test-id="locatie-info-link__perceel"
+              >{{ locationInfo.perceel.weergavenaam }}</a
+            >
+          </dd>
+        </ng-container>
+      </dl>
+
+      <div class="addition">
+        {{ getAddition(previousPaths, pathname) }}
+      </div>
+    </ng-container>
+  </ng-container>
+</ng-container>
+
+<ng-template #loading>
+  <dsov-spinner data-test-id="location-info__loading" label="Locatiegegegevens worden opgehaald"></dsov-spinner>
+</ng-template>
+
+<ng-template #notInTheNetherLands>
+  <div data-test-id="dso-map-overlay__not-in-nl">
+    De gekozen locatie ligt niet in Nederland. Klik op een locatie binnen Nederland om regels te kunnen bekijken.
+  </div>
+</ng-template>

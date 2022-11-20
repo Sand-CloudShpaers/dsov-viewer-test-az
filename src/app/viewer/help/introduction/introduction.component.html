@@ -1,0 +1,8 @@
+<h3>Mogelijkheden Regels op de kaart</h3>
+<a (click)="onShowIntroductionClicked()" (keyup.enter)="onShowIntroductionClicked()" class="clickable">
+  Toon een korte uitleg van de mogelijkheden van Regels op de kaart
+</a>
+
+<dsov-help-modal [title]="'Korte uitleg van Regels op de kaart'">
+  <dsov-cms-content [content]="introduction$ | async"></dsov-cms-content>
+</dsov-help-modal>

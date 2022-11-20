@@ -1,0 +1,69 @@
+<ng-container [ngSwitch]="tagName">
+  <h2 *ngSwitchCase="'h2'" class="toolkit-overrule document-element__titel">
+    <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+  </h2>
+  <h3 *ngSwitchCase="'h3'" class="toolkit-overrule document-element__titel">
+    <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+  </h3>
+  <h4 *ngSwitchCase="'h4'" class="toolkit-overrule document-element__titel">
+    <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+  </h4>
+  <h5 *ngSwitchCase="'h5'" class="toolkit-overrule document-element__titel">
+    <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+  </h5>
+  <h6 *ngSwitchCase="'h6'" class="toolkit-overrule document-element__titel">
+    <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+  </h6>
+  <p *ngSwitchDefault class="toolkit-overrule document-element__titel">
+    <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+  </p>
+</ng-container>
+
+<ng-template #titleTemplate>
+  <button
+    (click)="toggle(isOpen)"
+    [attr.aria-controls]="documentBodyElement.id"
+    class="dso-tertiary document-element__titel-collapse"
+    [disabled]="!documentBodyElement.layout.isActive"
+    [attr.aria-expanded]="documentBodyElement.layout.isOpen"
+    [title]="getTitleAttribute(documentBodyElement.layout.isOpen)"
+    data-test-id="document-element__titel-toggle"
+  >
+    <dsov-toggle *ngIf="!expandedView" [isOpen]="isOpen" [showToggle]="showToggle"></dsov-toggle>
+  </button>
+  <span
+    class="document-element__titel-header"
+    [ngClass]="{ 'document-element__titel-header--no-toggle': !showToggle }"
+    [attr.data-test-id]="documentBodyElement.type"
+  >
+    <span
+      class="document-element__titel-header-item"
+      [ngClass]="{ disabled: !documentBodyElement.layout.isActive }"
+      data-test-id="document-element-titel__text"
+    >
+      <ng-container *ngIf="documentBodyElement.apiSource === 'OZON'">
+        <dso-ozon-content
+          [content]="documentBodyElement.titel.content"
+          inline=""
+          [attr.interactive]="getInteractive(documentBodyElement)"
+          (dsoClick)="toggle(isOpen)"
+          *ngIf="documentBodyElement.titel.content; else noContent"
+        >
+          <span slot="prefix">{{ documentBodyElement.titel.prefix }} {{ documentBodyElement.nummer }} </span>
+          <span slot="suffix"> {{ documentBodyElement.titel.suffix }}</span>
+        </dso-ozon-content>
+        <ng-template #noContent>
+          <span class="prefix">{{ documentBodyElement.titel.prefix }} {{ documentBodyElement.nummer }} </span>
+          <span class="suffix"> {{ documentBodyElement.titel.suffix }}</span>
+        </ng-template>
+      </ng-container>
+      <span
+        *ngIf="documentBodyElement.apiSource === 'IHR'"
+        (click)="toggle(isOpen)"
+        [ngClass]="{ clickable: documentBodyElement.layout.isActive }"
+      >
+        {{ documentBodyElement.titel.content }}
+      </span>
+    </span>
+  </span>
+</ng-template>

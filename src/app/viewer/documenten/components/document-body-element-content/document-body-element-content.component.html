@@ -1,0 +1,83 @@
+<div *ngIf="element.inhoud" class="document-element__inhoud" data-test-id="document-element-inhoud">
+  <span
+    *ngIf="element.nummer && !element.titel?.content"
+    [innerHTML]="element.nummer | safeHtmlUtil"
+    [ngClass]="shouldBeDimmed(element) ? 'document-element__nummer-dimmed' : 'document-element__nummer'"
+    data-test-id="document-element-inhoud-nummer"
+  ></span>
+  <dso-ozon-content
+    (dsoAnchorClick)="handleAnchorClick($event)"
+    *ngIf="element.apiSource === 'OZON'"
+    [ngClass]="[
+      !shouldBeDimmed(element)
+        ? 'document-element__inhoud-text'
+        : faded
+        ? 'document-element__inhoud-faded'
+        : 'document-element__inhoud-dimmed',
+      isConditie(element) ? 'document-element__inhoud-text-conditie' : ''
+    ]"
+    content="{{ element.inhoud }}"
+    data-test-id="document-element-inhoud-tekst"
+  ></dso-ozon-content>
+  <div
+    *ngIf="element.apiSource === 'IHR'"
+    [dsovLinkHandler]="{ documentId: element.documentId }"
+    [innerHTML]="element.inhoud | safeHtmlUtil"
+    class="dso-rich-content"
+    data-test-id="document-element-inhoud-tekst"
+  ></div>
+  <div
+    *ngIf="shouldBeDimmed(element) && faded"
+    class="document-element__inhoud-button-container"
+    data-test-id="document-element-inhoud-button-container"
+  >
+    <button
+      (click)="toggleFaded()"
+      [attr.aria-expanded]="!faded"
+      class="btn dso-tertiary"
+      data-test-id="document-element-inhoud-button-show"
+    >
+      ... aansluitende tekst lezen
+    </button>
+  </div>
+  <div class="document-element__options">
+    <dsov-document-element-options
+      *ngIf="!element.layout.showTitle && element.layout.hasAnnotation && (!shouldBeDimmed(element) || !faded)"
+      [structuurelement]="element"
+      data-test-id="document-element-options-inhoud"
+    >
+    </dsov-document-element-options>
+  </div>
+</div>
+
+<dso-alert *ngIf="element.isGereserveerd" status="info">
+  <div class="dso-rich-content">
+    <p>Dit onderdeel is gereserveerd voor toekomstige toevoeging.</p>
+  </div>
+</dso-alert>
+
+<dso-alert status="info" *ngIf="element.isVervallen">
+  <div class="dso-rich-content">
+    <p>Dit onderdeel is vervallen en maakt geen deel meer uit van de regeling.</p>
+  </div>
+</dso-alert>
+
+<button
+  (click)="toggleFaded()"
+  *ngIf="shouldBeDimmed(element) && !faded"
+  class="btn dso-tertiary document-element__inhoud-button-hide"
+  data-test-id="document-element-inhoud-button-hide"
+>
+  <dso-icon icon="chevron-up"></dso-icon>
+  <span>aansluitende tekst verbergen</span>
+</button>
+
+<!-- bij een titel wordt de rendering van annotaties in het titel component geregeld -->
+<dsov-annotaties-container
+  *ngIf="element.layout.hasAnnotation && !element.layout.showTitle && (!shouldBeDimmed(element) || !faded)"
+  [documentId]="element.documentId"
+  [element]="element"
+  [regelgevingtypes]="regelgevingtypes"
+  [showAnnotation]="element.layout.showAnnotation"
+  data-test-id="annotaties-inhoud"
+></dsov-annotaties-container>

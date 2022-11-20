@@ -1,0 +1,25 @@
+@import 'variables';
+
+:host {
+  .footer {
+    display: flex;
+    margin-top: $dso-vertical-spacing-small;
+  }
+
+  .labels {
+    display: block;
+    width: 75%;
+  }
+
+  .buttons {
+    margin-left: auto;
+  }
+
+  .filter-box__button {
+    font-weight: bold;
+  }
+
+  .highlight-box-container {
+    margin: 0 0 $dso-vertical-spacing-large;
+  }
+}

@@ -1,0 +1,30 @@
+<ng-container *ngFor="let filterItem of regelgevingtypes$ | async; trackBy: trackByFilterItem">
+  <dso-selectable
+    type="checkbox"
+    data-test-id="filter-regelgevingtype__item"
+    [identifier]="filterItem.id"
+    [value]="filterItem.id"
+    [checked]="isSelected(filterItem)"
+    (dsoChange)="onChangeFilterItem(filterItem, $event)"
+  >
+    {{ filterItem.name }}
+  </dso-selectable>
+  <div class="form-group dso-select" *ngIf="filterItem.items?.length && isSelected(filterItem)">
+    <div class="dso-field-container">
+      <select
+        id="input-select-{{ filterItem.id }}"
+        class="form-control"
+        (change)="onChangeFilterItemItem(filterItem, $event)"
+      >
+        <option>{{ filterItem.labelAllItems }}</option>
+        <option
+          [selected]="isItemSelected(item, filterItem)"
+          [value]="item.id"
+          *ngFor="let item of filterItem.items; trackBy: trackByItem"
+        >
+          {{ item.name | capitalize }}
+        </option>
+      </select>
+    </div>
+  </div>
+</ng-container>

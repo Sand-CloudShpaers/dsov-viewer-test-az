@@ -1,0 +1,17 @@
+<ng-container *ngIf="document$ | async as document">
+  <dsov-regels-op-maat-document-header [document]="document"></dsov-regels-op-maat-document-header>
+  <dso-alert status="info" data-test-id="omgevingsdocument-alert">
+    De juridische regels van deze Omgevingsvergunning zijn niet in Regels op de kaart te raadplegen. U kunt zien of deze
+    Omgevingsvergunning voor u relevant is door de
+    <a
+      class="extern"
+      data-test-id="summary__omgevingsvergunning-link"
+      [href]="document.identificatie"
+      target="_blank"
+      [attr.title]="'Bekijk Kennisgeving ' + document.title"
+      rel="noopener noreferrer"
+      >Kennisgeving</a
+    >
+    te openen.
+  </dso-alert>
+</ng-container>

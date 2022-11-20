@@ -1,0 +1,37 @@
+@import 'variables';
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.bottom-icon {
+  margin-top: 10px;
+  cursor: grab;
+}
+
+li {
+  .edit-icon {
+    display: none;
+    float: right;
+  }
+
+  &:hover {
+    .edit-icon {
+      display: inline;
+    }
+  }
+
+  .finished-edit-icon {
+    float: right;
+  }
+}
+
+.slider-label {
+  font-size: 14px;
+}
+
+.submenu:first-of-type {
+  margin-top: 6px;
+}

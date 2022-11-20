@@ -1,0 +1,32 @@
+<dsov-regels-op-maat-document-header [document]="documentVM"></dsov-regels-op-maat-document-header>
+
+<div *ngIf="documentVM.hasDocumentStructure" class="document-structuur">
+  <ng-container *ngIf="documentStructuurStatus$ | async as documentStructuurStatus">
+    <ng-container *ngIf="documentStructuurStatus.isLoading">
+      <dsov-spinner [label]="'Relevante inhoud '.concat(documentVM.title, ' laden')"></dsov-spinner>
+    </ng-container>
+    <ng-container *ngIf="documentStructuurStatus.isResolved">
+      <dsov-tijdelijk-deel-container
+        [documentId]="documentId"
+        [documentType]="documentVM.type"
+      ></dsov-tijdelijk-deel-container>
+      <dsov-document-body
+        [documentId]="documentId"
+        [documentViewContext]="DOCUMENT_VIEW_CONTEXT.REGELS_OP_MAAT"
+        [documentStructuurVM]="documentStructuurVM"
+        *ngIf="documentStructuurVM$ | async as documentStructuurVM"
+      ></dsov-document-body>
+      <dsov-load-more
+        [loadMoreLinks]="loadMoreLinks$ | async"
+        [loadMoreStatus]="loadMoreStatus$ | async"
+        (doLoadMore)="emitLoadMore()"
+      ></dsov-load-more>
+      <ng-container *ngIf="documentStructuurStatus.isRejected">
+        <dso-alert status="danger" data-test-id="document-structuur-alert">
+          Documentgegevens ophalen niet gelukt.
+        </dso-alert>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+<dsov-inhoud-container *ngIf="!documentVM.hasDocumentStructure" [document]="getDocumentDto()"></dsov-inhoud-container>

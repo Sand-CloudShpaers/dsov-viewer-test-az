@@ -1,0 +1,17 @@
+<ng-container *ngIf="activiteitenStatus$ | async as status">
+  <dsov-spinner [label]="'Activiteiten worden opgehaald'" *ngIf="status.isPending"></dsov-spinner>
+
+  <ng-container *ngIf="status.isResolved">
+    <ng-container
+      *ngIf="{
+        activeSelections: activeSelections$ | async,
+        activiteitenGroepen: activiteitenGroepen$ | async
+      } as data"
+    >
+      <dsov-activiteiten-list
+        [activeSelections]="data.activeSelections"
+        [activiteitenGroepen]="data.activiteitenGroepen"
+      ></dsov-activiteiten-list>
+    </ng-container>
+  </ng-container>
+</ng-container>

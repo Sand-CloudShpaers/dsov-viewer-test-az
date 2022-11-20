@@ -1,0 +1,81 @@
+[
+  {
+    "name": "Bodem",
+    "id": "http://standaarden.omgevingswet.overheid.nl/thema/id/concept/Bodem",
+    "icon": "soil",
+    "default": true
+  },
+  {
+    "name": "Bouwwerken",
+    "id": "http://standaarden.omgevingswet.overheid.nl/thema/id/concept/Bouwwerken",
+    "icon": "buildings",
+    "default": true
+  },
+  {
+    "name": "Cultureel erfgoed",
+    "id": "http://standaarden.omgevingswet.overheid.nl/thema/id/concept/CultureelErfgoed",
+    "icon": "cultural"
+  },
+  {
+    "name": "Energie en natuurlijke hulpbronnen",
+    "id": "http://standaarden.omgevingswet.overheid.nl/thema/id/concept/EnergieEnNatuurlijkeHulpbronnen",
+    "icon": "energy",
+    "default": true
+  },
+  {
+    "name": "Externe veiligheid",
+    "id": "http://standaarden.omgevingswet.overheid.nl/thema/id/concept/ExterneVeiligheid",
+    "icon": "safety"
+  },
+  {
+    "name": "Geluid",
+    "id": "http://standaarden.omgevingswet.overheid.nl/thema/id/concept/Geluid",
+    "icon": "sound"
+  },
+  {
+    "name": "Gezondheid",
+    "id": "http://standaarden.omgevingswet.overheid.nl/thema/id/concept/Gezondheid",
+    "icon": "health"
+  },
+  {
+    "name": "Infrastructuur",
+    "id": "http://standaarden.omgevingswet.overheid.nl/thema/id/concept/Infrastructuur",
+    "icon": "infrastructure",
+    "default": true
+  },
+  {
+    "name": "Landgebruik",
+    "id": "http://standaarden.omgevingswet.overheid.nl/thema/id/concept/Landgebruik",
+    "icon": "land"
+  },
+  {
+    "name": "Landschap",
+    "id": "http://standaarden.omgevingswet.overheid.nl/thema/id/concept/Landschap",
+    "icon": "landscape"
+  },
+  {
+    "name": "Lucht",
+    "id": "http://standaarden.omgevingswet.overheid.nl/thema/id/concept/Lucht",
+    "icon": "air"
+  },
+  {
+    "name": "Milieu algemeen",
+    "id": "http://standaarden.omgevingswet.overheid.nl/thema/id/concept/MilieuAlgemeen",
+    "icon": "environment"
+  },
+  {
+    "name": "Natuur",
+    "id": "http://standaarden.omgevingswet.overheid.nl/thema/id/concept/Natuur",
+    "icon": "nature"
+  },
+  {
+    "name": "Procedures",
+    "id": "http://standaarden.omgevingswet.overheid.nl/thema/id/concept/Procedures",
+    "icon": "procedures"
+  },
+  {
+    "name": "Water en watersystemen",
+    "id": "http://standaarden.omgevingswet.overheid.nl/thema/id/concept/WaterEnWatersystemen",
+    "icon": "water"
+  }
+]

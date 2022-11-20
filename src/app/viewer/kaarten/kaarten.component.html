@@ -1,0 +1,13 @@
+<dsov-collapsible-list
+  *ngFor="let kaart of kaarten; trackBy: trackByFn"
+  [identificatie]="kaart.identificatie"
+  [lists]="getKaartLagen(kaart)"
+  [naam]="kaart.naam"
+  [expanded]="getIsExpanded(kaart)"
+  [showCheckboxes]="false"
+  [showSliders]="true"
+  [boldTitle]="true"
+></dsov-collapsible-list>
+<span *ngIf="kaarten && kaarten.length === 0" class="caption" data-test-id="kaarten__no-result">
+  Geen kaarten gevonden op deze locatie.
+</span>

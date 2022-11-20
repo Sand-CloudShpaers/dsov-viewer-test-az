@@ -1,0 +1,11 @@
+<ng-container *ngIf="documentVM$ | async as documentVM">
+  <ng-container *ngIf="documentVM.loadingState.isLoading">
+    <dsov-spinner [label]="'Bezig met laden van document'"></dsov-spinner>
+  </ng-container>
+  <ng-container *ngIf="documentVM.loadingState.isResolved">
+    <dsov-document-header [document]="documentVM"></dsov-document-header>
+  </ng-container>
+  <ng-container *ngIf="documentVM.loadingState.isRejected">
+    <dso-alert status="danger">Document ophalen niet gelukt.</dso-alert>
+  </ng-container>
+</ng-container>

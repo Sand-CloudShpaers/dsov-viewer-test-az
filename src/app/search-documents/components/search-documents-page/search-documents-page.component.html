@@ -1,0 +1,33 @@
+<div class="container" data-test-id="search-documents" data-iframe-height>
+  <main>
+    <div class="dso-rich-content">
+      <button [routerLink]="[APPLICATION_PAGE.HOME]" data-test-id="search-documents__back" class="btn dso-tertiary">
+        <dso-icon icon="chevron-left"></dso-icon>
+        <span>Start Regels op de kaart</span>
+      </button>
+      <h1>Zoek documenten</h1>
+      <p>
+        Hier kunt u documenten vinden zoals plannen en regelingen. Er zijn verschillende eigenschappen waar u op kunt
+        zoeken.
+      </p>
+      <p>
+        Een totaalbeeld van relevante regels op uw locatie vindt u via
+        <a [routerLink]="['../', APPLICATION_PAGE.VIEWER]" [queryParams]="{ regelsbeleid: 'regels,geldend' }"
+          >regels die nu gelden op uw locatie</a
+        >.
+      </p>
+      <div class="row">
+        <dsov-search-documents-suggest
+          class="col-md-10 col-xs-12"
+          [documentTypes]="documenttypes$ | async"
+        ></dsov-search-documents-suggest>
+      </div>
+      <p>
+        Officiële bekendmakingen van besluiten vindt u op
+        <a href="https://www.officielebekendmakingen.nl" class="extern" target="_blank" rel="noopener noreferrer"
+          >officiëlebekendmakingen.nl<span class="sr-only">(Opent andere website in nieuw tabblad)</span></a
+        >.
+      </p>
+    </div>
+  </main>
+</div>

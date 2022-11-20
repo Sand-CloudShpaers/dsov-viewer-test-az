@@ -1,0 +1,31 @@
+<div class="header dso-rich-content">
+  <button
+    (click)="back(previousPaths)"
+    class="btn dso-tertiary"
+    data-test-id="regels-op-maat-page__return"
+    *ngIf="previousPaths$ | async as previousPaths"
+  >
+    <dso-icon icon="chevron-left"></dso-icon>
+    <span>Terug</span><span class="sr-only"> naar resultaten</span>
+  </button>
+
+  <dsov-help-button class="header__help"></dsov-help-button>
+</div>
+
+<dsov-filter [readonly]="true" [page]="'Regels'"></dsov-filter>
+<h1 data-test-id="regels-op-maat-page__title">Geselecteerde regels</h1>
+
+<ng-container *ngIf="ozonLocatiesStatus$ | async as ozonLocatiesStatus">
+  <dsov-spinner
+    data-test-id="locaties__loading"
+    label="Gegevens op deze locatie aan het laden."
+    *ngIf="ozonLocatiesStatus.isLoading"
+  ></dsov-spinner>
+  <dsov-regels-op-maat-container
+    *ngIf="ozonLocatiesStatus.isResolved"
+    [activatedRouteSnapshot]="activatedRouteSnapshot"
+  ></dsov-regels-op-maat-container>
+  <ng-container *ngIf="ozonLocatiesStatus.isRejected">
+    <dsov-search-alert [error]="ozonLocatiesError$ | async"></dsov-search-alert>
+  </ng-container>
+</ng-container>

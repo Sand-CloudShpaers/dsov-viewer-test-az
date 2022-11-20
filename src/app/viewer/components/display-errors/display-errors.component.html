@@ -1,0 +1,15 @@
+<ng-container *ngIf="errorMessages$ | async as errorMessages">
+  <button
+    (click)="openModal()"
+    (keyup.enter)="openModal()"
+    *ngIf="errorMessages.showErrorMessage"
+    class="btn dso-tertiary error-icon"
+    data-test-id="show-error-icon"
+  >
+    <span class="sr-only">Toon foutmelding"</span>
+    <dso-icon icon="info"></dso-icon>
+  </button>
+
+  <dsov-modal-content (closeEventEmitter)="onCloseModal()" *ngIf="modalOpen" [errorMessages]="errorMessages.messages">
+  </dsov-modal-content>
+</ng-container>

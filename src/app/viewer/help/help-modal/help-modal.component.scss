@@ -1,0 +1,28 @@
+@import 'src/assets/styles/variables';
+
+.help-modal {
+  position: fixed;
+  left: 0;
+  right: $map-panel-width-small;
+  top: 0;
+  bottom: 0;
+  background-color: #fff;
+  overflow-y: scroll;
+}
+
+.help-modal-content {
+  margin: 20px;
+  max-width: 820px;
+  font-size: 16px;
+}
+
+.help-modal__close {
+  float: right;
+}
+
+.title {
+  background-color: #ebf3e6;
+  width: 100%;
+  padding: 16px 20px;
+  margin-top: 0;
+}

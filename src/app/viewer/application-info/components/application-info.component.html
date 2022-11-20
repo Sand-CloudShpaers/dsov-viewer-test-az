@@ -1,0 +1,35 @@
+<div class="dso-rich-content application" data-test-id="application-info__viewer">
+  <h3>Regels op de kaart</h3>
+  <dl>
+    <dt>Versie</dt>
+    <dd>{{ versionNumber }} - {{ versionDate | date: 'longDate':undefined:'nl-NL' }}</dd>
+  </dl>
+</div>
+
+<div *ngIf="status$ | async as status" data-test-id="application-info">
+  <ng-container *ngIf="status.isLoading">
+    <dsov-spinner data-test-id="application-info__loading" label="Informatie wordt opgehaald."></dsov-spinner>
+  </ng-container>
+  <ng-container *ngIf="status.isResolved && applicationInfo$ | async as applicationInfo">
+    <div
+      *ngFor="let application of applicationInfo; trackBy: trackByApplication"
+      class="dso-rich-content application"
+      data-test-id="application-info__application"
+    >
+      <h3>{{ application.name }}</h3>
+      <dl>
+        <dt>Versie</dt>
+        <dd>{{ application.version }}</dd>
+        <ng-container *ngFor="let model of application.models; trackBy: trackByModel">
+          <dt>{{ model.name }}</dt>
+          <dd>{{ model.version }}</dd>
+        </ng-container>
+      </dl>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="status.isRejected">
+    <div class="alert alert-danger" role="alert" data-test-id="application-info__alert">
+      Informatie kon niet gevonden worden
+    </div>
+  </ng-container>
+</div>

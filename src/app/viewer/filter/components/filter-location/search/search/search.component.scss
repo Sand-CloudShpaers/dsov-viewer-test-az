@@ -1,0 +1,8 @@
+:host {
+  .search-options {
+    display: flex;
+    &__dropdown {
+      margin-left: auto;
+    }
+  }
+}

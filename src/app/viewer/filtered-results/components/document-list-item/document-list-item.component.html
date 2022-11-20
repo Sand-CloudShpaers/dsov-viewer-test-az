@@ -1,0 +1,52 @@
+<div class="dso-selectable">
+  <input
+    (change)="onSelectionChange($event)"
+    (mouseenter)="highlight(true)"
+    (mouseleave)="highlight(false)"
+    [checked]="getChecked$() | async"
+    [id]="'item-' + listItem.id"
+    class="item-check"
+    type="checkbox"
+  />
+  <label [for]="'item-' + listItem.id"
+    ><span class="sr-only">
+      {{ (getChecked$() | async) ? 'Deselecteer document' : 'Selecteer document' }}
+    </span></label
+  >
+</div>
+<div class="dso-card card">
+  <div class="dso-card-heading">
+    <a
+      (click)="openDocumentSelection()"
+      (keyup.enter)="openDocumentSelection()"
+      [attr.data-test-id]="'document-' + listItem.id"
+      [attr.title]="listItem.title"
+    >
+      <h2 data-test-id="document__title">{{ listItem.title }}</h2>
+    </a>
+    <dso-toggletip>
+      <div class="dso-rich-content" [innerHTML]="getRichContent(listItem.documentType)"></div>
+    </dso-toggletip>
+  </div>
+  <div class="dso-card-content">
+    <div class="dso-rich-content">
+      <div class="document-type-owner" data-test-id="document__type-owner">{{ listItem.typeOwnerLine }}</div>
+      <div class="document-status-date" data-test-id="document__status-date">
+        <ng-container *ngIf="listItem.isOntwerp">
+          <span
+            class="dso-label dso-label-warning dso-compact document__status_warning"
+            data-test-id="document__badge-ontwerp"
+            >Ontwerp</span
+          >
+        </ng-container>
+        {{ listItem.statusDateLine }}
+        <ng-container *ngIf="hasOntwerpInBundle(this.listItem.bundle)">
+          <div data-test-id="document__versions" class="document-versions">
+            andere versies: ontwerp
+            <dso-badge status="warning">!</dso-badge>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

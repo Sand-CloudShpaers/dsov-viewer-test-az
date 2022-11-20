@@ -1,0 +1,44 @@
+@import 'variables';
+
+:host {
+  overflow: hidden;
+  width: 100%;
+
+  .document-element__titel {
+    display: flex;
+    align-items: flex-start;
+
+    &-collapse {
+      margin-top: 6px;
+    }
+
+    &-header {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      min-height: 40px;
+
+      &-item {
+        margin-right: 6px;
+        padding: 6px 0;
+
+        &.disabled {
+          opacity: 0.5;
+        }
+      }
+
+      &--no-toggle {
+        margin-left: 25px;
+      }
+    }
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+
+  h4 {
+    font-size: 22px;
+    font-weight: 400;
+  }
+}

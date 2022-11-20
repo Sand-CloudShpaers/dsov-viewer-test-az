@@ -1,0 +1,7 @@
+@import 'variables';
+
+:host {
+  .indent {
+    margin-left: $u2;
+  }
+}

@@ -1,0 +1,11 @@
+<div class="filter-block">
+  <h4>{{ filterLabel }}</h4>
+  <ul class="filter-list">
+    <li *ngFor="let filterItem of getFilterItems(); trackBy: trackByFilterItem" class="filter-list-item dso-selectable">
+      <input (change)="onChange(filterItem, $event)" type="checkbox" [checked]="isSelected(filterItem)" />
+      <label [for]="filterName + '_checkbox'" title=" {{ filterItem.name }} ">
+        {{ filterItem.name }}
+      </label>
+    </li>
+  </ul>
+</div>

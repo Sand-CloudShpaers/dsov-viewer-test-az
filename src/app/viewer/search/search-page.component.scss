@@ -1,0 +1,18 @@
+@import 'variables';
+
+:host {
+  .search__return {
+    color: $bosgroen;
+  }
+
+  .dso-search-container {
+    position: relative;
+  }
+
+  .header {
+    display: flex;
+    &__help {
+      margin-left: auto;
+    }
+  }
+}

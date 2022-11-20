@@ -1,0 +1,25 @@
+<ng-container *ngIf="documentStructuurStatus$ | async as status">
+  <ng-container *ngIf="status.isLoading">
+    <dsov-spinner [label]="'Inhoudsopgave aan het laden...'"></dsov-spinner>
+  </ng-container>
+  <ng-container *ngIf="status.isResolved">
+    <ng-container *ngIf="documentStructuurVM$ | async as documentStructuurVM; else noContent">
+      <dsov-index-element
+        [documentId]="document.documentId"
+        [element]="element"
+        [routerLink]="routerLink$ | async"
+        *ngFor="let element of documentStructuurVM.elementen; trackBy: trackBy"
+      ></dsov-index-element>
+    </ng-container>
+    <ng-template #noContent>
+      <div class="alert alert-info" role="alert" data-test-id="message-no-content">
+        Geen inhoudsopgave gevonden voor dit document.
+      </div>
+    </ng-template>
+  </ng-container>
+  <ng-container *ngIf="status.isRejected">
+    <div class="alert alert-danger" role="alert" data-test-id="document-structuur-alert">
+      Inhoudsopgave niet gevonden.
+    </div>
+  </ng-container>
+</ng-container>

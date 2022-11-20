@@ -1,0 +1,39 @@
+@import 'abstracts';
+@import 'variables';
+
+.bekendmakingen {
+  margin-bottom: 0.8rem;
+
+  &__titel-collapse {
+    display: block;
+  }
+
+  &__titel {
+    display: flex;
+    margin-top: 8px;
+  }
+
+  &__list {
+    &__item {
+      margin-bottom: 6px;
+      border-bottom: 1px solid $color-lichtergrijs;
+    }
+
+    &__embedded {
+      margin-left: 0;
+    }
+  }
+}
+
+.dso-tertiary {
+  text-align: left;
+
+  &:hover,
+  &:hover span {
+    text-decoration: none;
+  }
+
+  span {
+    vertical-align: top;
+  }
+}

@@ -1,0 +1,20 @@
+@import 'variables';
+
+:host {
+  .map-container {
+    display: flex;
+    height: calc(100% - #{$map-footer-height});
+
+    .map {
+      position: relative;
+      height: 100%;
+      width: 100%;
+    }
+    .map-panel {
+      width: $map-panel-width-small;
+      overflow-y: scroll;
+      background-color: $background-primary;
+      border-left: 1px solid $color-lichtgrijs;
+    }
+  }
+}

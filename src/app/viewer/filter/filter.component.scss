@@ -1,0 +1,52 @@
+@import 'variables';
+
+$filter-panel-width: 400px;
+
+:host {
+  min-height: 30px;
+  display: block;
+  margin-left: -16px;
+  margin-right: -16px;
+
+  .filters {
+    width: $filter-panel-width;
+    box-shadow: 5px 5px 5px $color-grijs;
+    background-color: $background-primary;
+    height: 100%;
+    padding: 10px;
+    position: relative;
+    &__close-button {
+      color: inherit;
+      position: absolute;
+      right: $u1;
+      top: $u1;
+    }
+  }
+
+  .slide-in-left {
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    position: fixed;
+  }
+
+  .full-height {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  .toggle {
+    left: $filter-panel-width;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}

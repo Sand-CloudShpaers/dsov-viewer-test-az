@@ -1,0 +1,38 @@
+@import 'variables';
+@import 'abstracts';
+
+:host {
+  .alert {
+    margin-top: $dso-vertical-spacing-large;
+    margin-bottom: $dso-vertical-spacing-large;
+  }
+
+  .dso-highlight-box {
+    margin-top: $dso-vertical-spacing-xlarge;
+
+    h1 {
+      margin: 0;
+    }
+  }
+
+  .summary {
+    &__title {
+      display: flex;
+
+      h1 {
+        margin-top: 0;
+      }
+    }
+
+    &__zoom {
+      margin-left: auto;
+      @include center-content();
+    }
+
+    dl {
+      dd {
+        margin-bottom: $dso-vertical-spacing-small;
+      }
+    }
+  }
+}

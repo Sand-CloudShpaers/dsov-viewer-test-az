@@ -1,0 +1,224 @@
+<div class="container" data-test-id="home" data-iframe-height>
+  <main>
+    <div class="row dso-banner home-banner" data-test-id="home-banner">
+      <div class="col-md-6">
+        <div class="dso-whitebox dsov-intro-box">
+          <div class="dso-whitebox-title">
+            <h1>Regels op de kaart</h1>
+          </div>
+          <div class="dso-rich-content">
+            <p>
+              Wilt u weten welke regels gelden op een bepaalde locatie? Die kunt u opzoeken op een kaart. Zo kunt u zien
+              welke regels er gelden voor uw plannen. Ook kunt u zien op welke regels u nog inspraak kunt geven.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row dso-featured">
+      <div class="col-xs-12 dsov-regels-boxes">
+        <div class="row dso-equal-heights">
+          <div class="col-md-6">
+            <div class="dso-whitebox regels-box">
+              <div class="dso-whitebox-title">
+                <h2>Regels die nu gelden op uw locatie</h2>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="dso-whitebox-icon">
+                    <img class="img-circle" src="../../assets/images/bouwvakkerdak.png" alt="Bouwvakker op een dak." />
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <p>Regels voor bouwen, slopen en andere activiteiten kunnen per locatie anders zijn.</p>
+                  <p>
+                    <a
+                      [routerLink]="[APPLICATION_PAGE.VIEWER]"
+                      [queryParams]="{ regelsbeleid: 'regels' }"
+                      class="btn dso-primary"
+                      data-test-id="home-banner__button-geldend"
+                    >
+                      Zoek regels die nu gelden
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="dso-whitebox regels-box">
+              <div class="dso-whitebox-title">
+                <h2>Regels in voorbereiding</h2>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="dso-whitebox-icon">
+                    <img
+                      class="img-circle"
+                      src="../../assets/images/tekeningbouwplan.png"
+                      alt="Tekening van een blouwplan."
+                    />
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <p>
+                    U kunt ook plannen van de overheid bekijken voor de toekomst. Zo weet u wat er gaat veranderen op uw
+                    locatie.
+                  </p>
+                  <p>
+                    <a
+                      [routerLink]="[APPLICATION_PAGE.VIEWER]"
+                      [queryParams]="{ regelsbeleid: 'regels' }"
+                      class="btn dso-primary"
+                      data-test-id="home-banner__button-in-voorbereiding"
+                    >
+                      Zoek regels in voorbereiding
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <div class="dso-rich-content" data-test-id="home__documenten">
+          <h2>Documenten met regels zoeken</h2>
+          <div class="row dso-equal-heights">
+            <div class="col-md-8 col-lg-6">
+              <p>
+                U kunt ook een bepaald document opzoeken. Dat is handig als u al weet in welk document de regels staan
+                die u zoekt.
+              </p>
+            </div>
+            <div class="col-md-4 col-lg-6">
+              <p>
+                <a
+                  [routerLink]="[APPLICATION_PAGE.ZOEK_DOCUMENTEN]"
+                  class="dso-secondary"
+                  data-test-id="home__button-documenten"
+                >
+                  Zoek documenten via eigenschappen
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <div class="dso-rich-content">
+          <h2>Regels die in het verleden geldig waren</h2>
+          <div class="row dso-equal-heights">
+            <div class="col-md-8 col-lg-6">
+              <p>
+                Voor een juridisch geschil kan het nodig zijn om regels uit het verleden op te zoeken. U kunt regels
+                vinden terug in de tijd tot {{ dateIwt | date: 'd-M-yyyy' }}.
+              </p>
+            </div>
+            <div class="col-md-4 col-lg-6">
+              <p>
+                <a
+                  [routerLink]="[APPLICATION_PAGE.VIEWER]"
+                  [queryParams]="{ regelsbeleid: 'regels,geldend', datum: '' }"
+                  class="dso-secondary"
+                  data-test-id="home__button-past"
+                >
+                  Bekijk regels uit het verleden
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="isIhrDisabled()">
+      <div class="col-md-12" data-test-id="ihr-no-go">
+        <dsov-ihr-disabled></dsov-ihr-disabled>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="dso-rich-content dsov-home-content" data-test-id="home-content">
+          <h2>Regels van alle overheden bij elkaar</h2>
+          <p>
+            In Regels op de kaart vindt u de regels van alle overheden bij elkaar. Dat is handig als u bijvoorbeeld een
+            schuur wilt gaan bouwen. U kunt dan zien hoe hoog de schuur mag zijn.
+          </p>
+          <p>
+            Vaak heeft u niet alleen de gemeente regels voor een bepaalde plek, maar ook het waterschap of de provincie.
+            Op de kaart ziet u de regels van al deze overheden bij elkaar. U kunt ook nog oude regels uit
+            bestemmingsplannen zien als die nog geldig zijn.
+          </p>
+          <p>
+            Daarnaast ziet u regels en beleid waar nog aan wordt gewerkt. Zo krijgt u een idee van wat er in de toekomst
+            gaat veranderen in uw omgeving.
+          </p>
+          <h3>Mogelijk ook interessant</h3>
+          <p>
+            Wilt u controleren of u een vergunning nodig heeft?
+            <a
+              [href]="getVergunningsCheckUrl()"
+              class="extern"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-test-id="content__link-vergunningscheck"
+              >Doe dan de vergunningscheck<span class="sr-only">(opent in nieuw venster)</span></a
+            >
+          </p>
+          <p>
+            Wilt u officiële bekendmakingen van besluiten bekijken?
+            <a
+              href="https://www.officielebekendmakingen.nl/"
+              class="extern"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-test-id="home-content__link-officiëlebekendmakingen"
+              >Ga dan naar officiëlebekendmakingen.nl<span class="sr-only">(opent in nieuw venster)</span></a
+            >
+          </p>
+        </div>
+        <div class="dsov-home-content" data-test-id="home-faqs">
+          <dsov-faq></dsov-faq>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="dso-highlight-box dso-border" data-test-id="home-help">
+          <div class="dso-rich-content">
+            <h3>Vragen?</h3>
+            <p>
+              Heeft u vragen over de betekenis van juridische regels? Neem dan contact op met uw gemeente, provincie of
+              waterschap.
+            </p>
+            <p>
+              Heeft u vragen over de werking van de website? Neem dan contact op met het
+              <a
+                href="https://aandeslagmetdeomgevingswet.nl/contact"
+                class="extern"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-test-id="home-help__link-omgevingsloket"
+                >Informatiepunt<span class="sr-only">(opent in nieuw venster)</span></a
+              >
+            </p>
+          </div>
+        </div>
+        <div class="dso-highlight-box dso-border" data-test-id="home-wijzigingen">
+          <div class="dso-rich-content">
+            <h3>Actueel</h3>
+            <p>Regels op de kaart is in ontwikkeling. Regelmatig worden er verbeteringen doorgevoerd.</p>
+            <ul class="dso-link-list">
+              <li>
+                <a [routerLink]="[APPLICATION_PAGE.WIJZIGINGEN]" data-test-id="home-wijzigingen__link">
+                  Wijzigingen in Regels op de kaart
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

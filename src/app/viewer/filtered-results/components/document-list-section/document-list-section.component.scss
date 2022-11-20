@@ -1,0 +1,21 @@
+@import 'variables';
+
+:host {
+  display: block;
+
+  ul.dso-card-list {
+    padding-inline-start: 16px;
+
+    > li:first-child {
+      border-top: none;
+    }
+  }
+
+  .with-documents {
+    padding: 0;
+  }
+
+  .load-more {
+    padding: $u2 0;
+  }
+}

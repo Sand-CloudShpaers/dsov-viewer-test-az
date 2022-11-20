@@ -1,0 +1,8 @@
+@import 'variables';
+
+:host {
+  display: flex;
+  .legend-item-name {
+    margin-left: $u1;
+  }
+}

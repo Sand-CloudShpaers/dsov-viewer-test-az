@@ -1,0 +1,150 @@
+<div
+  *ngIf="labels$ | async as labels; else loadingOrError"
+  class="ihr-map-details__item"
+  data-test-id="ihr-map-details__item"
+>
+  <div class="ihr-map-details__item-text" data-test-id="ihr-map-details__item-text">
+    <!-- Als er meerdere labels zijn tonen we eerst de item naam en de thema's met daaronder de lijst met labels -->
+    <!-- Wanneer er maar 1 label is dan wordt de item naam niet getoond en wordt alleen het label getoond.   -->
+    <!-- De thema's worden in dat geval getoond onder het label, maar boven de eventuele lijst met links  -->
+    <div *ngIf="labels.length > 1">
+      {{ item.naam }}
+      <div *ngIf="item.themas" data-test-id="ihr-map-details__item-themas">Thema: {{ getThemas() }}</div>
+    </div>
+
+    <!-- Toon lijst met labels (verschillende varianten afhankelijk van interne/externe links)   -->
+    <ul
+      [ngClass]="{ 'ihr-map-details__item-text__naam--no-list': labels.length === 1 }"
+      class="ihr-map-details__item-text__naam"
+    >
+      <li *ngFor="let label of labels; trackBy: trackByLabel">
+        <!-- Als er geen interne of externe links zijn, laten we gewoon het label zien -->
+        <ng-container *ngIf="!hasInternalLinks() && !hasExternalLinks()">
+          <span
+            [attr.data-ihr-object-info-label]="item.labels"
+            [attr.data-ihr-object-info-type]="item.type"
+            [attr.data-plan-object-id]="item.id"
+            data-test-id="ihr-map-details__item-text__naam"
+          >
+            {{ label }}
+          </span>
+          <div *ngIf="item.themas && labels.length === 1" data-test-id="ihr-map-details__item-themas">
+            Thema: {{ getThemas() }}
+          </div>
+        </ng-container>
+
+        <!-- Als er interne links zijn dan laten we deze zien (gaan voor op de externe links) -->
+        <ng-container *ngIf="hasInternalLinks()">
+          <!-- Als er maar 1 interne link is dan maken we van de titel een link -->
+          <ng-container *ngIf="!hasMultipleInternalLinks()">
+            <span
+              [attr.data-ihr-object-info-label]="item.labels"
+              [attr.data-ihr-object-info-type]="item.type"
+              [attr.data-plan-object-id]="item.id"
+              [dsovLinkHandler]="{ documentId: planId, tekstId: item.internalLinks[0].id }"
+              class="interneVerwijzing"
+              data-test-id="ihr-map-details__item-text__internalLink"
+            >
+              {{ label }}
+            </span>
+            <div *ngIf="item.themas && labels.length === 1" data-test-id="ihr-map-details__item-themas">
+              Thema: {{ getThemas() }}
+            </div>
+          </ng-container>
+
+          <!-- Als er meerdere interne links zijn dan tonen we de titel met daar onder een lijst met links -->
+          <ng-container *ngIf="hasMultipleInternalLinks()">
+            <div>{{ label }}</div>
+            <div *ngIf="item.themas && labels.length === 1" data-test-id="ihr-map-details__item-themas">
+              Thema: {{ getThemas() }}
+            </div>
+
+            <ul class="ihr-map-details__item-text__verwijzingen">
+              <li *ngFor="let link of item.internalLinks; index as i; trackBy: trackByLinkId">
+                <span
+                  [attr.data-ihr-object-info-label]="item.labels"
+                  [attr.data-ihr-object-info-type]="item.type"
+                  [attr.data-plan-object-id]="item.id"
+                  [dsovLinkHandler]="{ documentId: planId, tekstId: link.id }"
+                  class="interneVerwijzing"
+                  data-test-id="ihr-map-details__item-text__internalLink"
+                >
+                  Verwijzing {{ i + 1 }}
+                </span>
+              </li>
+            </ul>
+          </ng-container>
+        </ng-container>
+
+        <!-- Als er geen interne links zijn dan gaan we naar de externe links kijken -->
+        <ng-container *ngIf="!hasInternalLinks() && hasExternalLinks()">
+          <!-- Als er 1 externe link is dan maken we van de titel een link -->
+          <ng-container *ngIf="!hasMultipleExternalLinks()">
+            <a
+              class="dso-tertiary"
+              data-test-id="ihr-map-details__item-text__externalLink"
+              href="{{ item.externalLinks[0] }}"
+              target="_blank"
+            >
+              <span>
+                {{ label }}
+              </span>
+            </a>
+            <div *ngIf="item.themas && labels.length === 1" data-test-id="ihr-map-details__item-themas">
+              Thema: {{ getThemas() }}
+            </div>
+          </ng-container>
+
+          <!-- Als er meerdere externe links zijn dan tonen we de titel met daar onder een lijst met links -->
+          <ng-container *ngIf="hasMultipleExternalLinks()">
+            <span>
+              {{ label }}
+            </span>
+            <div *ngIf="item.themas && labels.length === 1" data-test-id="ihr-map-details__item-themas">
+              Thema: {{ getThemas() }}
+            </div>
+
+            <ul class="ihr-map-details__item-text__verwijzingen">
+              <li *ngFor="let link of item.externalLinks; index as i; trackBy: trackByVerwijzing">
+                <a
+                  class="dso-tertiary"
+                  data-test-id="ihr-map-details__item-text__externalLink"
+                  href="{{ link }}"
+                  target="_blank"
+                >
+                  Verwijzing {{ i + 1 }}
+                </a>
+              </li>
+            </ul>
+          </ng-container>
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+
+  <dsov-symbool *ngIf="item.selected" [symboolcode]="item.symboolcode"></dsov-symbool>
+  <dsov-slider
+    (mouseenter)="addHighlight(item.id)"
+    (mouseleave)="removeHighlight()"
+    (sliderChange)="onToggleSlider(item, $event.checked, groupKey)"
+    [checked]="item.selected"
+    [identifier]="item.id"
+    [tooltips]="{ active: 'Gebied verbergen', inactive: 'Gebied weergeven' }"
+    class="ihr-map-details__item-slider"
+    data-test-id="ihr-map-details__slider"
+  ></dsov-slider>
+</div>
+
+<ng-template #loadingOrError>
+  <ng-container *ngIf="error; else loading">
+    <div class="alert alert-warning" data-test-id="dso-objectinformatie__maatvoeringen__error" role="alert">
+      Maatvoeringen konden niet gevonden worden
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <dsov-spinner
+      data-test-id="objectinformatie__maatvoeringen__loading"
+      label="Maatvoeringen worden opgehaald."
+    ></dsov-spinner>
+  </ng-template>
+</ng-template>

@@ -1,0 +1,46 @@
+@import 'abstracts';
+@import 'variables';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hoofdlijnen {
+  &__toggle {
+    display: block;
+    color: inherit;
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+    dso-icon + span {
+      margin-left: 4px;
+    }
+  }
+  &__lijst {
+    padding-left: 2rem;
+    padding-bottom: 1rem;
+
+    li {
+      margin-top: 0.5rem;
+    }
+  }
+  &__group {
+    display: table;
+    margin-top: 0.5rem;
+
+    &:hover {
+      color: $grasgroen;
+
+      button {
+        color: $grasgroen;
+      }
+    }
+  }
+}
+
+.list-unstyled {
+  text-transform: capitalize;
+}

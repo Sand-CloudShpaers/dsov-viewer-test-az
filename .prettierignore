@@ -1,0 +1,7 @@
+package.json
+dist
+coverage
+src/app/model/swagger
+changelog.html
+.angular
+src/generation

@@ -1,0 +1,39 @@
+{
+  "/od-vf": {
+    "target": "http://lvbbod-eto-intern.cs.kadaster.nl/",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/lvbb": {
+    "target": "http://lvbbod-jap5ap.fto.kadaster.nl/lvbb/afnamepunt/api/omgevingsdocumenten/v0/",
+    "pathRewrite": {
+      "/lvbb": ""
+    },
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/ruimtelijkeplannen/layers": {
+    "target": "http://afnemers.ruimtelijkeplannen.nl/afnemers/",
+    "pathRewrite": {
+      "/ruimtelijkeplannen/layers": ""
+    },
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/iprox": {
+    "target": "https://int-dso.iprox.nl/cmis/site-13/",
+    "pathRewrite": {
+      "/iprox": ""
+    },
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/ihr": {
+    "target": "https://ruimte.omgevingswet.overheid.nl/ruimtelijke-plannen/api/opvragen/v3",
+    "pathRewrite": {
+      "/ihr": ""
+    },
+    "secure": false,
+    "changeOrigin": true
+  }
+}

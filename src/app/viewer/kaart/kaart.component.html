@@ -1,0 +1,25 @@
+<div
+  #mapElement
+  class="map"
+  [ngClass]="{
+    crosshair: (measureActive$ | async) === true,
+    'hide-dsov-mouse-position': (activeZoekLocatieSystem$ | async) === zoekLocatieSysteem.ETRS89
+  }"
+  id="map"
+>
+  <dsov-kaartdetails-button (showMapPanel)="onShowMapPanel()"></dsov-kaartdetails-button>
+  <dsov-map-click-overlay></dsov-map-click-overlay>
+  <dsov-popup></dsov-popup>
+  <dsov-active-location class="active-location"></dsov-active-location>
+  <dsov-measure class="measurement"></dsov-measure>
+
+  <ng-container *ngIf="(activeZoekLocatieSystem$ | async) === zoekLocatieSysteem.ETRS89">
+    <ng-container *ngIf="etrs89Coordinates$ | async as etrs89">
+      <div class="dsov-mouse-position-etrs89">
+        <span class="sr-only">{{ mousePositionSrOnlyLabel }}</span> {{ etrs89[1] | number: '1.0-6' }},
+        {{ etrs89[0] | number: '1.0-6' }}
+        (ETRS89)
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

@@ -1,0 +1,9 @@
+<dsov-document-body-element
+  (collapseChange)="emitCollapseChange($event)"
+  *ngFor="let element of documentStructuurVM.elementen; index as index; trackBy: trackByFn"
+  [documentBodyElement]="element"
+  [documentId]="documentId"
+  [viewContext]="documentViewContext"
+  [attr.data-test-id]="'element--niveau_' + element.niveau + '-index_' + index"
+>
+</dsov-document-body-element>

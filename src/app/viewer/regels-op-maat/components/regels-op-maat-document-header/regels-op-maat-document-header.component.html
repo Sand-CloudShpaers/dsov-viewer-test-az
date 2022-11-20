@@ -1,0 +1,57 @@
+<div class="dso-document-list-item" data-test-id="summary">
+  <div class="dso-document-list-item-heading">
+    <h2 data-test-id="summary__title">{{ document.title }}</h2>
+    <div class="dso-document-list-item-container">
+      <p class="dso-document-list-item-type" data-test-id="summary__short-description__documentType">
+        {{ document.type }}
+      </p>
+      <p
+        class="dso-document-list-item-owner"
+        data-test-id="summary__short-description__beleidsmatigVerantwoordelijkeOverheid"
+      >
+        {{ document.bevoegdGezag.naam | capitalize }}
+      </p>
+      <p class="dso-document-list-item-status dso-document-header-badges">
+        <ng-container *ngIf="getIHRWarning(document) as warning">
+          <dso-badge status="warning" data-test-id="summary__badge-validatie">{{ warning }}</dso-badge>
+          <br />
+        </ng-container>
+        <dso-badge status="warning" data-test-id="summary__badge-ontwerp" *ngIf="document.isOntwerp">Ontwerp</dso-badge>
+        <span data-test-id="summary__short-description__date">
+          {{ document.statusDateLine }}
+        </span>
+      </p>
+      <div *ngIf="document.isOmgevingsvergunning">
+        <a
+          class="dso-document-list-item-open-document extern"
+          data-test-id="summary__omgevingsvergunning-link"
+          rel="noopener noreferrer"
+          [href]="document.identificatie"
+          target="_blank"
+          [attr.title]="'Bekijk Kennisgeving ' + document.title"
+        >
+          Bekijk Kennisgeving
+        </a>
+      </div>
+      <a
+        *ngIf="!document.isOmgevingsvergunning && routerLink.length > 0"
+        [routerLink]="routerLink"
+        [queryParamsHandling]="'merge'"
+        [queryParams]="{ isOntwerp: this.document.isOntwerp }"
+        (click)="onClickLinkToDocument()"
+        class="dso-document-list-item-open-document"
+        data-test-id="summary__full-document-link"
+        [attr.title]="'Selecteer plan ' + document.title"
+      >
+        Hele document bekijken
+      </a>
+      <dsov-zoom-to-plan
+        *ngIf="document.extent"
+        [extent]="document.extent"
+        [documentId]="document.identificatie"
+        [shouldZoom]="true"
+        data-test-id="summary__zoom"
+      ></dsov-zoom-to-plan>
+    </div>
+  </div>
+</div>

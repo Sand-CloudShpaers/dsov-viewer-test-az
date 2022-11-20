@@ -1,0 +1,74 @@
+@import 'variables';
+@import 'src/assets/styles/abstracts';
+
+:host {
+  .view-selection-container {
+    height: 40px;
+  }
+
+  .view-selection {
+    display: flex;
+    align-items: center;
+
+    &__button {
+      margin-left: auto;
+    }
+
+    &.no-results,
+    span {
+      line-height: 40px;
+    }
+  }
+
+  .gebiedsinfo {
+    &__pons-alert-link {
+      color: $grasgroen;
+
+      &:hover {
+        color: $color-paars;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.dso-pos-button-bekijk-regels {
+  padding-top: 30px;
+}
+
+dl dd:not(:last-of-type) {
+  margin-bottom: 2px;
+}
+
+dl:not(.dso-vertical) dd {
+  margin-left: 15px;
+}
+
+dl:not(.dso-vertical) dt {
+  clear: left;
+  float: left;
+  width: 140px;
+  word-wrap: break-word;
+}
+
+.bekijk-selectie-btn {
+  background-color: #fff;
+  border: 1px solid $color-tekst-zwart;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 3px 8px;
+  font-weight: bold;
+}
+
+.div-line {
+  height: auto;
+  min-height: 109px;
+  padding-top: 20px;
+  margin-left: -7px;
+  margin-right: -3px;
+  border-bottom: 1px solid #ccc;
+}
+
+.gebiedsinfo {
+  color: $bosgroen;
+}

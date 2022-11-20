@@ -1,0 +1,31 @@
+@import 'variables';
+@import 'abstracts';
+
+:host {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: calc(100% - 10px);
+  overflow: auto;
+
+  .message {
+    &__close-button {
+      color: inherit;
+      position: absolute;
+      right: $u2;
+      top: $u2;
+    }
+    &__info-toggle {
+      color: inherit;
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .alert {
+    max-width: 600px;
+    z-index: 2;
+  }
+}

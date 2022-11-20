@@ -1,0 +1,11 @@
+@import 'variables';
+
+:host {
+  padding: 0px;
+
+  .document-versies-list {
+    li {
+      margin-bottom: $u1;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.document-found {
+  display: flex;
+  gap: 10px;
+
+  h3 {
+    margin-top: 0px;
+  }
+
+  span {
+    font-size: 16px;
+  }
+
+  &__button {
+    margin-left: auto;
+  }
+}

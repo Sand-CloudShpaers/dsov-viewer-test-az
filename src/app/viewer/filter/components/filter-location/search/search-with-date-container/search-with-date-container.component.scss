@@ -1,0 +1,10 @@
+@import 'src/assets/styles/variables';
+
+.search {
+  position: relative;
+
+  &__return {
+    margin: 0.5rem 0;
+    color: $bosgroen;
+  }
+}

@@ -1,0 +1,36 @@
+@import 'variables';
+@import 'abstracts';
+
+:host {
+  .header-margin {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .alert {
+    margin-bottom: 0;
+  }
+
+  dso-responsive-element.dso-document-header:not([small]) .dso-document-header-features {
+    border-bottom: none;
+  }
+
+  .summary {
+    &__title {
+      display: flex;
+      h1 {
+        margin-top: 0;
+      }
+    }
+
+    &__zoom {
+      margin-left: auto;
+      @include center-content();
+    }
+
+    dl {
+      dd {
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

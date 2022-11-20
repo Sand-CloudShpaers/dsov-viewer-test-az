@@ -1,0 +1,26 @@
+[
+  {
+    "id": "gemeentelijke overheid",
+    "name": "Gemeentelijke Overheid",
+    "service": "ihr",
+    "serviceMetadataProperty": null
+  },
+  {
+    "id": "deelgemeente/stadsdeel",
+    "name": "Deelgemeente / Stadsdeel",
+    "service": "ihr",
+    "serviceMetadataProperty": null
+  },
+  {
+    "id": "provinciale overheid",
+    "name": "Provinciale Overheid",
+    "service": "ihr",
+    "serviceMetadataProperty": null
+  },
+  {
+    "id": "nationale overheid",
+    "name": "Nationale Overheid",
+    "service": "ihr",
+    "serviceMetadataProperty": null
+  }
+]

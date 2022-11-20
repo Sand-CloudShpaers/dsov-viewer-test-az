@@ -1,0 +1,18 @@
+@import '../../../assets/styles/abstracts';
+
+:host {
+  .dso-kaarten-lijst-kaart {
+    &__header {
+      list-style-type: none;
+      padding-left: 15px;
+    }
+    &__toggle {
+      grid-area: kaartlaag;
+    }
+    &__chevron {
+      @include rotate-element();
+      vertical-align: baseline;
+      color: black;
+    }
+  }
+}

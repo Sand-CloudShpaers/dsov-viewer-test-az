@@ -1,0 +1,20 @@
+@import 'variables';
+
+:host {
+  dl dd {
+    margin-bottom: 0;
+    margin-left: 100px;
+  }
+
+  dl {
+    margin-bottom: 0;
+  }
+
+  dl dt {
+    width: auto;
+  }
+
+  .addition {
+    margin-top: $u1;
+  }
+}

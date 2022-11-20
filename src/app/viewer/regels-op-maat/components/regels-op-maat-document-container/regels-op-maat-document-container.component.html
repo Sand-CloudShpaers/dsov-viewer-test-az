@@ -1,0 +1,15 @@
+<ng-container *ngIf="documentStatus$ | async as documentStatus">
+  <ng-container *ngIf="documentStatus.isLoading">
+    <dsov-spinner [label]="'Geselecteerde regels aan het laden'"></dsov-spinner>
+  </ng-container>
+  <ng-container *ngIf="documentStatus.isResolved">
+    <ng-container *ngIf="documentVM$ | async as documentVM">
+      <dsov-regels-op-maat-document [documentId]="documentId" [documentVM]="documentVM"></dsov-regels-op-maat-document>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="documentStatus.isRejected">
+    <dso-alert status="danger" data-test-id="document-alert">
+      Documentgegevens {{ documentId }} ophalen niet gelukt.
+    </dso-alert>
+  </ng-container>
+</ng-container>

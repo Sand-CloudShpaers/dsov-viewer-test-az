@@ -1,0 +1,125 @@
+<dsov-filter [page]="'Gebieden met regels'"></dsov-filter>
+
+<dsov-document-found-container
+  (openPage)="openPage($event)"
+  *ngIf="(isDirty$ | async) === false"
+></dsov-document-found-container>
+
+<h2 data-test-id="gebieden-met-regels-page__title">Gebieden met regels</h2>
+<div class="view-selection-container">
+  <ng-container *ngIf="(viewSelectionStatus$ | async)?.isPending === false">
+    <ng-container
+      *ngIf="{ activeSelection: activeSelection$ | async, viewSelectionItems: viewSelectionItems$ | async } as data"
+    >
+      <div *ngIf="selectedFilterItemsCount(data.activeSelection, data.viewSelectionItems) > 0" class="view-selection">
+        <span>{{ selectedItemsText }}</span>
+        <button
+          (click)="viewSelection()"
+          (keyup.enter)="viewSelection()"
+          *ngIf="selectedItems > 0"
+          class="dso-primary btn-sm view-selection__button"
+          id="gebiedsInfo-bekijkSelectie__button"
+          data-test-id="gebiedsInfo-bekijkSelectie__button"
+        >
+          Bekijk selectie
+        </button>
+      </div>
+      <div *ngIf="selectedItems === 0" class="view-selection no-results" data-test-id="gebiedsInfo__hints">
+        0 item(s) geselecteerd
+      </div>
+    </ng-container>
+  </ng-container>
+</div>
+<hr />
+
+<h3 class="gebiedsinfo">
+  Gebiedsaanwijzingen
+  <dso-toggletip>
+    <div class="dso-rich-content" [innerHTML]="getRichContent(contentKeys.GEBIEDSAANWIJZINGEN)"></div>
+  </dso-toggletip>
+</h3>
+<div data-test-id="gebiedsaanwijzingen" *ngIf="gebiedsaanwijzingenStatus$ | async as gebiedsaanwijzingenStatus">
+  <ng-container *ngIf="gebiedsaanwijzingenStatus.isLoading">
+    <dsov-spinner
+      data-test-id="gebiedsaanwijzingen__loading"
+      label="Gebiedsaanwijzingen worden opgehaald."
+    ></dsov-spinner>
+  </ng-container>
+  <ng-container *ngIf="gebiedsaanwijzingenStatus.isResolved">
+    <dsov-gebiedsaanwijzingen
+      *ngIf="gebiedsaanwijzingen$ | async as gebiedsaanwijzingen"
+      [gebiedsaanwijzingen]="gebiedsaanwijzingen"
+      [showCheckboxes]="true"
+    ></dsov-gebiedsaanwijzingen>
+  </ng-container>
+  <ng-container *ngIf="gebiedsaanwijzingenStatus.isRejected">
+    <div class="alert alert-danger" role="alert" data-test-id="gebiedsaanwijzingen__alert">
+      Gebiedsaanwijzingen konden niet gevonden worden
+    </div>
+  </ng-container>
+</div>
+
+<h3>
+  Omgevingsnormen
+  <dso-toggletip>
+    <div class="dso-rich-content" [innerHTML]="getRichContent(contentKeys.OMGEVINGSNORMEN)"></div>
+  </dso-toggletip>
+</h3>
+<div data-test-id="omgevingsnormen" *ngIf="omgevingsnormenStatus$ | async as omgevingsnormenStatus">
+  <ng-container *ngIf="(isLargeArea$ | async) === false">
+    <ng-container *ngIf="omgevingsnormenStatus.isLoading">
+      <dsov-spinner data-test-id="omgevingsnormen__loading" label="Omgevingsnormen worden opgehaald."></dsov-spinner>
+    </ng-container>
+    <ng-container *ngIf="omgevingsnormenStatus.isResolved">
+      <dsov-normen
+        [omgevingsnormen]="omgevingsnormen$ | async"
+        [normType]="NormTypeEnum.OMGEVINGSNORMEN"
+        [showCheckboxes]="true"
+      >
+      </dsov-normen>
+    </ng-container>
+    <ng-container *ngIf="omgevingsnormenStatus.isRejected">
+      <div class="alert alert-danger" role="alert" data-test-id="omgevingsnormen__alert">
+        Omgevingsnormen konden niet gevonden worden
+      </div>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="(isLargeArea$ | async) === true">
+    <div class="alert alert-info" role="alert" data-test-id="omgevingsnormen__large-area-alert">
+      Beperk het zoekgebied om Omgevingsnormen weer te geven
+    </div>
+  </ng-container>
+</div>
+
+<h3>
+  Omgevingswaarden
+  <dso-toggletip>
+    <div class="dso-rich-content" [innerHTML]="getRichContent(contentKeys.OMGEVINGSWAARDEN)"></div>
+  </dso-toggletip>
+</h3>
+<div data-test-id="omgevingswaarden" *ngIf="omgevingswaardenStatus$ | async as omgevingswaardenStatus">
+  <ng-container *ngIf="omgevingswaardenStatus.isLoading">
+    <dsov-spinner data-test-id="omgevingswaarden__loading" label="Omgevingswaarden worden opgehaald."></dsov-spinner>
+  </ng-container>
+  <ng-container *ngIf="omgevingswaardenStatus.isResolved">
+    <dsov-normen
+      [omgevingsnormen]="omgevingswaarden$ | async"
+      [normType]="NormTypeEnum.OMGEVINGSWAARDEN"
+      [showCheckboxes]="true"
+    >
+    </dsov-normen>
+  </ng-container>
+  <ng-container *ngIf="omgevingswaardenStatus.isRejected">
+    <div class="alert alert-danger" role="alert" data-test-id="omgevingswaarden__alert">
+      Omgevingswaarden konden niet gevonden worden
+    </div>
+  </ng-container>
+</div>
+
+<ng-container *ngIf="(omgevingsplanPons$ | async) === false">
+  <div (click)="openDocumenten()" class="gebiedsinfo__pons-alert alert alert-warning" role="alert">
+    Op deze locatie gelden nog bestemmingsplannen.
+    <span class="gebiedsinfo__pons-alert-link clickable">Bekijk documenten met regels</span>
+    om te zien of daar nog regels in staan die voor u belangrijk zijn.
+  </div>
+</ng-container>

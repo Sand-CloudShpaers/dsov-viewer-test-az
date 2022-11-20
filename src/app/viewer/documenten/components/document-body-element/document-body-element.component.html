@@ -1,0 +1,55 @@
+<div
+  *ngIf="regelgevingtypes$ | async as regelgevingtypes"
+  [ngClass]="{ 'border-bottom': documentBodyElement.layout.showBreadcrumbs }"
+  class="document-element"
+>
+  <!-- Dit is element met een titel met eventuele inhoud en eventuele kinderen -->
+  <ng-container *ngIf="documentBodyElement.layout.isCollapsible; else content">
+    <dsov-document-body-element-title
+      (clickedToggle)="collapseChangeToggle()"
+      *ngIf="documentBodyElement.layout.showTitle"
+      [documentBodyElement]="documentBodyElement"
+      [regelgevingtypes]="regelgevingtypes"
+      [viewContext]="viewContext"
+    ></dsov-document-body-element-title>
+
+    <ng-container *ngIf="documentBodyElement.layout.isOpen">
+      <dsov-document-body-element-content
+        (handleAnchor)="handleAnchorClick($event)"
+        [element]="documentBodyElement"
+        [regelgevingtypes]="regelgevingtypes"
+      >
+      </dsov-document-body-element-content>
+      <dsov-document-body-element
+        (collapseChange)="collapseChangeEventHandler($event)"
+        *ngFor="let element of documentBodyElement.elementen; index as index; trackBy: trackByFn"
+        [attr.data-test-id]="'element--niveau_' + element.niveau + '-index_' + index"
+        [documentBodyElement]="element"
+        [documentId]="documentId"
+      ></dsov-document-body-element>
+      <dsov-spinner
+        *ngIf="documentBodyElement.elementen?.length === 0 && documentBodyElement.hasChildren"
+        [label]="'Document inhoud aan het laden...'"
+        [size]="'dso-small'"
+        class="document-element__spinner"
+      ></dsov-spinner>
+    </ng-container>
+  </ng-container>
+
+  <!-- Dit is een element zonder titel met inhoud of een link -->
+  <ng-template #content>
+    <dsov-document-body-element-content
+      (handleAnchor)="handleAnchorClick($event)"
+      *ngIf="documentBodyElement.layout.showContent || documentBodyElement.layout.isEmptyParagraph; else link"
+      [element]="documentBodyElement"
+      [regelgevingtypes]="regelgevingtypes"
+    >
+    </dsov-document-body-element-content>
+    <ng-template #link>
+      <dsov-document-element-link
+        *ngIf="documentBodyElement.externeReferentieLinkIHR"
+        [documentBodyElement]="documentBodyElement"
+      ></dsov-document-element-link>
+    </ng-template>
+  </ng-template>
+</div>

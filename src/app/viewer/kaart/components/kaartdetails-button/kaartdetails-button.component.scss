@@ -1,0 +1,17 @@
+@import 'variables';
+
+:host {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+  .dso-secondary {
+    color: $bosgroen;
+
+    &:hover {
+      background-color: $bosgroen;
+      border-color: $bosgroen;
+      color: #fff;
+    }
+  }
+}

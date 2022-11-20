@@ -1,0 +1,17 @@
+@import 'variables';
+
+:host {
+  display: flex;
+
+  .overview__subgebieden {
+    &__symbol {
+      margin-right: $u1;
+    }
+    &__name {
+      margin-right: $u1;
+    }
+    &__type {
+      margin-right: $u1;
+    }
+  }
+}

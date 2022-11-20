@@ -1,0 +1,76 @@
+@import 'variables';
+
+.moving-measure-popup,
+.static-measure-popup {
+  position: absolute;
+  background-color: $bosgroen;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid $bosgroen;
+  bottom: 20px;
+  left: -65px;
+  min-width: 110px;
+  color: white;
+  font-size: 13px;
+  opacity: 1;
+  text-align: center;
+}
+
+.static-measure-popup {
+  bottom: 12px;
+  left: -50px;
+}
+
+.moving-measure-popup:after,
+.moving-measure-popup:before,
+.static-measure-popup:after,
+.static-measure-popup:before {
+  top: 100%;
+  border: solid transparent;
+  content: ' ';
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.moving-measure-popup:after,
+.static-measure-popup:after {
+  border-top-color: $bosgroen;
+  border-width: 10px;
+  left: 48px;
+  margin-left: -10px;
+}
+
+.moving-measure-popup:before,
+.static-measure-popup:before {
+  border-top-color: $bosgroen;
+  border-width: 11px;
+  left: 48px;
+  margin-left: -11px;
+}
+
+.static-measure-popup-closer {
+  text-decoration: none;
+  position: absolute;
+  top: 2px;
+  right: 8px;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.static-measure-popup-closer:after {
+  content: '✖';
+  color: white;
+  opacity: 1;
+}
+
+.measure-tooltip {
+  position: relative;
+  background: rgb(115, 123, 140);
+  border-radius: 4px;
+  color: white;
+  padding: 4px 8px;
+  opacity: 1;
+}

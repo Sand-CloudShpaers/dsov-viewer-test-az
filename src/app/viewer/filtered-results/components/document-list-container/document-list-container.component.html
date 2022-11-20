@@ -1,0 +1,3 @@
+<dsov-filter [page]="'Documenten met regels'"></dsov-filter>
+
+<dsov-document-list *ngIf="(isDirty$ | async) === false"></dsov-document-list>

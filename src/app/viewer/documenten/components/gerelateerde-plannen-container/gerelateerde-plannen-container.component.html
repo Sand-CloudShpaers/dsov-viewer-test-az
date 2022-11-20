@@ -1,0 +1,71 @@
+<ng-container *ngIf="status$ | async as status">
+  <ng-container *ngIf="status.isPending">
+    <dsov-spinner [label]="'Gerelateerde plannen aan het laden...'"></dsov-spinner>
+  </ng-container>
+  <ng-container *ngIf="status.isResolved">
+    <dso-accordion allow-multiple-open="" class="dso-accordion" variant="compact" reverse-align="">
+      <!-- Overzicht van plannen in het dossier -->
+      <dso-accordion-section
+        *ngIf="dossierPlannen$ | async as dossierPlannen"
+        [attr.handle-title]="'Andere plannen binnen het dossier van dit plan (' + dossierPlannen.length + ' plannen)'"
+        class="dso-accordion-section dso-accordion-compact"
+        open=""
+      >
+        <dsov-gerelateerde-plannen
+          [documenten]="dossierPlannen"
+          data-test-id="gerelateerde-plannen__dossier"
+        ></dsov-gerelateerde-plannen>
+      </dso-accordion-section>
+
+      <!-- Overzicht van plannen waar dit plan naar verwijst (naar-relatie) -->
+      <ng-container *ngIf="gerelateerdePlannen$ | async as gerelateerdePlannen">
+        <dso-accordion-section
+          *ngIf="gerelateerdePlannen.length"
+          [attr.handle-title]="'Dit plan refereert aan (' + gerelateerdePlannen.length + ' plannen)'"
+          class="dso-accordion-section dso-accordion-compact"
+          open=""
+        >
+          <dsov-gerelateerde-plannen
+            *ngIf="gerelateerdePlannen.length"
+            [documenten]="gerelateerdePlannen"
+            data-test-id="gerelateerde-plannen__gerelateerd"
+          >
+          </dsov-gerelateerde-plannen>
+        </dso-accordion-section>
+      </ng-container>
+
+      <!-- Overzicht van plannen die naar dit plan verwijzen (vanuit-relatie) -->
+      <ng-container *ngIf="gerelateerdVanuit$ | async as gerelateerdVanuit">
+        <dso-accordion-section
+          *ngIf="gerelateerdVanuit.length"
+          [attr.handle-title]="'Plannen die refereren aan dit plan (' + gerelateerdVanuit.length + ' plannen)'"
+          class="dso-accordion-section dso-accordion-compact"
+          open=""
+        >
+          <dsov-gerelateerde-plannen
+            *ngIf="gerelateerdVanuit.length"
+            [documenten]="gerelateerdVanuit"
+            data-test-id="gerelateerde-plannen__vanuit"
+          >
+          </dsov-gerelateerde-plannen>
+        </dso-accordion-section>
+      </ng-container>
+    </dso-accordion>
+
+    <!-- Melding voor als geen van de bovenstaande onderdelen gevuld is  -->
+    <dso-alert
+      *ngIf="
+        (dossierPlannen$ | async) === undefined &&
+        !(gerelateerdePlannen$ | async).length &&
+        !(gerelateerdVanuit$ | async).length
+      "
+      status="info"
+      data-test-id="alert-geen-plandossier"
+    >
+      Dit plan heeft geen dossier of gerelateerde plannen.
+    </dso-alert>
+  </ng-container>
+  <ng-container *ngIf="status.isRejected">
+    <div class="alert alert-danger" role="alert">Gerelateerde plannen ophalen niet gelukt.</div>
+  </ng-container>
+</ng-container>

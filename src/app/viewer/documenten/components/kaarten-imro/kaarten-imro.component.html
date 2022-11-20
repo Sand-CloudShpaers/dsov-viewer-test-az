@@ -1,0 +1,53 @@
+<ng-container *ngIf="mapDetailsStatus$ | async as mapDetailsStatus">
+  <ng-container *ngIf="mapDetailsStatus.isLoading">
+    <dsov-spinner data-test-id="map-details__loading" label="Kaarten aan het laden."></dsov-spinner>
+  </ng-container>
+
+  <ng-container *ngIf="mapDetailsStatus.isRejected">
+    <dso-alert status="danger" data-test-id="map-details__error">
+      <div class="dso-rich-content">
+        <p>Fout bij het ophalen van kaarten.</p>
+      </div>
+    </dso-alert>
+  </ng-container>
+
+  <ng-container *ngIf="mapDetailsStatus.isResolved">
+    <ng-container *ngIf="cartografieSummaryGroups$ | async as groups; else noGroups">
+      <!--  Show vormwrije plannen which should always have cartografieSummaries-->
+      <ng-container *ngIf="groups.length; else noGroups">
+        <dsov-kaarten-list [planId]="documentId" [mapDetails]="groups"></dsov-kaarten-list>
+      </ng-container>
+    </ng-container>
+
+    <!-- Show bestemmingsplannen which should have no cartografieSummary  -->
+    <ng-template #noGroups>
+      <ng-container *ngIf="imroKaartStyleConfigs$ | async as configs; else noResults">
+        {{ setFirstConfigActive(configs) }}
+        <ng-container *ngFor="let config of configs; trackBy: trackByConfigId">
+          <div class="dso_kaarten_imro" [attr.data-test-id]="'kaarten-imro-' + config.id">
+            <div class="dso_kaarten_imro__label">
+              <span [attr.data-test-id]="'kaarten-imro-' + config.id + '-label'">
+                {{ getKaartTitle(config) }}
+              </span>
+            </div>
+            <dsov-slider
+              class="dso_kaarten_imro__slider"
+              (sliderChange)="onToggleSlider(configs, config, $event.checked)"
+              [checked]="configs.indexOf(config) === activeConfig"
+              [tooltips]="{ active: 'Kaart verbergen', inactive: 'Kaart weergeven' }"
+              [identifier]="config.id"
+              [attr.data-test-id]="'kaarten-imro-' + config.id + '-slider'"
+            >
+            </dsov-slider>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-template>
+
+    <ng-template #noResults>
+      <div class="alert alert-warning" role="alert" data-test-id="dso-objectinformatie__warning">
+        Geen kaarten gevonden voor dit plan.
+      </div>
+    </ng-template>
+  </ng-container>
+</ng-container>

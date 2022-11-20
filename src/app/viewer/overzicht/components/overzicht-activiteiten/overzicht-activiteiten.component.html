@@ -1,0 +1,39 @@
+<dso-highlight-box white="" drop-shadow="" data-test-id="overview__activiteiten">
+  <div class="dso-rich-content">
+    <h3 data-test-id="overview__activiteiten__title">
+      Activiteiten
+      <dso-toggletip>
+        <div class="dso-rich-content" [innerHTML]="getRichContent(contentKeys.ACTIVITEITEN)"></div>
+      </dso-toggletip>
+    </h3>
+    <div data-test-id="overview__activiteiten__description">
+      Als u iets wil bouwen of aanpassen kunt u de regels zoeken voor deze activiteit.
+    </div>
+    <ng-container *ngIf="activiteitenStatus$ | async as status">
+      <ng-container *ngIf="status.isLoading">
+        <dsov-spinner [label]="'Activiteiten worden opgehaald'"></dsov-spinner>
+      </ng-container>
+      <ng-container *ngIf="status.isResolved">
+        <dsov-search-activiteit [activiteitenGroepen]="activiteitenGroepen$ | async"></dsov-search-activiteit>
+        <div class="footer">
+          <div class="buttons">
+            <button
+              type="button"
+              class="dso-tertiary btn-sm"
+              data-test-id="overview__activiteiten__button"
+              (click)="openPage.emit(viewerPage.ACTIVITEITEN)"
+            >
+              <span>Bekijk alle activiteiten</span>
+              <dso-icon icon="chevron-right"></dso-icon>
+            </button>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="status.isRejected">
+        <div class="alert alert-danger" data-test-id="overview__activiteiten-alert" role="alert">
+          Er gaat iets fout met het ophalen van de activiteiten
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</dso-highlight-box>

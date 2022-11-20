@@ -1,0 +1,35 @@
+@import 'variables';
+
+:host {
+  display: block;
+  margin-right: -8px;
+
+  .view-selection {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    line-height: 40px;
+
+    &__button {
+      margin-left: auto;
+    }
+  }
+
+  .filter-alert {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .alert {
+    margin-bottom: 15px;
+  }
+
+  .plan-list__footer {
+    display: block;
+    height: 80px;
+  }
+
+  .spinner-loading {
+    text-align: center;
+  }
+}

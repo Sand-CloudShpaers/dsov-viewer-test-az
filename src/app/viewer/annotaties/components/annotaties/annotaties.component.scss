@@ -1,0 +1,26 @@
+@import 'variables';
+
+:host {
+  .annotation {
+    &-subtitle {
+      margin-top: 8px;
+    }
+  }
+
+  dl,
+  dd {
+    margin-bottom: 0;
+  }
+
+  dl + dl::before {
+    content: none;
+  }
+
+  h3 {
+    margin-top: 12px;
+  }
+
+  li {
+    list-style: none;
+  }
+}

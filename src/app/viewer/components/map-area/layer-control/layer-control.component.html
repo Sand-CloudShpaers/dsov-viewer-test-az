@@ -1,0 +1,10 @@
+<div *ngFor="let layerName of layerNames; trackBy: trackByFn" class="layer-container">
+  <h3>{{ layerNameLabels[layerName] }}</h3>
+  <dsov-layer-switcher
+    (selection)="onChange(layerName, $event)"
+    [hidden]="!openLayers.includes(layerName)"
+    [layers]="layers.get(layerName)"
+  >
+  </dsov-layer-switcher>
+  <hr />
+</div>

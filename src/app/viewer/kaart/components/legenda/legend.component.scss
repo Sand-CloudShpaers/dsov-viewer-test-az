@@ -1,0 +1,11 @@
+@import 'variables';
+
+:host {
+  .legend-title {
+    margin-bottom: $u1;
+  }
+  .legend-group,
+  .legend-item {
+    margin-bottom: $u1;
+  }
+}

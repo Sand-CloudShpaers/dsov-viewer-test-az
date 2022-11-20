@@ -1,0 +1,11 @@
+<ng-container *ngFor="let item of gebiedsaanwijzingen; trackBy: trackByGebiedsaanwijzingenVM">
+  <h4>{{ item.label }}</h4>
+  <dsov-selectable-list
+    [list]="getSelectableList(item)"
+    [showCheckboxes]="showCheckboxes"
+    [showSliders]="showSliders"
+  ></dsov-selectable-list>
+</ng-container>
+<span *ngIf="gebiedsaanwijzingen.length === 0" class="caption" data-test-id="gebiedsaanwijzingen__no-result">
+  Geen gebiedsaanwijzingen gevonden op deze locatie.
+</span>

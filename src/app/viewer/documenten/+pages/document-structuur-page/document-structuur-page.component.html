@@ -1,0 +1,22 @@
+<div
+  [id]="'panel-' + getPath(data.routeUrl)"
+  *ngIf="{ documentDto: documentDto$ | async, routeUrl: routeUrl$ | async } as data"
+>
+  <dsov-tijdelijk-deel-container
+    [documentId]="data.documentDto?.documentId"
+    [documentType]="data.documentDto?.documentType"
+    [documentSubPagePath]="getPath(data.routeUrl)"
+  >
+  </dsov-tijdelijk-deel-container>
+  <dsov-structuur-elementen-filters
+    class="document-page__structuur-filters"
+    (removeStructuurelementFilter)="removeStructuurelementFilter($event)"
+    [documentId]="data.documentDto?.documentId"
+  ></dsov-structuur-elementen-filters>
+  <dsov-document-structuur-container
+    [documentId]="data.documentDto?.documentId"
+    [documentSubPagePath]="getPath(data.routeUrl)"
+    [documentViewContext]="DOCUMENT_VIEW_CONTEXT.VOLLEDIG_DOCUMENT"
+  >
+  </dsov-document-structuur-container>
+</div>

@@ -1,0 +1,23 @@
+<ng-container *ngIf="heeftTijdelijkeDelen$ | async as tijdelijkeDelen">
+  <ng-container *ngIf="tijdelijkeDelen.length > 0">
+    <div class="alert alert-warning" role="alert" data-test-id="tijdelijke-regelingsdeel-alert">
+      <div class="dso-rich-content">Er zijn besluiten genomen met regels die voorrang hebben op het omgevingsplan.</div>
+    </div>
+
+    <div *ngFor="let deel of tijdelijkeDelen; trackBy: trackByDeel">
+      <dsov-tijdelijk-deel
+        [tijdelijkDeel]="deel"
+        [documentSubPagePath]="documentSubPagePath"
+        data-test-id="tijdelijke-regelingsdeel-alert__part"
+      >
+      </dsov-tijdelijk-deel>
+      <hr />
+    </div>
+
+    <div class="dso-highlight-box">
+      <div class="dso-rich-content">
+        <h1 data-test-id="tijdelijke-regelingsdeel__from-type">Uit {{ documentType | lowercase }}</h1>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>

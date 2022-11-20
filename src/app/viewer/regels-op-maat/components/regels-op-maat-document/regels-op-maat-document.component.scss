@@ -1,0 +1,10 @@
+@import 'variables';
+
+:host {
+  display: block;
+  margin-top: $u2;
+
+  .document-structuur {
+    padding: $u2;
+  }
+}

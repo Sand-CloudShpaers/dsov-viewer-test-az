@@ -1,0 +1,11 @@
+@import 'variables';
+
+:host {
+  .footer {
+    display: flex;
+    margin-top: $u1;
+  }
+  .buttons {
+    margin-left: auto;
+  }
+}

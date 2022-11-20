@@ -1,0 +1,35 @@
+<div class="dso-rich-content">
+  <div class="dso-highlight-box" data-test-id="annotaties">
+    <div class="annotation-toggle">
+      <button
+        (click)="toggleAnnotation()"
+        (keydown.enter)="toggleAnnotation()"
+        [attr.aria-expanded]="showAnnotation"
+        [attr.title]="showAnnotation ? 'Annotaties verbergen' : 'Annotaties weergeven'"
+        class="dso-tertiary annotation-toggle-button"
+        data-test-id="annotaties-weergeven-button"
+      >
+        <dso-icon icon="label"></dso-icon>
+        annotaties
+      </button>
+      <button
+        *ngIf="annotationLoaded"
+        (click)="toggleAnnotation()"
+        class="dso-tertiary annotation-toggle-button__close"
+        title="Annotaties verbergen"
+      >
+        <dso-icon icon="times"></dso-icon>
+      </button>
+    </div>
+    <dsov-annotaties
+      *ngIf="annotation$ | async as annotation"
+      [annotation]="annotation"
+      [documentId]="documentId"
+      [element]="element"
+      [documentViewContext]="element.layout.documentViewContext"
+      [filterOptions]="filterOptions$ | async"
+      [showAnnotation]="showAnnotation"
+    >
+    </dsov-annotaties>
+  </div>
+</div>

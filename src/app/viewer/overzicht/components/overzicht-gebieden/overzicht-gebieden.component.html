@@ -1,0 +1,7 @@
+<div data-test-id="gebiedsaanwijzingen">
+  <dsov-overzicht-gebieden-gebied
+    *ngFor="let gebied of overzichtGebieden; trackBy: trackByFn"
+    [gebied]="gebied"
+    (clickElement)="openGebiedenFilter($event)"
+  ></dsov-overzicht-gebieden-gebied>
+</div>

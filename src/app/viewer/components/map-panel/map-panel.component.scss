@@ -1,0 +1,20 @@
+@import 'variables';
+
+.map-panel-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $color-lichtgrijs;
+  padding: 1rem;
+
+  h2 {
+    margin: 0;
+  }
+
+  &__close {
+    margin-left: auto;
+    color: $bosgroen;
+  }
+}
+.data-content {
+  padding: 0 1rem;
+}

@@ -1,0 +1,23 @@
+.map {
+  height: 100%;
+  position: relative;
+}
+@mixin position-map-control($top: 8.5rem) {
+  margin: 1px;
+  position: absolute;
+  top: $top;
+  right: 1rem;
+  z-index: 1;
+}
+
+.active-location {
+  @include position-map-control();
+}
+
+.measurement {
+  @include position-map-control(11rem);
+}
+
+.crosshair {
+  cursor: crosshair;
+}

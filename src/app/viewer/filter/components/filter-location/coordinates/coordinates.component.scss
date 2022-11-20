@@ -1,0 +1,10 @@
+@import 'variables';
+
+.dso-search-bar {
+  .form-group {
+    + button {
+      align-self: start;
+      margin-top: $dso-vertical-spacing-xlarge;
+    }
+  }
+}

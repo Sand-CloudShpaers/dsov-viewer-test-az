@@ -1,0 +1,64 @@
+<dsov-document-found [notAllFiltersApply]="notAllFiltersApply$ | async"></dsov-document-found>
+
+<ng-container *ngIf="status$ | async as status">
+  <h2 data-test-id="documenten-met-regels-page__title">Documenten</h2>
+  <ng-container *ngIf="allLoaded(status)">
+    <ng-container *ngIf="activeDocumentSelection$ | async as activeDocumentSelection">
+      <div class="view-selection" *ngIf="activeDocumentSelection.length">
+        <span>{{ activeDocumentSelection.length }} item(s) geselecteerd</span>
+        <button
+          (click)="viewSelection(activeDocumentSelection)"
+          (keyup.enter)="viewSelection(activeDocumentSelection)"
+          class="dso-primary btn-sm view-selection__button"
+          *ngIf="activeDocumentSelection.length > 0"
+          id="plannenLijst-bekijkSelectie__button"
+          data-test-id="plannenLijst-bekijkSelectie__button"
+        >
+          Bekijk regels
+        </button>
+      </div>
+    </ng-container>
+  </ng-container>
+  <div *ngIf="hasError(status)" class="alert alert-danger" role="alert">
+    Vanwege technische problemen kunnen we niet alle gegevens laten zien. Probeer het later opnieuw.
+  </div>
+  <ng-container *ngIf="allLoaded(status)">
+    <div class="dso-accordion dso-accordion-reverse-align dso-accordion-compact">
+      <ng-container *ngFor="let laag of getBestuurslagen(); trackBy: trackByBestuurslagen">
+        <dsov-document-list-section
+          class="dso-accordion-section"
+          [ngClass]="{ 'dso-open': getSectionIsOpen$(laag) | async }"
+          [listTitle]="getGroupTitle(laag)"
+          [notAllFiltersApply]="notAllFiltersApply$ | async"
+          [bestuurslaag]="laag"
+          [open]="getSectionIsOpen$(laag) | async"
+        >
+        </dsov-document-list-section>
+      </ng-container>
+    </div>
+    <div
+      *ngIf="(notAllFiltersApply$ | async) && allLoaded(status)"
+      class="dso-accordion dso-accordion-reverse-align dso-accordion-compact"
+    >
+      <h2>Overige documenten</h2>
+      <div class="alert alert-info filter-alert" role="alert">
+        De volgende documenten zijn alleen op basis van de gekozen locatie.
+      </div>
+      <dsov-document-list-section
+        class="dso-accordion-section"
+        [ngClass]="{ 'dso-open': getSectionIsOpen$(undefined) | async }"
+        [listTitle]="'Overige documenten'"
+        [notAllFiltersApply]="false"
+        [open]="getSectionIsOpen$(undefined) | async"
+      >
+      </dsov-document-list-section>
+    </div>
+    <div *ngIf="isPending(status)" class="plan-list__footer">
+      <dsov-spinner
+        data-test-id="spinner-loading"
+        class="spinner-loading"
+        label="De documenten worden opgehaald."
+      ></dsov-spinner>
+    </div>
+  </ng-container>
+</ng-container>

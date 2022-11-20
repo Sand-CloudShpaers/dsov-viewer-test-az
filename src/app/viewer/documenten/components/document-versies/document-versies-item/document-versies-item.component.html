@@ -1,0 +1,25 @@
+<dso-icon icon="eye" class="current-icon" *ngIf="isCurrent"></dso-icon>
+
+<span [ngClass]="{ 'current-text': isCurrent }"
+  >Gepubliceerd op {{ documentVersie.gepubliceerdOp.date | date: 'dd-MM-yyyy' }}</span
+>
+
+<dso-label
+  status="warning"
+  data-test-id="document-versies-ontwerp__list-item__label"
+  class="label"
+  compact=""
+  *ngIf="isOntwerp; else vastgesteld"
+  >Ontwerp</dso-label
+>
+
+<ng-template #vastgesteld>
+  <dso-label
+    status="bright"
+    class="label"
+    data-test-id="document-versies-vastgesteld__list-item__label"
+    compact=""
+    *ngIf="isToekomstig"
+    >Toekomstig</dso-label
+  >, in werking vanaf {{ documentVersie.inWerkingOp.date | date: 'dd-MM-yyyy' }}
+</ng-template>

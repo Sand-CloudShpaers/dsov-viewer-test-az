@@ -1,0 +1,168 @@
+<dso-responsive-element class="dso-document-header" data-test-id="summary" *ngIf="document">
+  <h1 data-test-id="summary__title">{{ document.title }}</h1>
+
+  <div class="dso-document-header-container">
+    <div data-test-id="summary__short-description dso-document-header-owner-wrapper">
+      <p class="dso-document-header-type" data-test-id="summary__short-description__documentType">
+        {{ document.type }}
+      </p>
+      <p
+        class="dso-document-header-owner"
+        data-test-id="summary__short-description__beleidsmatigVerantwoordelijkeOverheid"
+      >
+        {{ document.bevoegdGezag.naam | capitalize }}
+      </p>
+    </div>
+
+    <dsov-zoom-to-plan
+      *ngIf="document.extent"
+      [extent]="document.extent"
+      [documentId]="document.identificatie"
+      [shouldZoom]="true"
+      data-test-id="summary__zoom"
+    ></dsov-zoom-to-plan>
+
+    <div class="dso-document-header-features-wrapper dso-document-header-badges">
+      <div *ngIf="getIHRWarning(document) as warning">
+        <dso-badge status="warning" data-test-id="summary__badge-validatie">{{ warning }}</dso-badge>
+      </div>
+      <button
+        type="button"
+        class="dso-document-header-toggle-features"
+        (click)="toggleFeatures()"
+        data-test-id="summary__show-more-button"
+        [attr.aria-expanded]="!showAllFeatures"
+      >
+        <span>{{ showAllFeatures ? 'minder ' : 'meer ' }}kenmerken</span>
+        <dso-icon [attr.icon]="showAllFeatures ? 'angle-up' : 'angle-down'"></dso-icon>
+      </button>
+
+      <div data-test-id="summary__full-description" *ngIf="showAllFeatures">
+        <dl class="dso-document-header-features">
+          <ng-container *ngIf="document.opschrift">
+            <dt>Opschrift</dt>
+            <dd data-test-id="summary__full-description__opschrift">
+              {{ document.opschrift }}
+            </dd>
+          </ng-container>
+
+          <ng-container *ngIf="document.apiSource === ApiSource.IHR">
+            <dt>Planstatus</dt>
+            <dd data-test-id="summary__full-description__planStatus">
+              {{ document.statusDateLine }}
+            </dd>
+            <dt>Dossierstatus</dt>
+            <dd data-test-id="summary__full-description__dossierStatus">
+              {{ document.dossierStatus }}
+            </dd>
+          </ng-container>
+
+          <dt>Identificatie</dt>
+          <dd data-test-id="summary__full-description__identificatie">{{ document.identificatie }}</dd>
+
+          <h3>Besluitinformatie</h3>
+
+          <ng-container *ngFor="let stap of document.procedurestappen; trackBy: trackByProcedureStap">
+            <ng-container *ngIf="stap.soortStap.waarde === 'Publicatie'">
+              <dt>Publicatie op</dt>
+              <dd data-test-id="summary__full-description__ozonOntwerpPublicatie">
+                {{ stap.voltooidOp | date: 'dd-MM-yyyy' }}
+              </dd>
+            </ng-container>
+            <ng-container *ngIf="stap.soortStap.waarde === 'Begin inzagetermijn'">
+              <dt>Begin inzagetermijn</dt>
+              <dd data-test-id="summary__full-description__ozonOntwerpBeginInzageTermijn">
+                {{ stap.voltooidOp | date: 'dd-MM-yyyy' }}
+              </dd>
+            </ng-container>
+            <ng-container *ngIf="stap.soortStap.waarde === 'Einde inzagetermijn'">
+              <dt>Einde inzagetermijn</dt>
+              <dd data-test-id="summary__full-description__ozonOntwerpEindeInzageTermijn">
+                {{ stap.voltooidOp | date: 'dd-MM-yyyy' }}
+              </dd>
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="document.ozonOntwerpbesluitId">
+            <dt>Besluit identificatie</dt>
+            <dd data-test-id="summary__full-description__ozonOntwerpbesluitId">
+              {{ document.ozonOntwerpbesluitId }}
+            </dd>
+          </ng-container>
+
+          <ng-container *ngIf="document.publicatie">
+            <dt>Besluit</dt>
+            <dd data-test-id="summary__full-description__publicatie">
+              <a
+                [href]="document.publicatie"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="extern"
+                data-test-id="summary__full-description__publicatie-link"
+                >Bekijk regeling op overheid.nl <span class="sr-only">(Opent andere website in nieuw tabblad)</span></a
+              >
+            </dd>
+          </ng-container>
+          <ng-container *ngIf="bekendmakingen$ | async as bekendmakingen">
+            <dt>Bekendmaking</dt>
+            <dd data-test-id="summary__full-description__bekendmaking">
+              <div *ngFor="let bekendmaking of bekendmakingen; trackBy: trackByBekendmaking">
+                <a
+                  [href]="bekendmaking.href"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="extern"
+                  data-test-id="summary__full-description__bekendmaking-link"
+                  >{{ bekendmaking.titel }} <span class="sr-only">(Opent andere website in nieuw tabblad)</span></a
+                >
+              </div>
+            </dd>
+          </ng-container>
+          <ng-container *ngIf="document.ondergronden">
+            <dt>Ondergrond</dt>
+            <dd
+              *ngFor="let ondergrond of document.ondergronden; trackBy: trackByOndergronden"
+              data-test-id="summary__full-description__ondergrond"
+            >
+              {{ ondergrond.type + ' (' + (ondergrond.datum | date: 'd/M/yyyy') + ')' }}
+            </dd>
+          </ng-container>
+        </dl>
+      </div>
+    </div>
+
+    <div class="dso-document-header-status-wrapper">
+      <p class="dso-document-header-status">
+        <dso-label status="bright" data-test-id="summary__badge-inwerking" *ngIf="isToekomstig()"
+          >toekomstig
+        </dso-label>
+        <dso-label status="warning" data-test-id="summary__badge-ontwerp" *ngIf="document.isOntwerp" compact=""
+          >Ontwerp</dso-label
+        >
+        <span data-test-id="summary__short-description__date">
+          {{ document.statusDateLine }}
+        </span>
+
+        <button
+          *ngIf="document.apiSource === ApiSource.OZON"
+          type="button"
+          class="dso-document-header-toggle-status"
+          data-test-id="summary__versions-toggle"
+          aria-expanded="false"
+          (click)="toggleVersies()"
+          [attr.aria-expanded]="!showAllVersions"
+        >
+          <span> alle versies </span>
+          <dso-icon [attr.icon]="showAllVersions ? 'angle-up' : 'angle-down'"></dso-icon>
+        </button>
+      </p>
+    </div>
+    <div class="dso-document-header-status-content" data-test-id="summary__versions-content" *ngIf="showAllVersions">
+      <dsov-document-versies
+        [document]="document"
+        class="dso-highlight-box"
+        (exit)="toggleVersies()"
+      ></dsov-document-versies>
+    </div>
+  </div>
+</dso-responsive-element>

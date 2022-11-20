@@ -1,0 +1,27 @@
+<ng-container *ngIf="filteredResultsStatus$ | async as filteredResultsStatus">
+  <ng-container *ngIf="isPending(filteredResultsStatus)">
+    <dsov-spinner data-test-id="document-found--loading" label="Documenten aan het laden."></dsov-spinner>
+  </ng-container>
+  <ng-container *ngIf="allLoaded(filteredResultsStatus) && filteredResults$ | async as filteredResults">
+    <div class="document-found">
+      <h3>Gevonden:</h3>
+      <span data-test-id="document-found"
+        >{{ getLength(filteredResults)
+        }}{{ canLoadMore(hasLoadMoreUrls$ | async, notAllFiltersApply$ | async) ? '+ ' : '' }} document{{
+          getLength(filteredResults) === 1 ? '' : 'en'
+        }}</span
+      >
+      <button
+        *ngIf="showButton"
+        (click)="openPage.emit(viewerPage.DOCUMENTEN)"
+        class="btn dso-tertiary document-found__button"
+        data-test-id="document-found__button"
+        type="button"
+      >
+        <span>Bekijk documenten</span>
+        <dso-icon icon="chevron-right"></dso-icon>
+      </button>
+    </div>
+  </ng-container>
+</ng-container>
+<hr />

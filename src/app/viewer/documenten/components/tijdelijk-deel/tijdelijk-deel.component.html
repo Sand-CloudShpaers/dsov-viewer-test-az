@@ -1,0 +1,75 @@
+<dso-responsive-element class="dso-document-header header-margin">
+  <h1>{{ tijdelijkDeel.type }}</h1>
+  <p>
+    In werking vanaf {{ tijdelijkDeel.inwerkingVanaf | date: 'dd-MM-yyyy' }} - {{ tijdelijkDeel.bevoegdGezag.naam }}
+  </p>
+
+  <button
+    type="button"
+    class="dso-document-header-toggle-features"
+    (click)="toggleFeatures()"
+    data-test-id="summary__show-more-button"
+    [attr.aria-expanded]="!showAllFeatures"
+  >
+    <span>{{ showAllFeatures ? 'minder ' : 'meer ' }}kenmerken</span>
+    <dso-icon [attr.icon]="showAllFeatures ? 'angle-up' : 'angle-down'"></dso-icon>
+  </button>
+
+  <div data-test-id="summary__full-description" *ngIf="showAllFeatures">
+    <dl class="dso-document-header-features no-border">
+      <ng-container *ngIf="tijdelijkDeel.bevoegdGezag">
+        <dt>Eigenaar</dt>
+        <dd data-test-id="summary__full-description__opschrift">
+          {{ tijdelijkDeel.bevoegdGezag.naam }}
+        </dd>
+      </ng-container>
+      <ng-container *ngIf="tijdelijkDeel.opschrift">
+        <dt>Opschrift</dt>
+        <dd data-test-id="summary__full-description__opschrift">
+          {{ tijdelijkDeel.opschrift }}
+        </dd>
+      </ng-container>
+      <ng-container *ngIf="tijdelijkDeel.type">
+        <dt>Documenttype</dt>
+        <dd data-test-id="summary__full-description__opschrift">
+          {{ tijdelijkDeel.type }}
+        </dd>
+      </ng-container>
+      <dt>Identificatie</dt>
+      <dd data-test-id="summary__full-description__identificatie">
+        {{ tijdelijkDeel.identificatie }}
+      </dd>
+
+      <ng-container *ngIf="tijdelijkDeel.publicatie">
+        <h3>Besluitinformatie</h3>
+        <dt>Besluit</dt>
+        <dd data-test-id="summary__full-description__publicatie">
+          <a
+            [href]="tijdelijkDeel.publicatie"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="extern"
+            data-test-id="summary__full-description__publicatie-link"
+            >Bekijk regeling op overheid.nl <span class="sr-only">(Opent andere website in nieuw tabblad)</span></a
+          >
+        </dd>
+      </ng-container>
+    </dl>
+  </div>
+</dso-responsive-element>
+
+<ng-container *ngIf="documentStatus$ | async as documentStatus">
+  <ng-container *ngIf="documentStatus.isLoading">
+    <dsov-spinner [label]="tijdelijkDeel.type + ' laden'"></dsov-spinner>
+  </ng-container>
+  <ng-container *ngIf="documentStatus.isResolved">
+    <div [attr.data-test-id]="'part-content-' + tijdelijkDeel.documentId">
+      <dsov-document-structuur-container
+        [documentId]="tijdelijkDeel.documentId"
+        [documentViewContext]="DOCUMENT_VIEW_CONTEXT.TIJDELIJK_DEEL"
+        [documentSubPagePath]="documentSubPagePath"
+      >
+      </dsov-document-structuur-container>
+    </div>
+  </ng-container>
+</ng-container>

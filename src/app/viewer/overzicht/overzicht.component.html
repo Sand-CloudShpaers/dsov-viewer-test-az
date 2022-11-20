@@ -1,0 +1,29 @@
+<div class="header dso-rich-content">
+  <button (click)="previousPage()" class="btn dso-tertiary" data-test-id="overview__return">
+    <dso-icon icon="chevron-left"></dso-icon>
+    <span>Terug</span><span class="sr-only"> naar zoeken</span>
+  </button>
+
+  <dsov-help-button class="header__help"></dsov-help-button>
+</div>
+
+<dsov-filter [page]="'Overzicht'"></dsov-filter>
+
+<ng-container *ngIf="ozonLocatiesStatus$ | async as ozonLocatiesStatus">
+  <ng-container *ngIf="ozonLocatiesStatus.isLoading">
+    <dsov-spinner data-test-id="locaties__loading" label="Gegevens op deze locatie aan het laden."></dsov-spinner>
+  </ng-container>
+  <ng-container *ngIf="ozonLocatiesStatus.isResolved">
+    <dsov-document-found-container
+      (openPage)="openPage($event)"
+      *ngIf="(isDirty$ | async) === false"
+    ></dsov-document-found-container>
+    <h2>Overzicht op uw locatie</h2>
+    <dsov-overzicht-activiteiten (openPage)="openPage($event)"></dsov-overzicht-activiteiten>
+    <dsov-overzicht-gebieden-container (openPage)="openPage($event)"></dsov-overzicht-gebieden-container>
+    <dsov-overzicht-thema [themas]="themas$ | async" (openPage)="openPage($event)"></dsov-overzicht-thema>
+  </ng-container>
+  <ng-container *ngIf="ozonLocatiesStatus.isRejected">
+    <dsov-search-alert [error]="ozonLocatiesError$ | async"></dsov-search-alert>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,11 @@
+@import 'variables';
+
+:host {
+  .header {
+    display: flex;
+
+    &__help {
+      margin-left: auto;
+    }
+  }
+}

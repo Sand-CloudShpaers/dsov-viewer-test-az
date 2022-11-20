@@ -1,0 +1,22 @@
+@import 'variables';
+
+:host {
+  margin-left: $u3;
+  display: flex;
+  font-size: 0.9rem;
+
+  .dso-tertiary {
+    color: $bosgroen;
+  }
+
+  .breadcrumbs-label {
+    color: $bosgroen;
+    line-height: 1rem;
+    margin-right: $u1;
+  }
+
+  .breadcrumbs-item {
+    white-space: normal;
+    font-size: 0.9rem;
+  }
+}

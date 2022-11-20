@@ -1,0 +1,9 @@
+<mat-slide-toggle
+  (change)="isChecked($event)"
+  [checked]="checked"
+  [title]="checked ? tooltips?.active : tooltips?.inactive"
+  [id]="elementId"
+  [disabled]="isDisabled"
+  [aria-label]="checked ? tooltips?.active : tooltips?.inactive"
+>
+</mat-slide-toggle>

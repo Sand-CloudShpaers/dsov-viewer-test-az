@@ -1,0 +1,16 @@
+<div class="dso-navbar">
+  <ul class="dso-nav dso-nav-sub">
+    <li *ngFor="let page of subPages; trackBy: trackByPage" [ngClass]="{ 'dso-active': rlab.isActive }">
+      <a
+        #rlab="routerLinkActive"
+        [routerLink]="getRouterLink(page.path)"
+        [queryParamsHandling]="'preserve'"
+        routerLinkActive
+        [attr.aria-current]="rlab.isActive ? 'page' : null"
+        [attr.id]="page.label"
+      >
+        {{ page.label }}
+      </a>
+    </li>
+  </ul>
+</div>

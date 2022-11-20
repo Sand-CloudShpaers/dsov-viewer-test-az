@@ -1,0 +1,84 @@
+@import 'variables';
+
+$duration: 0.2s;
+
+:host {
+  z-index: 99;
+  position: absolute;
+  .overlay {
+    &__left {
+      left: 0;
+      top: 0;
+      position: fixed;
+      background: $background-primary;
+      height: 100vh;
+      width: 896px;
+      padding: 0 16px;
+      transform: translateX(-100%);
+      overflow-y: auto;
+
+      &.is-open {
+        animation: slide-in $duration forwards;
+      }
+
+      &:not(.is-open) {
+        animation: slide-out $duration forwards;
+      }
+    }
+
+    &__shadow {
+      position: fixed;
+      top: 0px;
+      height: 100vh;
+      width: 100vw;
+      opacity: 0;
+      background-color: black;
+      visibility: hidden;
+
+      &.is-faded {
+        animation: fade-in $duration forwards;
+      }
+
+      &:not(.is-faded) {
+        animation: fade-out $duration forwards;
+      }
+    }
+  }
+}
+
+@keyframes slide-in {
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 0.5;
+    visibility: visible;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 0.5;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

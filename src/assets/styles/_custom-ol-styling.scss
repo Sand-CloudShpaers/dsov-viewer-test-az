@@ -1,0 +1,62 @@
+@import './variables';
+
+.dso-map-scaleline {
+  bottom: calc(0px - #{$map-footer-height});
+  left: 8px;
+  position: absolute;
+  height: $map-footer-height;
+  padding: 2px;
+}
+
+.dso-map-scaleline-inner {
+  border: 1px solid $color-tekst-zwart;
+  border-top: none;
+  text-align: center;
+  margin: 1px;
+  font-size: calc(#{$map-footer-height} - 12px);
+  will-change: contents, width;
+}
+
+.dsov-mouse-position,
+.dsov-mouse-position-etrs89 {
+  position: absolute;
+  bottom: calc(2px - #{$map-footer-height});
+  right: 8px;
+  font-size: 10px;
+}
+
+.hide-dsov-mouse-position {
+  .dsov-mouse-position {
+    display: none;
+  }
+}
+
+.ol-viewport {
+  overflow: visible !important;
+}
+
+.map {
+  .ol-zoom {
+    top: 4rem;
+    right: 1rem;
+    padding: 0;
+    background: transparent;
+
+    .ol-zoom-in,
+    .ol-zoom-out {
+      border: 1px solid $bosgroen;
+      border-radius: 4px;
+      background-color: white;
+      color: $bosgroen;
+      padding-bottom: 4px;
+      height: 2rem;
+      width: 2rem;
+
+      &:hover,
+      &:active {
+        background-color: $bosgroen;
+        color: white;
+      }
+    }
+  }
+}

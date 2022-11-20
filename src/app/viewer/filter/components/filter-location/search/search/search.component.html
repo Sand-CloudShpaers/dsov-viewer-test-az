@@ -1,0 +1,48 @@
+<div class="search-options">
+  <dso-dropdown-menu checkable dropdown-align="right" class="search-options__dropdown">
+    <button id="select-mode" type="button" slot="toggle" class="dso-tertiary" data-test-id="select-button">
+      <span>Meer zoekopties</span>
+    </button>
+    <div class="dso-dropdown-options">
+      <ul data-test-id="select-list">
+        <li
+          *ngFor="let mode of searchModes; trackBy: trackBy"
+          [class.dso-checked]="mode === selectedMode"
+          [attr.data-test-id]="'select-' + mode"
+        >
+          <a href="#" (click)="select(mode)">{{ mode }}</a>
+        </li>
+      </ul>
+    </div>
+  </dso-dropdown-menu>
+</div>
+<dsov-search-location
+  *ngIf="selectedMode === searchMode.LOCATIE"
+  [locationFilter]="locationFilter"
+  [showRequiredError]="showRequiredError && !(searchStatus$ | async).error"
+  (changeLocation)="changeLocation.emit($event)"
+></dsov-search-location>
+
+<dsov-search-coordinates
+  *ngIf="selectedMode === searchMode.COORDINATEN"
+  [isLoading]="(searchStatus$ | async).loading"
+  [locationFilter]="locationFilter"
+  [autoSearch]="autoSearch"
+  [showRequiredError]="showRequiredError"
+  [isTimeTravel]="isTimeTravel"
+  (changeCoordinates)="changeCoordinates.emit($event)"
+></dsov-search-coordinates>
+
+<dsov-search-draw
+  *ngIf="selectedMode === searchMode.GEBIEDOPDEKAART"
+  [showRequiredError]="showRequiredError"
+  [isTimeTravel]="isTimeTravel"
+  (changeContour)="changeContour.emit($event)"
+></dsov-search-draw>
+
+<ng-container *ngIf="(searchStatus$ | async).loading">
+  <dsov-spinner data-test-id="spinner-loading" label="Een moment geduld alstublieft."></dsov-spinner>
+</ng-container>
+<ng-container *ngIf="(searchStatus$ | async).error as error">
+  <p class="alert alert-warning" data-test-id="alert-warning">{{ error }}</p>
+</ng-container>

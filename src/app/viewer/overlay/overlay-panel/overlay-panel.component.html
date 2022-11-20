@@ -1,0 +1,40 @@
+<div class="overlay-header" [ngClass]="{ 'overlay-header__white': overlayVM.isHeaderWhite }">
+  <div class="overlay-header__card">
+    <h2>{{ overlayVM.title }}</h2>
+    <p>{{ overlayVM.subtitle }}</p>
+  </div>
+</div>
+
+<dsov-application-info *ngIf="overlayVM.showApplicationInfo"></dsov-application-info>
+<dsov-help *ngIf="overlayVM.showHelp"></dsov-help>
+<div class="overlay__content" *ngIf="overlayVM.showInterneLinkContainer || overlayVM.showDocumentTeksten">
+  <ng-container *ngIf="overlayVM.loadingStatus.isPending">
+    <dsov-spinner [label]="'Bezig met ophalen van gegevens'"></dsov-spinner>
+  </ng-container>
+  <ng-container *ngIf="overlayVM.loadingStatus.isResolved">
+    <div
+      class="dso-rich-content"
+      *ngIf="overlayVM.content"
+      [innerHtml]="overlayVM.content | safeHtmlUtil"
+      [dsovLinkHandler]="{documentId: overlayVM.documentId}"
+    ></div>
+    <ng-container *ngIf="overlayVM.element">
+      <dsov-document-body-element
+        [documentBodyElement]="overlayVM.element"
+        [documentId]="overlayVM.documentId"
+        [viewContext]="documentViewContext"
+        [attr.data-test-id]="'element--niveau_' + overlayVM.element.niveau + '-index_' + 0"
+      >
+      </dsov-document-body-element>
+    </ng-container>
+    <dso-alert
+      status="info"
+      *ngIf="!overlayVM.element && !overlayVM.content"
+      data-test-id="overlay__content--no-content"
+      >Dit item heeft geen inhoud</dso-alert
+    >
+  </ng-container>
+  <ng-container *ngIf="overlayVM.loadingStatus.isRejected">
+    <div class="alert alert-danger" role="alert">Er gaat iets fout met ophalen van gegevens</div>
+  </ng-container>
+</div>

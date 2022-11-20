@@ -1,0 +1,20 @@
+<ng-container *ngIf="loadMoreStatus">
+  <ng-container *ngIf="loadMoreStatus.isLoading">
+    <dsov-spinner [label]="'Meer artikelen aan het laden'" class="load-more__spinner"></dsov-spinner>
+  </ng-container>
+  <ng-container *ngIf="loadMoreStatus.isResolved">
+    <button
+      type="button"
+      class="btn btn-block dso-primary"
+      data-test-id="load-more__button"
+      *ngIf="hasLoadMoreLinks()"
+      (click)="loadMore()"
+      (keyup.enter)="loadMore()"
+    >
+      Laad meer artikelen
+    </button>
+  </ng-container>
+  <ng-container *ngIf="loadMoreStatus.isRejected">
+    <dso-alert status="danger" data-test-id="load-more__alert"> Meer artikelen konden niet gevonden worden </dso-alert>
+  </ng-container>
+</ng-container>

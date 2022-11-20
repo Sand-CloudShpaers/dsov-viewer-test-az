@@ -1,0 +1,35 @@
+<dso-highlight-box white="" drop-shadow="" data-test-id="overview__themas">
+  <div class="dso-rich-content">
+    <h3 data-test-id="overview__themas__title">
+      Thema's
+      <dso-toggletip>
+        <div class="dso-rich-content" [innerHTML]="getRichContent(contentKeys.THEMAS)"></div>
+      </dso-toggletip>
+    </h3>
+
+    <p data-test-id="overview__themas__description">Regels en beleid voor algemene onderwerpen zoals:</p>
+    
+    <dso-responsive-element class="dso-tile-grid">
+      <dsov-thema-tile
+        *ngFor="let thema of getThemas(); trackBy: trackByFn"
+        [name]="thema.name"
+        [icon]="thema.icon"
+        (handleClick)="onSelectThema(thema)"
+      ></dsov-thema-tile>
+    </dso-responsive-element>
+
+    <div class="footer">
+      <div class="buttons">
+        <button
+          type="button"
+          class="dso-tertiary btn-sm"
+          data-test-id="overview__themas__button"
+          (click)="openPage.emit(viewerPage.THEMAS)"
+        >
+          <span>Bekijk alle thema's</span>
+          <dso-icon icon="chevron-right"></dso-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</dso-highlight-box>

@@ -1,0 +1,13 @@
+<div class="map-container" *ngIf="map$ | async as map">
+  <div class="map">
+    <dsov-kaart (showMapPanel)="togglePanel(map)" [map]="map"></dsov-kaart>
+    <dsov-map-footer class="map-footer">
+      <dsov-version-number id="dso-version"></dsov-version-number>
+    </dsov-map-footer>
+  </div>
+
+  <dsov-map-panel class="map-panel" (closeEventEmitter)="togglePanel(map)" *ngIf="showPanel">
+    <dsov-legend></dsov-legend>
+    <dsov-layer-control [map]="map"></dsov-layer-control>
+  </dsov-map-panel>
+</div>

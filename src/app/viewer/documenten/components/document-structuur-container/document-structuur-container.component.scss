@@ -1,0 +1,28 @@
+@import 'variables';
+
+:host {
+  .spinner {
+    margin-top: $u1;
+    display: block;
+  }
+  .reference {
+    margin-top: $u1;
+  }
+  .document-body {
+    display: block;
+    margin-top: $u1;
+  }
+  .alert {
+    margin-top: $u2;
+  }
+  .expanded-view-container {
+    margin-top: $u1;
+    text-align: right;
+    border-bottom: 1px solid #ccc;
+
+    .dso-selectable {
+      margin-left: $u2;
+      display: inline-block;
+    }
+  }
+}

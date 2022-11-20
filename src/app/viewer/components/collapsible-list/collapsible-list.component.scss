@@ -1,0 +1,24 @@
+@import 'src/assets/styles/abstracts';
+
+:host {
+  .collapsible-list {
+    &__button {
+      display: block;
+      color: inherit;
+      margin-bottom: 4px;
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+      &.bold-title {
+        font-weight: bold;
+      }
+    }
+    &__list {
+      margin-bottom: 6px;
+    }
+    &__embedded {
+      margin-left: 12px;
+    }
+  }
+}

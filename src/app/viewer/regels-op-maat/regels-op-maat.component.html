@@ -1,0 +1,25 @@
+<ng-container
+  *ngIf="{ documentStatus: regelsOpMaatdocumentStatus$ | async, document: regelsOpMaatDocument$ | async } as data"
+>
+  <ng-container *ngIf="!ApiUtils.isOmgevingsvergunning(data.document.documentId); else omgevingsvergunning">
+    <ng-container *ngIf="data.documentStatus.isLoading">
+      <dsov-spinner [label]="'Geselecteerde regels aan het laden'"></dsov-spinner>
+    </ng-container>
+    <ng-container *ngIf="data.documentStatus.isResolved">
+      <dsov-regels-op-maat-document-container
+        class="regels-op-maat-document-container"
+        [documentId]="documentId"
+        data-test-id="regels-op-maat-document-container"
+      ></dsov-regels-op-maat-document-container>
+    </ng-container>
+    <ng-container *ngIf="data.documentStatus.isRejected">
+      <dso-alert status="danger" data-test-id="document-alert">
+        Documentgegevens {{ documentId }} konden niet worden opgehaald
+      </dso-alert>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #omgevingsvergunning>
+    <dsov-omgevingsvergunning [documentId]="documentId"></dsov-omgevingsvergunning>
+  </ng-template>
+</ng-container>

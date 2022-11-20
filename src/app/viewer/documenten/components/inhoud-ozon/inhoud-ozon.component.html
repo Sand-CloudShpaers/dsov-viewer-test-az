@@ -1,0 +1,91 @@
+<div class="dso-accordion dso-accordion-compact dso-accordion-reverse-align" data-test-id="document-inhoud">
+  <ng-container *ngIf="themasStatus$ | async as status">
+    <dsov-spinner
+      [label]="'Thema\'s aan het laden...'"
+      *ngIf="status.isLoading"
+      class="accordion-loading"
+    ></dsov-spinner>
+    <ng-container *ngIf="status.isResolved && themas$ | async as themas">
+      <div
+        class="dso-accordion-section"
+        [ngClass]="{ 'dso-open': accordion.thema }"
+        data-test-id="document-inhoud__themas"
+        *ngIf="themas.length"
+      >
+        <h2 class="dso-section-handle">
+          <button
+            type="button"
+            [attr.aria-expanded]="accordion.thema"
+            (click)="accordion.thema = !accordion.thema"
+            data-test-id="document-inhoud__themas__toggle"
+          >
+            Thema's
+          </button>
+        </h2>
+        <div class="dso-section-body">
+          <dsov-thema
+            data-test-id="document-inhoud__themas__content"
+            [document]="document"
+            [themas]="themas"
+          ></dsov-thema>
+        </div>
+      </div>
+    </ng-container>
+    <div class="alert alert-danger" role="alert" *ngIf="status.isRejected">Thema’s ophalen niet gelukt.</div>
+  </ng-container>
+
+  <ng-container *ngIf="hoofdlijnenStatus$ | async as status">
+    <dsov-spinner
+      [label]="'Hoofdlijnen aan het laden'"
+      *ngIf="status.isLoading"
+      class="accordion-loading"
+    ></dsov-spinner>
+    <ng-container *ngIf="status.isResolved && hoofdlijnen$ | async as hoofdlijnen">
+      <div
+        class="dso-accordion-section"
+        [ngClass]="{ 'dso-open': accordion.hoofdlijnen }"
+        data-test-id="document-inhoud__hoofdlijnen"
+        *ngIf="hasHoofdlijnen(hoofdlijnen)"
+      >
+        <h2 class="dso-section-handle">
+          <button
+            type="button"
+            [attr.aria-expanded]="accordion.hoofdlijnen"
+            (click)="accordion.hoofdlijnen = !accordion.hoofdlijnen"
+            data-test-id="document-inhoud__hoofdlijnen__toggle"
+          >
+            Hoofdlijnen
+          </button>
+        </h2>
+        <div class="dso-section-body">
+          <dsov-hoofdlijn-container
+            data-test-id="document-inhoud__hoofdlijnen__content"
+            [document]="document"
+            [hoofdlijnen]="hoofdlijnen"
+          >
+          </dsov-hoofdlijn-container>
+        </div>
+      </div>
+    </ng-container>
+    <div class="alert alert-danger" role="alert" *ngIf="status.isRejected">Hoofdlijnen ophalen niet gelukt.</div>
+  </ng-container>
+  <div
+    class="dso-accordion-section"
+    [ngClass]="{ 'dso-open': accordion.index }"
+    data-test-id="document-inhoud__inhoudsopgave"
+  >
+    <h2 class="dso-section-handle">
+      <button
+        type="button"
+        [attr.aria-expanded]="accordion.index"
+        (click)="accordion.index = !accordion.index"
+        data-test-id="document-inhoud__inhoudsopgave__toggle"
+      >
+        Inhoudsopgave
+      </button>
+    </h2>
+    <div class="dso-section-body">
+      <dsov-index data-test-id="document-inhoud__inhoudsopgave__content" [document]="document"></dsov-index>
+    </div>
+  </div>
+</div>

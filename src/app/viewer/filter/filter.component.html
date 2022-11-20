@@ -1,0 +1,31 @@
+<div class="dso-highlight-box" data-test-id="filter">
+  <div class="dso-context-wrapper">
+    <div class="dso-context-label">
+      <h3 data-test-id="filter__title">Uw keuzes</h3>
+    </div>
+    <div class="dso-context-container">
+      <button
+        *ngIf="showFilters && !readonly"
+        type="button"
+        class="dso-tertiary"
+        (click)="showFilterPanel()"
+        (keyup.enter)="showFilterPanel()"
+        title="Toon filterpaneel"
+        data-test-id="filter__edit-button"
+      >
+        <dso-icon icon="pencil"></dso-icon><span>Alle opties</span>
+      </button>
+    </div>
+  </div>
+
+  <dsov-filter-location
+    [locatieFilter]="locatieFilter"
+    [page]="page"
+    *ngIf="locatieFilter$ | async as locatieFilter"
+    data-test-id="filter__active-location"
+  >
+  </dsov-filter-location>
+  <div *ngIf="showFilters && (filterOptions$ | async) as filterOptions" data-test-id="filter__filter-labels">
+    <dsov-filter-label [filterOptions]="filterOptions" [removable]="readonly"></dsov-filter-label>
+  </div>
+</div>

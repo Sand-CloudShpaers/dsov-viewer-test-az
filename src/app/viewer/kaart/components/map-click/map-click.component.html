@@ -1,0 +1,15 @@
+<div *ngIf="showOverlay" class="dso-map-overlay" data-test-id="dso-map-overlay">
+  <div class="ol-popup" id="popup">
+    <dsov-location-info (search)="onSearch()" [coordinates]="coordinates"></dsov-location-info>
+    <button
+      type="button"
+      class="btn dso-tertiary"
+      (click)="closeOverlay()"
+      (keyup.enter)="closeOverlay()"
+      data-test-id="dso-map-overlay__close-button"
+    >
+      <span class="sr-only">Sluit paneel</span>
+      <dso-icon icon="times"></dso-icon>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<svg height="20" style="" version="1.1" width="20"
+     xmlns="http://www.w3.org/2000/svg">
+  <rect fill="none" height="100%" id="backgroundrect" stroke="none" width="100%" x="0" y="0"/>
+  <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+  <title>Icon Meten</title>
+  <desc>Created with Sketch.</desc>
+
+  <g class="currentLayer" style="">
+    <title>Layer 1</title>
+    <g class="" fill="#ffffff" fill-opacity="1" fill-rule="evenodd" id="Icon-Meten" stroke="none" stroke-width="1">
+      <polygon fill="#ffffff" fill-opacity="1" fill-rule="nonzero" id="Triangle-Copy" points="10,26.5 12.5,29.5 7.5,29.5 "
+               stroke="none" stroke-linecap="round"
+               stroke-linejoin="round" stroke-opacity="1" transform="rotate(-90 5.000000000000001,14) translate(-5,-14) "/>
+      <rect fill="#ffffff" fill-opacity="1" fill-rule="nonzero" height="14" id="Rectangle" stroke="none" stroke-opacity="1" width="1"
+            x="2" y="3"/>
+      <rect fill="#ffffff" fill-opacity="1" fill-rule="nonzero" height="14" id="Rectangle-Copy-2" stroke="none" stroke-opacity="1"
+            width="1" x="17" y="3"/>
+      <path d="M5,14 L15,14.0104076" fill="#ffffff" fill-opacity="1" fill-rule="nonzero" id="Line"
+            stroke="none" stroke-linecap="square" stroke-opacity="1"/>
+      <polygon fill="#ffffff" fill-opacity="1" fill-rule="nonzero" id="Triangle" points="30,26.5 32.5,29.5 27.5,29.5 "
+               stroke="none" stroke-linecap="round"
+               stroke-linejoin="round" stroke-opacity="1" transform="rotate(90 15,14.000000000000002) translate(-15,-14) "/>
+      <text fill="#ffffff" fill-opacity="1" font-family="Asap-Bold, Asap" font-size="10" font-weight="bold" id="?"
+            stroke="none" stroke-opacity="1">
+        <tspan id="svg_1" x="8" y="10">?</tspan>
+      </text>
+    </g>
+    <path class="" d="M6.39999962087146,14.175000000000002 L13.77500026537039,14.225 " fill="#ffffff" fill-opacity="1" fill-rule="evenodd"
+          id="svg_2" marker-end="" marker-mid="" marker-start=""
+          opacity="1" stroke="#ffffff" stroke-dasharray="none" stroke-dashoffset="" stroke-linecap="butt"
+          stroke-linejoin="miter" stroke-opacity="1" stroke-width="1"/>
+  </g>
+</svg>

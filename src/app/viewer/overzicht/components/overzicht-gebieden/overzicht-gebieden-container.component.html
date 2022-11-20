@@ -1,0 +1,45 @@
+<dso-highlight-box white="" drop-shadow="" data-test-id="overview__gebieden">
+  <div class="dso-rich-content">
+    <h3 data-test-id="overview__gebieden__title">
+      Gebieden met regels
+      <dso-toggletip>
+        <div class="dso-rich-content" [innerHTML]="getRichContent(contentKeys.GEBIEDEN)"></div>
+      </dso-toggletip>
+    </h3>
+    <p data-test-id="overview__gebieden__description">Gebieden op deze locatie waar aparte regels gelden.</p>
+
+    <ng-container *ngIf="gebiedsaanwijzingenStatus$ | async as gebiedsaanwijzingenStatus">
+      <ng-container *ngIf="gebiedsaanwijzingenStatus.isLoading">
+        <dsov-spinner
+          data-test-id="overview__gebieden__loading"
+          label="Gebiedsaanwijzingen worden opgehaald."
+        ></dsov-spinner>
+      </ng-container>
+      <ng-container *ngIf="gebiedsaanwijzingenStatus.isResolved && overzichtGebieden$ | async as overzichtGebieden">
+        <dsov-overzicht-gebieden
+          [overzichtGebieden]="overzichtGebieden"
+          (openPage)="openPage.emit(viewerPage.GEBIEDEN)"
+        >
+        </dsov-overzicht-gebieden>
+      </ng-container>
+      <ng-container *ngIf="gebiedsaanwijzingenStatus.isRejected">
+        <div class="alert alert-danger" role="alert" data-test-id="overview__gebieden__alert">
+          Gebiedsaanwijzingen konden niet gevonden worden
+        </div>
+      </ng-container>
+    </ng-container>
+    <div class="footer">
+      <div class="buttons">
+        <button
+          type="button"
+          class="dso-tertiary btn-sm"
+          data-test-id="overview__gebieden__button"
+          (click)="openPage.emit(viewerPage.GEBIEDEN)"
+        >
+          <span>Bekijk alle gebieden</span>
+          <dso-icon icon="chevron-right"></dso-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</dso-highlight-box>

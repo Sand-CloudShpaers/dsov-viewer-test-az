@@ -1,0 +1,96 @@
+<form [formGroup]="formGroup">
+  <div class="form-group input text dso-radios dso-checkboxes">
+    <ul formArrayName="layers" class="dso-field-container">
+      <ng-container *ngFor="let layer of layerCtrls.controls; let i = index; trackBy: trackByFn">
+        <li *ngIf="!layers[i].groupName || layers[i].active" [formGroupName]="i" class="dso-selectable">
+          <ng-container *ngIf="{ value: layers[i].outOfZoom$ | async } as outOfZoom">
+            <input
+              *ngIf="outOfZoom.value"
+              class="layer-check"
+              type="checkbox"
+              disabled
+              [id]="'layer-' + layers[i].title"
+              [title]="layers[i].title"
+            />
+
+            <input
+              *ngIf="!outOfZoom.value"
+              class="layer-check"
+              formControlName="selected"
+              type="checkbox"
+              [id]="'layer-' + layers[i].title"
+              [title]="layers[i].title"
+            />
+
+            <label
+              *ngIf="outOfZoom.value"
+              class="out-of-zoom"
+              matTooltip="Deze kaartlaag is niet beschikbaar op huidig zoomniveau"
+            >
+              {{ layers[i].groupName || layers[i].title
+              }}<span class="sr-only"> (niet beschikbaar op huidig zoomniveau)</span>
+            </label>
+
+            <label *ngIf="!outOfZoom.value" [for]="'layer-' + layers[i].title">
+              {{ layers[i].groupName || layers[i].title }}
+            </label>
+
+            <button
+              type="button"
+              class="btn dso-tertiary edit-icon"
+              [attr.title]="'Wijzig kaartlaag ' + layers[i].title"
+              (click)="editLayer(i, true)"
+              (keyup.enter)="editLayer(i, true)"
+              *ngIf="!outOfZoom.value && !doEditLayer(i)"
+            >
+              <span class="sr-only">{{ 'Wijzig kaartlaag ' + layers[i].title }}</span>
+              <dso-icon icon="more"></dso-icon>
+            </button>
+          </ng-container>
+
+          <ng-container *ngIf="doEditLayer(i)">
+            <button
+              type="button"
+              class="btn dso-tertiary finished-edit-icon"
+              title="Klaar met wijzigen"
+              (click)="editLayer(i, false)"
+              (keyup.enter)="editLayer(i, false)"
+            >
+              <span class="sr-only">Klaar met wijzigen</span>
+              <dso-icon icon="check"></dso-icon>
+            </button>
+            <br />
+            <ng-container *ngIf="layers[i].groupName">
+              <div
+                *ngFor="let layer of getLayersByGroupName(layers[i].groupName); trackBy: trackByFnLayer"
+                class="dso-selectable submenu"
+              >
+                <input
+                  type="radio"
+                  [id]="layer.ol_uid"
+                  name="syles"
+                  (change)="onStyleChange(layer)"
+                  [checked]="layer.getVisible()"
+                />
+                <label [for]="layer.ol_uid">{{ layer.values_.title }}</label
+                ><br />
+              </div>
+            </ng-container>
+            <span class="slider-label" *ngIf="!layers[i].groupName"
+              >0%<mat-slider
+                (change)="onOpacityChange($event, layers[i])"
+                [attr.title]="'Wijzig transparantie van ' + layers[i].title"
+                [value]="getOpacityOfLayer(layers[i].id)"
+                max="1"
+                min="0"
+                role="slider"
+                step="0.05"
+              ></mat-slider
+              >100%</span
+            >
+          </ng-container>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</form>

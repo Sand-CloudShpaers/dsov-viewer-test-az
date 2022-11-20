@@ -1,0 +1,10 @@
+:host {
+  .wijzigingen-header {
+    padding: 0 1rem;
+  }
+  .wijzigingen-release-notes {
+    &__title {
+      padding: 0 1rem;
+    }
+  }
+}

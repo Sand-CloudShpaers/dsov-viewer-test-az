@@ -1,0 +1,19 @@
+<div *ngIf="modalOpen" class="help-modal">
+  <h1 class="title">
+    {{ title }}
+    <button
+      type="button"
+      class="btn dso-tertiary help-modal__close"
+      (click)="onCloseclicked()"
+      (keyup.enter)="onCloseclicked()"
+      data-test-id="dso-map-overlay__close-button"
+    >
+      <span class="sr-only">Sluit paneel</span>
+      <dso-icon icon="times"></dso-icon>
+    </button>
+  </h1>
+
+  <div class="help-modal-content">
+    <ng-content></ng-content>
+  </div>
+</div>

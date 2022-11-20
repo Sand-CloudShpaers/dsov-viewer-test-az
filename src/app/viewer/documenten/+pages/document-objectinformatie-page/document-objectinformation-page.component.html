@@ -1,0 +1,5 @@
+<dsov-ihr-location-details
+  *ngIf="documentDto$ | async as documentDto"
+  [planId]="documentDto.documentId"
+  [features]="kaartFeatures$ | async"
+></dsov-ihr-location-details>

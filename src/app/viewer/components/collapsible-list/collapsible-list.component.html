@@ -1,0 +1,38 @@
+<div data-test-id="collapsible-list">
+  <button
+    (click)="toggle()"
+    (keyup.enter)="toggle()"
+    [title]="isExpanded ? 'Lijst verbergen' : 'Lijst weergeven'"
+    class="btn dso-tertiary collapsible-list__button"
+    [ngClass]="{ 'bold-title': boldTitle }"
+    data-test-id="collapsible-list__button"
+    [attr.aria-expanded]="isExpanded"
+  >
+    <dso-icon icon="{{ isExpanded ? 'chevron-down' : 'chevron-right' }}"></dso-icon>
+    <span>
+      {{ naam }}
+    </span>
+  </button>
+
+  <div class="collapsible-list__embedded" data-test-id="collapsible-list__embedded" *ngIf="isExpanded && embedded">
+    <dsov-collapsible-list
+      *ngFor="let item of embedded; trackBy: trackByEmbeddedItem"
+      [identificatie]="item.identificatie"
+      [naam]="item.naam"
+      [expanded]="item.isExpanded"
+      [embedded]="item.embedded"
+      [lists]="item.lists"
+      [showCheckboxes]="showCheckboxes"
+      [showSliders]="showSliders"
+    ></dsov-collapsible-list>
+  </div>
+
+  <div *ngIf="isExpanded && lists?.length" class="collapsible-list__list" data-test-id="collapsible-list__list">
+    <dsov-selectable-list
+      *ngFor="let list of lists; trackBy: trackByList"
+      [list]="list"
+      [showCheckboxes]="showCheckboxes"
+      [showSliders]="showSliders"
+    ></dsov-selectable-list>
+  </div>
+</div>

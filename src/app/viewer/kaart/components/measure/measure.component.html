@@ -1,0 +1,10 @@
+<button
+  class="btn dso-secondary btn-with-dso-icon"
+  [ngClass]="measureActive ? ' measure-active' : 'measure-inactive'"
+  [title]="measureActive ? 'Stop meten' : 'Afstand of oppervlak meten'"
+  (click)="onToggleChange()"
+  (keyup.enter)="onToggleChange()"
+  type="button"
+>
+  <dso-icon icon="measurement"></dso-icon>
+</button>
